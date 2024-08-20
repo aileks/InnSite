@@ -31,7 +31,7 @@ The `previous state` in the console should look like this:
 ```js
 {
   session: {
-    user: null
+    user: null;
   }
 }
 ```
@@ -69,17 +69,17 @@ Here's an example of the signup thunk action:
 // frontend/src/store/session.js
 
 // ...
-export const signup = (user) => async (dispatch) => {
+export const signup = user => async dispatch => {
   const { username, firstName, lastName, email, password } = user;
-  const response = await csrfFetch("/api/users", {
-    method: "POST",
+  const response = await csrfFetch('/api/users', {
+    method: 'POST',
     body: JSON.stringify({
       username,
       firstName,
       lastName,
       email,
-      password
-    })
+      password,
+    }),
   });
   const data = await response.json();
   dispatch(setUser(data.user));
@@ -94,13 +94,13 @@ console:
 ```js
 store.dispatch(
   sessionActions.signup({
-    username: "NewUser",
-    firstName: "New",
-    lastName: "User",
-    email: "new@user.io",
-    password: "password",
+    username: 'NewUser',
+    firstName: 'New',
+    lastName: 'User',
+    email: 'new@user.io',
+    password: 'password',
   })
-)
+);
 ```
 
 ## `SignupFormPage` component
@@ -109,7 +109,7 @@ After finishing the Redux action for the signup feature, the React components
 are next.
 
 Create a folder in the `components` directory for your signup page components.
-Add a __SignupFormPage.jsx__ (and __index.js__ if you want) and create a
+Add a **SignupFormPage.jsx** (and **index.js** if you want) and create a
 function component named `SignupFormPage`.
 
 Render a form with controlled inputs for the new user's `username`, `firstName`,
@@ -122,7 +122,7 @@ if there are any. If the `confirmPassword` is not the same as the `password`,
 display an error message for this.
 
 Export the `SignupFormPage` component as the default at the bottom of the file,
-then render it in __App.jsx__ at the `/signup` route.
+then render it in **App.jsx** at the `/signup` route.
 
 If there is a current session user in the Redux store, then redirect the user
 to the `"/"` path if trying to access the `SignupFormPage`.
@@ -156,18 +156,24 @@ import * as sessionActions from '../../store/session';
 
 function SignupFormPage() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const sessionUser = useSelector(state => state.session.user);
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  if (sessionUser)
+    return (
+      <Navigate
+        to='/'
+        replace={true}
+      />
+    );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors({});
@@ -177,9 +183,9 @@ function SignupFormPage() {
           username,
           firstName,
           lastName,
-          password
+          password,
         })
-      ).catch(async (res) => {
+      ).catch(async res => {
         const data = await res.json();
         if (data?.errors) {
           setErrors(data.errors);
@@ -187,7 +193,8 @@ function SignupFormPage() {
       });
     }
     return setErrors({
-      confirmPassword: "Confirm Password field must be the same as the Password field"
+      confirmPassword:
+        'Confirm Password field must be the same as the Password field',
     });
   };
 
@@ -198,9 +205,9 @@ function SignupFormPage() {
         <label>
           Email
           <input
-            type="text"
+            type='text'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             required
           />
         </label>
@@ -208,9 +215,9 @@ function SignupFormPage() {
         <label>
           Username
           <input
-            type="text"
+            type='text'
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={e => setUsername(e.target.value)}
             required
           />
         </label>
@@ -218,9 +225,9 @@ function SignupFormPage() {
         <label>
           First Name
           <input
-            type="text"
+            type='text'
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={e => setFirstName(e.target.value)}
             required
           />
         </label>
@@ -228,9 +235,9 @@ function SignupFormPage() {
         <label>
           Last Name
           <input
-            type="text"
+            type='text'
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={e => setLastName(e.target.value)}
             required
           />
         </label>
@@ -238,9 +245,9 @@ function SignupFormPage() {
         <label>
           Password
           <input
-            type="password"
+            type='password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             required
           />
         </label>
@@ -248,14 +255,14 @@ function SignupFormPage() {
         <label>
           Confirm Password
           <input
-            type="password"
+            type='password'
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={e => setConfirmPassword(e.target.value)}
             required
           />
         </label>
         {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
-        <button type="submit">Sign Up</button>
+        <button type='submit'>Sign Up</button>
       </form>
     </>
   );
@@ -264,7 +271,7 @@ function SignupFormPage() {
 export default SignupFormPage;
 ```
 
-Here's an example of what __App.jsx__ could look like now:
+Here's an example of what **App.jsx** could look like now:
 
 ```jsx
 // frontend/src/App.jsx
@@ -282,15 +289,11 @@ function Layout() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
-      setIsLoaded(true)
+      setIsLoaded(true);
     });
   }, [dispatch]);
 
-  return (
-    <>
-      {isLoaded && <Outlet />}
-    </>
-  );
+  return <>{isLoaded && <Outlet />}</>;
 }
 
 const router = createBrowserRouter([
@@ -299,18 +302,18 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <h1>Welcome!</h1>,
       },
       {
         path: '/login',
-        element: <LoginFormPage />
+        element: <LoginFormPage />,
       },
       {
-        path: "/signup",
-        element: <SignupFormPage />
-      }
-    ]
-  }
+        path: '/signup',
+        element: <SignupFormPage />,
+      },
+    ],
+  },
 ]);
 
 function App() {
@@ -322,8 +325,8 @@ export default App;
 
 ### `SignupForm` CSS
 
-Add a __SignupForm.css__ file in your __SignupFormPage__ folder. Import this CSS
-file into the __frontend/src/components/SignupFormPage/SignupFormPage.jsx__
+Add a **SignupForm.css** file in your **SignupFormPage** folder. Import this CSS
+file into the **frontend/src/components/SignupFormPage/SignupFormPage.jsx**
 file.
 
 ```js
@@ -335,7 +338,7 @@ import './SignupForm.css';
 ```
 
 Define all your CSS styling rules for the `SignupFormPage` component in the
-__SignupForm.css__ file. Practice doing some CSS now to make your signup page
+**SignupForm.css** file. Practice doing some CSS now to make your signup page
 look better. Make sure to **commit your code afterwards**!
 
 [http://localhost:5173]: http://localhost:5173

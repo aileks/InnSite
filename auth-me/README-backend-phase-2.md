@@ -18,7 +18,7 @@ error with a status code of `404`.
 // Catch unhandled requests and forward to error handler.
 app.use((_req, _res, next) => {
   const err = new Error("The requested resource couldn't be found.");
-  err.title = "Resource Not Found";
+  err.title = 'Resource Not Found';
   err.errors = { message: "The requested resource couldn't be found." };
   err.status = 404;
   next(err);
@@ -83,7 +83,7 @@ app.use((err, _req, res, _next) => {
     title: err.title || 'Server Error',
     message: err.message,
     errors: err.errors,
-    stack: isProduction ? null : err.stack
+    stack: isProduction ? null : err.stack,
   });
 });
 ```

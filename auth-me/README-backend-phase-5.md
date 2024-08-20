@@ -48,23 +48,21 @@ const { validationResult } = require('express-validator');
 const handleValidationErrors = (req, _res, next) => {
   const validationErrors = validationResult(req);
 
-  if (!validationErrors.isEmpty()) { 
+  if (!validationErrors.isEmpty()) {
     const errors = {};
-    validationErrors
-      .array()
-      .forEach(error => errors[error.path] = error.msg);
+    validationErrors.array().forEach(error => (errors[error.path] = error.msg));
 
-    const err = Error("Bad request.");
+    const err = Error('Bad request.');
     err.errors = errors;
     err.status = 400;
-    err.title = "Bad request.";
+    err.title = 'Bad request.';
     next(err);
   }
   next();
 };
 
 module.exports = {
-  handleValidationErrors
+  handleValidationErrors,
 };
 ```
 
@@ -108,7 +106,7 @@ const validateLogin = [
   check('password')
     .exists({ checkFalsy: true })
     .withMessage('Please provide a password.'),
-  handleValidationErrors
+  handleValidationErrors,
 ];
 ```
 
@@ -125,42 +123,38 @@ Your login route should now look like this:
 // ...
 
 // Log in
-router.post(
-  '/',
-  validateLogin,
-  async (req, res, next) => {
-    const { credential, password } = req.body;
+router.post('/', validateLogin, async (req, res, next) => {
+  const { credential, password } = req.body;
 
-    const user = await User.unscoped().findOne({
-      where: {
-        [Op.or]: {
-          username: credential,
-          email: credential
-        }
-      }
-    });
+  const user = await User.unscoped().findOne({
+    where: {
+      [Op.or]: {
+        username: credential,
+        email: credential,
+      },
+    },
+  });
 
-    if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
-      const err = new Error('Login failed');
-      err.status = 401;
-      err.title = 'Login failed';
-      err.errors = { credential: 'The provided credentials were invalid.' };
-      return next(err);
-    }
-
-    const safeUser = {
-      id: user.id,
-      email: user.email,
-      username: user.username,
-    };
-
-    await setTokenCookie(res, safeUser);
-
-    return res.json({
-      user: safeUser
-    });
+  if (!user || !bcrypt.compareSync(password, user.hashedPassword.toString())) {
+    const err = new Error('Login failed');
+    err.status = 401;
+    err.title = 'Login failed';
+    err.errors = { credential: 'The provided credentials were invalid.' };
+    return next(err);
   }
-);
+
+  const safeUser = {
+    id: user.id,
+    email: user.email,
+    username: user.username,
+  };
+
+  await setTokenCookie(res, safeUser);
+
+  return res.json({
+    user: safeUser,
+  });
+});
 ```
 
 ### Test the Login Validation
@@ -182,11 +176,13 @@ Try setting the `credential` user field to an empty string. You should get a
 fetch('/api/session', {
   method: 'POST',
   headers: {
-    "Content-Type": "application/json",
-    "XSRF-TOKEN": `<value of XSRF-TOKEN cookie>`
+    'Content-Type': 'application/json',
+    'XSRF-TOKEN': `<value of XSRF-TOKEN cookie>`,
   },
-  body: JSON.stringify({ credential: '', password: 'password' })
-}).then(res => res.json()).then(data => console.log(data));
+  body: JSON.stringify({ credential: '', password: 'password' }),
+})
+  .then(res => res.json())
+  .then(data => console.log(data));
 ```
 
 Remember to replace the `<value of XSRF-TOKEN cookie>` with the value of the
@@ -201,11 +197,13 @@ Test the `password` field by setting it to an empty string. You should get a
 fetch('/api/session', {
   method: 'POST',
   headers: {
-    "Content-Type": "application/json",
-    "XSRF-TOKEN": `<value of XSRF-TOKEN cookie>`
+    'Content-Type': 'application/json',
+    'XSRF-TOKEN': `<value of XSRF-TOKEN cookie>`,
   },
-  body: JSON.stringify({ credential: 'Demo-lition', password: '' })
-}).then(res => res.json()).then(data => console.log(data));
+  body: JSON.stringify({ credential: 'Demo-lition', password: '' }),
+})
+  .then(res => res.json())
+  .then(data => console.log(data));
 ```
 
 ## Commit your code
@@ -292,15 +290,12 @@ const validateSignup = [
     .exists({ checkFalsy: true })
     .isLength({ min: 4 })
     .withMessage('Please provide a username with at least 4 characters.'),
-  check('username')
-    .not()
-    .isEmail()
-    .withMessage('Username cannot be an email.'),
+  check('username').not().isEmail().withMessage('Username cannot be an email.'),
   check('password')
     .exists({ checkFalsy: true })
     .isLength({ min: 6 })
     .withMessage('Password must be 6 characters or more.'),
-  handleValidationErrors
+  handleValidationErrors,
 ];
 ```
 
@@ -319,27 +314,23 @@ Your signup route should now look like this:
 // ...
 
 // Sign up
-router.post(
-  '/',
-  validateSignup,
-  async (req, res) => {
-    const { email, password, username } = req.body;
-    const hashedPassword = bcrypt.hashSync(password);
-    const user = await User.create({ email, username, hashedPassword });
+router.post('/', validateSignup, async (req, res) => {
+  const { email, password, username } = req.body;
+  const hashedPassword = bcrypt.hashSync(password);
+  const user = await User.create({ email, username, hashedPassword });
 
-    const safeUser = {
-      id: user.id,
-      email: user.email,
-      username: user.username,
-    };
+  const safeUser = {
+    id: user.id,
+    email: user.email,
+    username: user.username,
+  };
 
-    await setTokenCookie(res, safeUser);
+  await setTokenCookie(res, safeUser);
 
-    return res.json({
-      user: safeUser
-    });
-  }
-);
+  return res.json({
+    user: safeUser,
+  });
+});
 ```
 
 ### Test the Signup Validation
@@ -362,15 +353,17 @@ the errors.
 fetch('/api/users', {
   method: 'POST',
   headers: {
-    "Content-Type": "application/json",
-    "XSRF-TOKEN": `<value of XSRF-TOKEN cookie>`
+    'Content-Type': 'application/json',
+    'XSRF-TOKEN': `<value of XSRF-TOKEN cookie>`,
   },
   body: JSON.stringify({
     email: 'firestar@spider.man',
     username: 'Firestar',
-    password: ''
-  })
-}).then(res => res.json()).then(data => console.log(data));
+    password: '',
+  }),
+})
+  .then(res => res.json())
+  .then(data => console.log(data));
 ```
 
 Remember to replace the `<value of XSRF-TOKEN cookie>` with the value of the
@@ -450,11 +443,7 @@ user in the following format on successful login/signup:
 ```js
 {
   user: {
-    id,
-    firstName,
-    lastName,
-    email,
-    userName
+    id, firstName, lastName, email, userName;
   }
 }
 ```
@@ -465,11 +454,7 @@ format if there is a logged in user:
 ```js
 {
   user: {
-    id,
-    firstName,
-    lastName,
-    email,
-    userName
+    id, firstName, lastName, email, userName;
   }
 }
 ```
@@ -479,7 +464,7 @@ is **no** logged in user:
 
 ```js
 {
-  user: null
+  user: null;
 }
 ```
 

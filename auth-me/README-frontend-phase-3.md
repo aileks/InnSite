@@ -43,7 +43,7 @@ The `next state` in the console should look something like this:
 ```js
 {
   session: {
-    user: null
+    user: null;
   }
 }
 ```
@@ -65,9 +65,9 @@ Here's an example of a logout thunk action:
 // frontend/src/store/session.js
 
 // ...
-export const logout = () => async (dispatch) => {
+export const logout = () => async dispatch => {
   const response = await csrfFetch('/api/session', {
-    method: 'DELETE'
+    method: 'DELETE',
   });
   dispatch(removeUser());
   return response;
@@ -79,7 +79,7 @@ Here's an example of the logout thunk action test in the browser's DevTools
 console:
 
 ```js
-store.dispatch(sessionActions.logout())
+store.dispatch(sessionActions.logout());
 ```
 
 ## `Navigation` component
@@ -88,9 +88,9 @@ After finishing the Redux action for the logout feature, the React components
 are next. The `Navigation` component will render navigation links and a logout
 button.
 
-Make a folder called __Navigation__ nested in the __frontend/src/components__
+Make a folder called **Navigation** nested in the **frontend/src/components**
 folder which will hold all the files for the navigation bar. Add a
-__Navigation.jsx__ file (and __index.js__ if desired) in the __Navigation__
+**Navigation.jsx** file (and **index.js** if desired) in the **Navigation**
 folder. Inside of this file, add a React function component named
 `Navigation`.
 
@@ -98,11 +98,11 @@ Your navigation should render an unordered list with a navigation link to the
 home page. It should only render navigation links to the login and signup routes
 when there is no session user; it should render a logout button when there is.
 
-Make a __ProfileButton.jsx__ file in the __Navigation__ folder. Create a React
+Make a **ProfileButton.jsx** file in the **Navigation** folder. Create a React
 function component called `ProfileButton` that will render a generic user
 profile icon of your choice from [React icons].
 
-Start by installing the React icons package in your __frontend__ folder:
+Start by installing the React icons package in your **frontend** folder:
 
 ```sh
 npm install react-icons
@@ -122,7 +122,7 @@ import { FaCarrot } from 'react-icons/fa6';
 
 const Carrot = () => {
   return (
-    <div style={{ color: "orange", fontSize: "100px" }}>
+    <div style={{ color: 'orange', fontSize: '100px' }}>
       <FaCarrot />
     </div>
   );
@@ -144,7 +144,7 @@ is one. Refresh and see if there is a navigation bar with links to the login
 and signup pages. After logging in, the navigation bar should have the links
 to login and signup replaced with the React icons user icon.
 
-Here's an example of what __Navigation/Navigation.jsx__ could look like:
+Here's an example of what **Navigation/Navigation.jsx** could look like:
 
 ```js
 // frontend/src/components/Navigation/Navigation.jsx
@@ -158,35 +158,34 @@ function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const logout = (e) => {
+  const logout = e => {
     e.preventDefault();
     dispatch(sessionActions.logout());
   };
 
-  const sessionLinks = sessionUser ? (
-    <>
-      <li>
-        <ProfileButton user={sessionUser} />
-      </li>
-      <li>
-        <button onClick={logout}>Log Out</button>
-      </li>
-    </>
-  ) : (
-    <>
-      <li>
-        <NavLink to="/login">Log In</NavLink>
-      </li>
-      <li>
-        <NavLink to="/signup">Sign Up</NavLink>
-      </li>
-    </>
-  );
+  const sessionLinks =
+    sessionUser ?
+      <>
+        <li>
+          <ProfileButton user={sessionUser} />
+        </li>
+        <li>
+          <button onClick={logout}>Log Out</button>
+        </li>
+      </>
+    : <>
+        <li>
+          <NavLink to='/login'>Log In</NavLink>
+        </li>
+        <li>
+          <NavLink to='/signup'>Sign Up</NavLink>
+        </li>
+      </>;
 
   return (
     <ul>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to='/'>Home</NavLink>
       </li>
       {isLoaded && sessionLinks}
     </ul>
@@ -196,7 +195,7 @@ function Navigation({ isLoaded }) {
 export default Navigation;
 ```
 
-Here's an example of what __App.jsx__ could look like now:
+Here's an example of what **App.jsx** could look like now:
 
 ```js
 // frontend/src/App.jsx
@@ -215,7 +214,7 @@ function Layout() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
-      setIsLoaded(true)
+      setIsLoaded(true);
     });
   }, [dispatch]);
 
@@ -233,18 +232,18 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <h1>Welcome!</h1>,
       },
       {
-        path: "login",
-        element: <LoginFormPage />
+        path: 'login',
+        element: <LoginFormPage />,
       },
       {
-        path: "signup",
-        element: <SignupFormPage />
-      }
-    ]
-  }
+        path: 'signup',
+        element: <SignupFormPage />,
+      },
+    ],
+  },
 ]);
 
 function App() {
@@ -276,7 +275,7 @@ import * as sessionActions from '../../store/session';
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
 
-  const logout = (e) => {
+  const logout = e => {
     e.preventDefault();
     dispatch(sessionActions.logout());
   };
@@ -286,9 +285,11 @@ function ProfileButton({ user }) {
       <button>
         <FaUserCircle />
       </button>
-      <ul className="profile-dropdown">
+      <ul className='profile-dropdown'>
         <li>{user.username}</li>
-        <li>{user.firstName} {user.lastName}</li>
+        <li>
+          {user.firstName} {user.lastName}
+        </li>
         <li>{user.email}</li>
         <li>
           <button onClick={logout}>Log Out</button>
@@ -301,7 +302,7 @@ function ProfileButton({ user }) {
 export default ProfileButton;
 ```
 
-Here's an example of what __Navigation.jsx__ could look without the logout
+Here's an example of what **Navigation.jsx** could look without the logout
 logic:
 
 ```js
@@ -311,28 +312,27 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
-  const sessionLinks = sessionUser ? (
-    <li>
-      <ProfileButton user={sessionUser} />
-    </li>
-  ) : (
-    <>
+  const sessionLinks =
+    sessionUser ?
       <li>
-        <NavLink to="/login">Log In</NavLink>
+        <ProfileButton user={sessionUser} />
       </li>
-      <li>
-        <NavLink to="/signup">Sign Up</NavLink>
-      </li>
-    </>
-  );
+    : <>
+        <li>
+          <NavLink to='/login'>Log In</NavLink>
+        </li>
+        <li>
+          <NavLink to='/signup'>Sign Up</NavLink>
+        </li>
+      </>;
 
   return (
     <ul>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to='/'>Home</NavLink>
       </li>
       {isLoaded && sessionLinks}
     </ul>
@@ -344,8 +344,8 @@ export default Navigation;
 
 ### `Navigation` CSS
 
-Add a __Navigation.css__ file in your __Navigation__ folder. Import this CSS
-file into the __frontend/src/components/Navigation/Navigation.jsx__ file.
+Add a **Navigation.css** file in your **Navigation** folder. Import this CSS
+file into the **frontend/src/components/Navigation/Navigation.jsx** file.
 
 ```js
 // frontend/src/components/Navigation/Navigation.jsx
@@ -356,7 +356,7 @@ import './Navigation.css';
 ```
 
 Define all your CSS styling rules for the `Navigation` component in the
-__Navigation.css__ file. Make your navigation bar look good and your dropdown
+**Navigation.css** file. Make your navigation bar look good and your dropdown
 menu (see the next section) flow well with the rest of the elements.
 **Afterwards, commit!**
 
@@ -392,12 +392,12 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
 
-  const logout = (e) => {
+  const logout = e => {
     e.preventDefault();
     dispatch(sessionActions.logout());
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
 
   return (
     <>
@@ -406,7 +406,9 @@ function ProfileButton({ user }) {
       </button>
       <ul className={ulClassName}>
         <li>{user.username}</li>
-        <li>{user.firstName} {user.lastName}</li>
+        <li>
+          {user.firstName} {user.lastName}
+        </li>
         <li>{user.email}</li>
         <li>
           <button onClick={logout}>Log Out</button>
@@ -446,15 +448,15 @@ menu. Register the `closeMenu` function as an event listener for
 `useEffect` should remove this event listener.
 
 ```js
-  useEffect(() => {
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
+useEffect(() => {
+  const closeMenu = () => {
+    setShowMenu(false);
+  };
 
-    document.addEventListener('click', closeMenu);
+  document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener('click', closeMenu);
-  }, []);
+  return () => document.removeEventListener('click', closeMenu);
+}, []);
 ```
 
 If you test this on [http://localhost:5173], you'll notice that the dropdown
@@ -471,17 +473,17 @@ add the event listener and return a cleanup function only if `showMenu` is
 `true`. (Don't forget to add `showMenu` to the `useEffect` dependency array!)
 
 ```js
-  useEffect(() => {
-    if (!showMenu) return;
+useEffect(() => {
+  if (!showMenu) return;
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
+  const closeMenu = () => {
+    setShowMenu(false);
+  };
 
-    document.addEventListener('click', closeMenu);
+  document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener('click', closeMenu);
-  }, [showMenu]);
+  return () => document.removeEventListener('click', closeMenu);
+}, [showMenu]);
 ```
 
 Depending on your setup, this might seem to solve the issue: the dropdown might
@@ -507,7 +509,7 @@ Inside `ProfileButton`, define a `toggleMenu` callback that stops the event prop
 
 function ProfileButton({ user }) {
   // ...
-  const toggleMenu = (e) => {
+  const toggleMenu = e => {
     e.stopPropagation(); // Keep click from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
   };
@@ -547,7 +549,7 @@ HTML element.
 ```js
 // EXAMPLE OF AN EVENT LISTENER
 
-onClick((event) => {
+onClick(event => {
   element.contains(event.target); // true/false
   // evaluates to true if click happened inside of the element
   // evaluates to false if click happened outside of the element
@@ -572,7 +574,7 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
-  const toggleMenu = (e) => {
+  const toggleMenu = e => {
     e.stopPropagation(); // Keep click from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
   };
@@ -580,30 +582,37 @@ function ProfileButton({ user }) {
   useEffect(() => {
     if (!showMenu) return;
 
-    const closeMenu = (e) => {
+    const closeMenu = e => {
       setShowMenu(false);
     };
 
     document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
+    return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
 
-  const logout = (e) => {
+  const logout = e => {
     e.preventDefault();
     dispatch(sessionActions.logout());
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
 
   return (
     <>
       <button onClick={toggleMenu}>
         <FaUserCircle />
       </button>
-      <ul className={ulClassName} ref={ulRef}> {/* <-- Attach it here */}
+      <ul
+        className={ulClassName}
+        ref={ulRef}
+      >
+        {' '}
+        {/* <-- Attach it here */}
         <li>{user.username}</li>
-        <li>{user.firstName} {user.lastName}</li>
+        <li>
+          {user.firstName} {user.lastName}
+        </li>
         <li>{user.email}</li>
         <li>
           <button onClick={logout}>Log Out</button>
@@ -621,11 +630,11 @@ Next, in the `closeMenu` function, change `showMenu` to `false` only if the
 dropdown menu.
 
 ```js
-  const closeMenu = (e) => {
-    if (ulRef.current && !ulRef.current.contains(e.target)) {
-      setShowMenu(false);
-    }
-  };
+const closeMenu = e => {
+  if (ulRef.current && !ulRef.current.contains(e.target)) {
+    setShowMenu(false);
+  }
+};
 ```
 
 Now your dropdown menu should be fully functional and look something like this!
@@ -643,7 +652,7 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
-  const toggleMenu = (e) => {
+  const toggleMenu = e => {
     e.stopPropagation(); // Keep click from bubbling up to document and triggering closeMenu
     // if (!showMenu) setShowMenu(true);
     setShowMenu(!showMenu);
@@ -652,7 +661,7 @@ function ProfileButton({ user }) {
   useEffect(() => {
     if (!showMenu) return;
 
-    const closeMenu = (e) => {
+    const closeMenu = e => {
       if (ulRef.current && !ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
@@ -663,21 +672,26 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
 
-  const logout = (e) => {
+  const logout = e => {
     e.preventDefault();
     dispatch(sessionActions.logout());
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
 
   return (
     <>
       <button onClick={toggleMenu}>
         <FaUserCircle />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
+      <ul
+        className={ulClassName}
+        ref={ulRef}
+      >
         <li>{user.username}</li>
-        <li>{user.firstName} {user.lastName}</li>
+        <li>
+          {user.firstName} {user.lastName}
+        </li>
         <li>{user.email}</li>
         <li>
           <button onClick={logout}>Log Out</button>

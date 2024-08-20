@@ -11,9 +11,9 @@ Let's get started!
 
 ## Modal context
 
-First, make a folder in __frontend/src__ called __context__. This folder will
+First, make a folder in **frontend/src** called **context**. This folder will
 hold all the different context and context providers for your application. Add a
-file in the __context__ folder called __Modal.jsx__. Create a React context
+file in the **context** folder called **Modal.jsx**. Create a React context
 called a `ModalContext`.
 
 Create and export a function component called `ModalProvider` that renders the
@@ -101,7 +101,7 @@ export function ModalProvider({ children }) {
     modalRef, // reference to modal div
     modalContent, // React component to render inside modal
     setModalContent, // function to set the React component to render inside modal
-    setOnModalClose // function to set the callback function to be called when modal is closing
+    setOnModalClose, // function to set the callback function to be called when modal is closing
   };
 
   return (
@@ -131,7 +131,7 @@ export function ModalProvider({ children }) {
     setModalContent(null); // clear the modal contents
     // If callback function is truthy, call the callback function and reset it
     // to null:
-    if (typeof onModalClose === "function") {
+    if (typeof onModalClose === 'function') {
       setOnModalClose(null);
       onModalClose();
     }
@@ -142,7 +142,7 @@ export function ModalProvider({ children }) {
     modalContent, // React component to render inside modal
     setModalContent, // function to set the React component to render inside modal
     setOnModalClose, // function to set the callback function to be called when modal is closing
-    closeModal // function to close the modal
+    closeModal, // function to close the modal
   };
 
   return (
@@ -156,7 +156,7 @@ export function ModalProvider({ children }) {
 }
 ```
 
-Import the `ModalProvider` component in __frontend/src/main.jsx__ and wrap your
+Import the `ModalProvider` component in **frontend/src/main.jsx** and wrap your
 `App` with it:
 
 ```jsx
@@ -174,7 +174,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 );
 ```
 
-Back in the __frontend/src/context/Modal.jsx__ file, create and export a
+Back in the **frontend/src/context/Modal.jsx** file, create and export a
 function component called `Modal`. Export it as a named export.
 
 The `Modal` component should consume the value of the `ModalContext` by using
@@ -226,7 +226,7 @@ export function ModalProvider({ children }) {
     setModalContent(null); // clear the modal contents
     // If callback function is truthy, call the callback function and reset it
     // to null:
-    if (typeof onModalClose === "function") {
+    if (typeof onModalClose === 'function') {
       setOnModalClose(null);
       onModalClose();
     }
@@ -237,7 +237,7 @@ export function ModalProvider({ children }) {
     modalContent, // React component to render inside modal
     setModalContent, // function to set the React component to render inside modal
     setOnModalClose, // function to set the callback function called when modal is closing
-    closeModal // function to close the modal
+    closeModal, // function to close the modal
   };
 
   return (
@@ -258,16 +258,19 @@ export function Modal() {
 
   // Render the following component to the div referenced by the modalRef
   return ReactDOM.createPortal(
-    <div id="modal">
-      <div id="modal-background" onClick={closeModal} />
-      <div id="modal-content">{modalContent}</div>
+    <div id='modal'>
+      <div
+        id='modal-background'
+        onClick={closeModal}
+      />
+      <div id='modal-content'>{modalContent}</div>
     </div>,
     modalRef.current
   );
 }
 ```
 
-Add a CSS file in the __context__ folder called __Modal.css__. The `modal` div
+Add a CSS file in the **context** folder called **Modal.css**. The `modal` div
 should have a `position` `fixed` and take up the entire width and height of the
 window. The `modal-background` should also take up the entire width and height
 of the window and have a `position` `absolute`. The `modal-content` div should
@@ -303,12 +306,12 @@ flexing the `modal` div. You may want to give the `modal-background` a
 }
 ```
 
-Import the __Modal.css__ file into the __Modal.jsx__ context file.
+Import the **Modal.css** file into the **Modal.jsx** context file.
 
 Create and export as a named export a custom React hook called `useModal` that
 can be used by React components to easily consume the `ModalContext`.
 
-Your __Modal.jsx__ file should now look like this:
+Your **Modal.jsx** file should now look like this:
 
 ```jsx
 import { useRef, useState, useContext, createContext } from 'react';
@@ -327,7 +330,7 @@ export function ModalProvider({ children }) {
     setModalContent(null); // clear the modal contents
     // If callback function is truthy, call the callback function and reset it
     // to null:
-    if (typeof onModalClose === "function") {
+    if (typeof onModalClose === 'function') {
       setOnModalClose(null);
       onModalClose();
     }
@@ -338,7 +341,7 @@ export function ModalProvider({ children }) {
     modalContent, // React component to render inside modal
     setModalContent, // function to set the React component to render inside modal
     setOnModalClose, // function to set the callback function called when modal is closing
-    closeModal // function to close the modal
+    closeModal, // function to close the modal
   };
 
   return (
@@ -359,9 +362,12 @@ export function Modal() {
 
   // Render the following component to the div referenced by the modalRef
   return ReactDOM.createPortal(
-    <div id="modal">
-      <div id="modal-background" onClick={closeModal} />
-      <div id="modal-content">{modalContent}</div>
+    <div id='modal'>
+      <div
+        id='modal-background'
+        onClick={closeModal}
+      />
+      <div id='modal-content'>{modalContent}</div>
     </div>,
     modalRef.current
   );
@@ -372,7 +378,7 @@ export const useModal = () => useContext(ModalContext);
 
 Your linter will complain that "Fast refresh only works when a file only exports
 components." To turn that warning off for this file, add the following
-`overrides` key to the `module.exports` object in __.eslintrc.cjs__:
+`overrides` key to the `module.exports` object in **.eslintrc.cjs**:
 
 ```js
 overrides: [
@@ -387,12 +393,12 @@ overrides: [
 ],
 ```
 
-You also need to make one last adjustment to __frontend/src/main.jsx__ to be
+You also need to make one last adjustment to **frontend/src/main.jsx** to be
 able to use the modal. Import the `Modal` component from the
-__frontend/src/context/Modal.jsx__ file and render it as a sibling right under
+**frontend/src/context/Modal.jsx** file and render it as a sibling right under
 the `App` component.
 
-Your __frontend/src/main.jsx__ should look something like this:
+Your **frontend/src/main.jsx** should look something like this:
 
 ```jsx
 // frontend/src/main.jsx
@@ -434,8 +440,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 The `OpenModalButton` component should be a generic button that can be used to
 trigger a modal with any content to open.
 
-Make a folder in __frontend/src/components__ called __OpenModalButton__. Create
-an __OpenModalButton.jsx__ file (and accompanying __index.js__ if you wish) in
+Make a folder in **frontend/src/components** called **OpenModalButton**. Create
+an **OpenModalButton.jsx** file (and accompanying **index.js** if you wish) in
 this folder that will hold the code for the `OpenModalButton` component.
 
 Create and export a function component called `OpenModalButton` that takes in
@@ -473,14 +479,14 @@ function OpenModalButton({
   modalComponent, // component to render inside the modal
   buttonText, // text of the button that opens the modal
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
-  onModalClose // optional: callback function that will be called once the modal is closed
+  onModalClose, // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
   const onClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
     setModalContent(modalComponent);
-    if (typeof onButtonClick === "function") onButtonClick();
+    if (typeof onButtonClick === 'function') onButtonClick();
   };
 
   return <button onClick={onClick}>{buttonText}</button>;
@@ -501,7 +507,7 @@ Here's an example of one such component:
 const Greeting = () => {
   return (
     <OpenModalButton
-      buttonText="Greeting"
+      buttonText='Greeting'
       modalComponent={<h2>Hello World!</h2>}
     />
   );
@@ -516,9 +522,9 @@ function as the `onButtonClick` prop to the `OpenModalButton` component:
 const Greeting = () => {
   return (
     <OpenModalButton
-      buttonText="Greeting"
+      buttonText='Greeting'
       modalComponent={<h2>Hello World!</h2>}
-      onButtonClick={() => console.log("Greeting initiated")}
+      onButtonClick={() => console.log('Greeting initiated')}
     />
   );
 };
@@ -533,10 +539,10 @@ component:
 const Greeting = () => {
   return (
     <OpenModalButton
-      buttonText="Greeting"
+      buttonText='Greeting'
       modalComponent={<h2>Hello World!</h2>}
-      onButtonClick={() => console.log("Greeting initiated")}
-      onModalClose={() => console.log("Greeting completed")}
+      onButtonClick={() => console.log('Greeting initiated')}
+      onModalClose={() => console.log('Greeting completed')}
     />
   );
 };
@@ -560,7 +566,7 @@ of a page.
 
 Begin by removing the `LoginFormPage` component from the `App` component.
 
-Here's an example of what __App.jsx__ should look like now:
+Here's an example of what **App.jsx** should look like now:
 
 ```jsx
 // frontend/src/App.jsx
@@ -578,7 +584,7 @@ function Layout() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
-      setIsLoaded(true)
+      setIsLoaded(true);
     });
   }, [dispatch]);
 
@@ -596,14 +602,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <h1>Welcome!</h1>,
       },
       {
-        path: "signup",
-        element: <SignupFormPage />
-      }
-    ]
-  }
+        path: 'signup',
+        element: <SignupFormPage />,
+      },
+    ],
+  },
 ]);
 
 function App() {
@@ -624,7 +630,7 @@ login modal should close. To do this, the `LoginFormModal` should consume the
 `ModalContext`'s `closeModal` value and invoke the `closeModal` function when
 the `login` action is successful.
 
-Here's an example of what __LoginFormModal/LoginFormModal.jsx__ could look like:
+Here's an example of what **LoginFormModal/LoginFormModal.jsx** could look like:
 
 ```jsx
 // frontend/src/components/LoginFormModal/LoginFormModal.jsx
@@ -637,17 +643,17 @@ import './LoginForm.css';
 
 function LoginFormModal() {
   const dispatch = useDispatch();
-  const [credential, setCredential] = useState("");
-  const [password, setPassword] = useState("");
+  const [credential, setCredential] = useState('');
+  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     setErrors({});
     return dispatch(sessionActions.login({ credential, password }))
       .then(closeModal)
-      .catch(async (res) => {
+      .catch(async res => {
         const data = await res.json();
         if (data && data.errors) {
           setErrors(data.errors);
@@ -662,25 +668,23 @@ function LoginFormModal() {
         <label>
           Username or Email
           <input
-            type="text"
+            type='text'
             value={credential}
-            onChange={(e) => setCredential(e.target.value)}
+            onChange={e => setCredential(e.target.value)}
             required
           />
         </label>
         <label>
           Password
           <input
-            type="password"
+            type='password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             required
           />
         </label>
-        {errors.credential && (
-          <p>{errors.credential}</p>
-        )}
-        <button type="submit">Log In</button>
+        {errors.credential && <p>{errors.credential}</p>}
+        <button type='submit'>Log In</button>
       </form>
     </>
   );
@@ -710,30 +714,29 @@ import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
 function Navigation({ isLoaded }) {
-  const sessionUser = useSelector((state) => state.session.user);
+  const sessionUser = useSelector(state => state.session.user);
 
-  const sessionLinks = sessionUser ? (
-    <li>
-      <ProfileButton user={sessionUser} />
-    </li>
-  ) : (
-    <>
+  const sessionLinks =
+    sessionUser ?
       <li>
-        <OpenModalButton
-          buttonText="Log In"
-          modalComponent={<LoginFormModal />}
-        />
+        <ProfileButton user={sessionUser} />
       </li>
-      <li>
-        <NavLink to="/signup">Sign Up</NavLink>
-      </li>
-    </>
-  );
+    : <>
+        <li>
+          <OpenModalButton
+            buttonText='Log In'
+            modalComponent={<LoginFormModal />}
+          />
+        </li>
+        <li>
+          <NavLink to='/signup'>Sign Up</NavLink>
+        </li>
+      </>;
 
   return (
     <ul>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to='/'>Home</NavLink>
       </li>
       {isLoaded && sessionLinks}
     </ul>
@@ -771,7 +774,7 @@ function Layout() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
-      setIsLoaded(true)
+      setIsLoaded(true);
     });
   }, [dispatch]);
 
@@ -789,10 +792,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
-      }
-    ]
-  }
+        element: <h1>Welcome!</h1>,
+      },
+    ],
+  },
 ]);
 
 function App() {
@@ -803,7 +806,7 @@ export default App;
 ```
 
 Here's an example of what
-__frontend/src/components/SignupFormModal/SignupFormModal.jsx__ could look like:
+**frontend/src/components/SignupFormModal/SignupFormModal.jsx** could look like:
 
 ```jsx
 import { useState } from 'react';
@@ -814,16 +817,16 @@ import './SignupForm.css';
 
 function SignupFormModal() {
   const dispatch = useDispatch();
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     if (password === confirmPassword) {
       setErrors({});
@@ -833,11 +836,11 @@ function SignupFormModal() {
           username,
           firstName,
           lastName,
-          password
+          password,
         })
       )
         .then(closeModal)
-        .catch(async (res) => {
+        .catch(async res => {
           const data = await res.json();
           if (data?.errors) {
             setErrors(data.errors);
@@ -845,7 +848,8 @@ function SignupFormModal() {
         });
     }
     return setErrors({
-      confirmPassword: "Confirm Password field must be the same as the Password field"
+      confirmPassword:
+        'Confirm Password field must be the same as the Password field',
     });
   };
 
@@ -856,9 +860,9 @@ function SignupFormModal() {
         <label>
           Email
           <input
-            type="text"
+            type='text'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={e => setEmail(e.target.value)}
             required
           />
         </label>
@@ -866,9 +870,9 @@ function SignupFormModal() {
         <label>
           Username
           <input
-            type="text"
+            type='text'
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={e => setUsername(e.target.value)}
             required
           />
         </label>
@@ -876,9 +880,9 @@ function SignupFormModal() {
         <label>
           First Name
           <input
-            type="text"
+            type='text'
             value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
+            onChange={e => setFirstName(e.target.value)}
             required
           />
         </label>
@@ -886,9 +890,9 @@ function SignupFormModal() {
         <label>
           Last Name
           <input
-            type="text"
+            type='text'
             value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
+            onChange={e => setLastName(e.target.value)}
             required
           />
         </label>
@@ -896,9 +900,9 @@ function SignupFormModal() {
         <label>
           Password
           <input
-            type="password"
+            type='password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             required
           />
         </label>
@@ -906,16 +910,14 @@ function SignupFormModal() {
         <label>
           Confirm Password
           <input
-            type="password"
+            type='password'
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={e => setConfirmPassword(e.target.value)}
             required
           />
         </label>
-        {errors.confirmPassword && (
-          <p>{errors.confirmPassword}</p>
-        )}
-        <button type="submit">Sign Up</button>
+        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        <button type='submit'>Sign Up</button>
       </form>
     </>
   );

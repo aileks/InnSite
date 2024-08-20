@@ -9,7 +9,7 @@ First, you will add the Redux store actions and reducers that you need for this
 feature. You will use the `POST /api/session` backend route to log in a user
 as well as add the session user's information to the frontend Redux store.
 
-Make a file called __session.js__ in the __frontend/src/store__ folder. This
+Make a file called **session.js** in the **frontend/src/store** folder. This
 file will contain all the actions specific to the session user's information and
 the session user's Redux reducer.
 
@@ -20,11 +20,7 @@ current session user:
 ```js
 {
   user: {
-    id,
-    email,
-    username,
-    firstName,
-    lastName
+    id, email, username, firstName, lastName;
   }
 }
 ```
@@ -34,7 +30,7 @@ this:
 
 ```js
 {
-  user: null
+  user: null;
 }
 ```
 
@@ -50,7 +46,7 @@ the session slice of state appropriately for both of these actions.
 You need to call your backend API to log in, and then set the session user from
 the response. To do this, create a thunk action for making a request to `POST
 /api/session`. Make sure to use the custom `csrfFetch` function from
-__frontend/src/store/csrf.js__. The `POST /api/session` route expects the
+**frontend/src/store/csrf.js**. The `POST /api/session` route expects the
 request body to have a key of `credential` with an existing username or email
 and a key of `password`. After the response from the AJAX call comes back, parse
 the JSON body of the response, and dispatch the action for setting the session
@@ -59,7 +55,7 @@ user to the user in the response's body.
 Export the login thunk action, and export the reducer as the default export.
 
 Import this reducer into the file with the root reducer,
-__frontend/src/store/store.js__. Set a key of `session` in the `rootReducer`'s
+**frontend/src/store/store.js**. Set a key of `session` in the `rootReducer`'s
 `combineReducer` object argument to the session reducer.
 
 ### Test the session actions and reducer
@@ -68,8 +64,8 @@ Login should be working so give it a try! Test the login thunk action and the
 `session` reducer. (For now, ignore your linter's warning that `removeUser` is
 never used; it will be shortly!)
 
-Import all the actions from __session.js__ into the frontend entry file,
-__frontend/src/main.jsx__. Then attach the actions to the `window` at the key of
+Import all the actions from **session.js** into the frontend entry file,
+**frontend/src/main.jsx**. Then attach the actions to the `window` at the key of
 `sessionActions`:
 
 ```js
@@ -80,7 +76,7 @@ import * as sessionActions from './store/session'; // <-- ADD THIS LINE
 
 const store = configureStore();
 
-if (import.meta.env.MODE !== "production") {
+if (import.meta.env.MODE !== 'production') {
   restoreCSRF();
 
   window.csrfFetch = csrfFetch;
@@ -98,7 +94,7 @@ The `previous state` in the console should look like this:
 ```js
 {
   session: {
-    user: null
+    user: null;
   }
 }
 ```
@@ -138,30 +134,30 @@ Here's an example for the `session` actions and reducer:
 
 import { csrfFetch } from './csrf';
 
-const SET_USER = "session/setUser";
-const REMOVE_USER = "session/removeUser";
+const SET_USER = 'session/setUser';
+const REMOVE_USER = 'session/removeUser';
 
-const setUser = (user) => {
+const setUser = user => {
   return {
     type: SET_USER,
-    payload: user
+    payload: user,
   };
 };
 
 const removeUser = () => {
   return {
-    type: REMOVE_USER
+    type: REMOVE_USER,
   };
 };
 
-export const login = (user) => async (dispatch) => {
+export const login = user => async dispatch => {
   const { credential, password } = user;
-  const response = await csrfFetch("/api/session", {
-    method: "POST",
+  const response = await csrfFetch('/api/session', {
+    method: 'POST',
     body: JSON.stringify({
       credential,
-      password
-    })
+      password,
+    }),
   });
   const data = await response.json();
   dispatch(setUser(data.user));
@@ -193,7 +189,7 @@ Here's an example for the `rootReducer` setup:
 import sessionReducer from './session';
 
 const rootReducer = combineReducers({
-  session: sessionReducer
+  session: sessionReducer,
 });
 // ...
 ```
@@ -204,10 +200,10 @@ console:
 ```js
 store.dispatch(
   sessionActions.login({
-    credential: "Demo-lition",
-    password: "password"
+    credential: 'Demo-lition',
+    password: 'password',
   })
-)
+);
 ```
 
 ## `LoginFormPage` component
@@ -215,13 +211,13 @@ store.dispatch(
 After finishing the Redux actions and the reducer for the login feature, the
 React components are next.
 
-Create a __components__ folder in the __frontend/src__ folder. This is where all
+Create a **components** folder in the **frontend/src** folder. This is where all
 your components besides `App` will live.
 
-Make a folder called __LoginFormPage__ nested in the new __components__ folder
-which will hold all the files for the login form. Add a __LoginFormPage.jsx__
-file in the `LoginFormPage` folder. (You can also add an __index.js__ file to
-make importing easier if you want.) Inside __LoginFormPage.jsx__, add a React
+Make a folder called **LoginFormPage** nested in the new **components** folder
+which will hold all the files for the login form. Add a **LoginFormPage.jsx**
+file in the `LoginFormPage` folder. (You can also add an **index.js** file to
+make importing easier if you want.) Inside **LoginFormPage.jsx**, add a React
 function component named `LoginFormPage`.
 
 Render a form with a controlled input for the user login credential (username or
@@ -232,8 +228,8 @@ values. Make sure to handle and display errors from the login thunk action
 if there are any.
 
 Export the `LoginFormPage` component as the default at the bottom of the file,
-then render it in __App.js__ at the `/login` route. (**Hint:** You will need
-to import `createBrowserRouter` and `RouterProvider` into __App.jsx__ to do
+then render it in **App.js** at the `/login` route. (**Hint:** You will need
+to import `createBrowserRouter` and `RouterProvider` into **App.jsx** to do
 this.)
 
 If there is a current session user in the Redux store, then redirect the user to
@@ -268,18 +264,24 @@ import { Navigate } from 'react-router-dom';
 
 function LoginFormPage() {
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
-  const [credential, setCredential] = useState("");
-  const [password, setPassword] = useState("");
+  const sessionUser = useSelector(state => state.session.user);
+  const [credential, setCredential] = useState('');
+  const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  if (sessionUser)
+    return (
+      <Navigate
+        to='/'
+        replace={true}
+      />
+    );
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     setErrors({});
     return dispatch(sessionActions.login({ credential, password })).catch(
-      async (res) => {
+      async res => {
         const data = await res.json();
         if (data?.errors) setErrors(data.errors);
       }
@@ -293,23 +295,23 @@ function LoginFormPage() {
         <label>
           Username or Email
           <input
-            type="text"
+            type='text'
             value={credential}
-            onChange={(e) => setCredential(e.target.value)}
+            onChange={e => setCredential(e.target.value)}
             required
           />
         </label>
         <label>
           Password
           <input
-            type="password"
+            type='password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={e => setPassword(e.target.value)}
             required
           />
         </label>
         {errors.credential && <p>{errors.credential}</p>}
-        <button type="submit">Log In</button>
+        <button type='submit'>Log In</button>
       </form>
     </>
   );
@@ -318,7 +320,7 @@ function LoginFormPage() {
 export default LoginFormPage;
 ```
 
-Here's an example of what __App.jsx__ could look like now:
+Here's an example of what **App.jsx** could look like now:
 
 ```jsx
 // frontend/src/App.jsx
@@ -329,12 +331,12 @@ import LoginFormPage from './components/LoginFormPage';
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <h1>Welcome!</h1>
+    element: <h1>Welcome!</h1>,
   },
   {
     path: '/login',
-    element: <LoginFormPage />
-  }
+    element: <LoginFormPage />,
+  },
 ]);
 
 function App() {
@@ -346,8 +348,8 @@ export default App;
 
 ### `LoginForm` CSS
 
-Add a __LoginForm.css__ file in your __LoginFormPage__ folder. Import this CSS
-file into the __frontend/src/components/LoginFormPage/LoginFormPage.jsx__ file.
+Add a **LoginForm.css** file in your **LoginFormPage** folder. Import this CSS
+file into the **frontend/src/components/LoginFormPage/LoginFormPage.jsx** file.
 
 ```js
 // frontend/src/components/LoginFormPage/LoginFormPage.jsx
@@ -371,7 +373,7 @@ across a refresh? By loading the application after accessing the route to
 get the current session user `GET /api/session` and adding the user info to the
 Redux store again.
 
-Add and export a `restoreUser` thunk action in __frontend/src/store/session.js__
+Add and export a `restoreUser` thunk action in **frontend/src/store/session.js**
 that will call the `GET /api/session`, parse the JSON body of the response, and
 dispatch the action for setting the session user to the user in the response's
 body.
@@ -386,7 +388,7 @@ The `previous state` in the console should look like this:
 ```js
 {
   session: {
-    user: null
+    user: null;
   }
 }
 ```
@@ -410,7 +412,7 @@ The `next state` in the console should look something like this:
 If you don't see this behavior, then check your syntax for the `restoreUser`
 thunk action.
 
-Once your test is successful, use this thunk action inside of __App.jsx__ after
+Once your test is successful, use this thunk action inside of **App.jsx** after
 the `App` component's first render. To do this, create a generic `Layout`
 component that renders your `App`'s routes only after `restoreUser` has
 returned.
@@ -433,8 +435,8 @@ Here's an example of the restore session user thunk action:
 // frontend/src/store/session.js
 
 // ...
-export const restoreUser = () => async (dispatch) => {
-  const response = await csrfFetch("/api/session");
+export const restoreUser = () => async dispatch => {
+  const response = await csrfFetch('/api/session');
   const data = await response.json();
   dispatch(setUser(data.user));
   return response;
@@ -449,7 +451,7 @@ console:
 store.dispatch(sessionActions.restoreUser());
 ```
 
-Here's an example of what __App.jsx__ could look like now:
+Here's an example of what **App.jsx** could look like now:
 
 ```jsx
 // frontend/src/App.jsx
@@ -466,15 +468,11 @@ function Layout() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => {
-      setIsLoaded(true)
+      setIsLoaded(true);
     });
   }, [dispatch]);
 
-  return (
-    <>
-      {isLoaded && <Outlet />}
-    </>
-  );
+  return <>{isLoaded && <Outlet />}</>;
 }
 
 const router = createBrowserRouter([
@@ -483,14 +481,14 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>
+        element: <h1>Welcome!</h1>,
       },
       {
         path: '/login',
-        element: <LoginFormPage />
-      }
-    ]
-  }
+        element: <LoginFormPage />,
+      },
+    ],
+  },
 ]);
 
 function App() {

@@ -13,7 +13,7 @@ for the API project that you are implementing.
 
 Go to your main Slack channel and download the zip file containing the API
 documentation and database schema of your chosen application sent as a pinned
-message by an instructor. 
+message by an instructor.
 
 On your system, create a folder in your system for your Mod 4 portfolio project.
 The name of your folder should be the name of your project.
@@ -29,13 +29,13 @@ GitHub will utilize this file to be displayed on the main page of your repositor
 when you push this project to GitHub. Learn more about
 [GitHub READMEs here][github-readmes].
 
-Create an `images` folder at the root of your project directory.  Find your
+Create an `images` folder at the root of your project directory. Find your
 chosen application's database schema image inside the downloaded zip file and
 add it to the `images` folder in your project directory. Insert the image into
 the database schema placeholder under `'Database Schema Design'` section of your
 `README.md` file using markdown syntax.
 
-The top of your `README.md` file should look something like this: 
+The top of your `README.md` file should look something like this:
 
 ```markdown
 # [title]
@@ -207,8 +207,8 @@ module.exports = {
   dbFile: process.env.DB_FILE,
   jwtConfig: {
     secret: process.env.JWT_SECRET,
-    expiresIn: process.env.JWT_EXPIRES_IN
-  }
+    expiresIn: process.env.JWT_EXPIRES_IN,
+  },
 };
 ```
 
@@ -231,7 +231,7 @@ module.exports = {
   config: path.resolve('config', 'database.js'),
   'models-path': path.resolve('db', 'models'),
   'seeders-path': path.resolve('db', 'seeders'),
-  'migrations-path': path.resolve('db', 'migrations')
+  'migrations-path': path.resolve('db', 'migrations'),
 };
 ```
 
@@ -251,10 +251,10 @@ const config = require('./index');
 module.exports = {
   development: {
     storage: config.dbFile,
-    dialect: "sqlite",
-    seederStorage: "sequelize",
+    dialect: 'sqlite',
+    seederStorage: 'sequelize',
     logQueryParameters: true,
-    typeValidation: true
+    typeValidation: true,
   },
   production: {
     use_env_variable: 'DATABASE_URL',
@@ -263,13 +263,13 @@ module.exports = {
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+      },
     },
     define: {
-      schema: process.env.SCHEMA
-    }
-  }
+      schema: process.env.SCHEMA,
+    },
+  },
 };
 ```
 
@@ -284,12 +284,12 @@ database management system. Recall that SQLite3 is supposed to be used
 **ONLY in development**. PostgresQL is a production-level database management
 system.
 
-Create a new file at the root of the __backend__ directory called __psql-setup-script.js__, and add the following contents.
+Create a new file at the root of the **backend** directory called **psql-setup-script.js**, and add the following contents.
 
 ```js
 const { sequelize } = require('./db/models');
 
-sequelize.showAllSchemas({ logging: false }).then(async (data) => {
+sequelize.showAllSchemas({ logging: false }).then(async data => {
   if (!data.includes(process.env.SCHEMA)) {
     await sequelize.createSchema(process.env.SCHEMA);
   }
@@ -362,16 +362,16 @@ app.use(express.json());
 Add several security middlewares:
 
 1. Only allow CORS (Cross-Origin Resource Sharing) in development using the
-`cors` middleware because the React frontend will be served from a different
-server than the Express server. CORS isn't needed in production since all of our
-React and Express resources will come from the same origin.
+   `cors` middleware because the React frontend will be served from a different
+   server than the Express server. CORS isn't needed in production since all of our
+   React and Express resources will come from the same origin.
 2. Enable better overall security with the `helmet` middleware (for more on what
-`helmet` is doing, see [helmet on the `npm` registry]). React is generally safe
-at mitigating XSS (i.e., [Cross-Site Scripting]) attacks, but do be sure to
-research how to protect your users from such attacks in React when deploying a
-large production application. Now add the `crossOriginResourcePolicy` to the
-`helmet` middleware with a `policy` of `cross-origin`. This will allow images
-with URLs to render in deployment.
+   `helmet` is doing, see [helmet on the `npm` registry]). React is generally safe
+   at mitigating XSS (i.e., [Cross-Site Scripting]) attacks, but do be sure to
+   research how to protect your users from such attacks in React when deploying a
+   large production application. Now add the `crossOriginResourcePolicy` to the
+   `helmet` middleware with a `policy` of `cross-origin`. This will allow images
+   with URLs to render in deployment.
 3. Add the `csurf` middleware and configure it to use cookies.
 
 ```js
@@ -384,7 +384,7 @@ if (!isProduction) {
 // helmet helps set a variety of headers to better secure your app
 app.use(
   helmet.crossOriginResourcePolicy({
-    policy: "cross-origin"
+    policy: 'cross-origin',
   })
 );
 
@@ -393,9 +393,9 @@ app.use(
   csurf({
     cookie: {
       secure: isProduction,
-      sameSite: isProduction && "Lax",
-      httpOnly: true
-    }
+      sameSite: isProduction && 'Lax',
+      httpOnly: true,
+    },
   })
 );
 ```
@@ -426,7 +426,7 @@ file.
 const express = require('express');
 const router = express.Router();
 
-router.get('/hello/world', function(req, res) {
+router.get('/hello/world', function (req, res) {
   res.cookie('XSRF-TOKEN', req.csrfToken());
   res.send('Hello World!');
 });
@@ -499,7 +499,7 @@ db.sequelize
     // Start listening for connections
     app.listen(port, () => console.log(`Listening on port ${port}...`));
   })
-  .catch((err) => {
+  .catch(err => {
     console.log('Database connection failure.');
     console.error(err);
   });
@@ -568,11 +568,11 @@ Add this route to the `backend/routes/index.js` file.
 // backend/routes/index.js
 // ...
 // Add a XSRF-TOKEN cookie
-router.get("/api/csrf/restore", (req, res) => {
+router.get('/api/csrf/restore', (req, res) => {
   const csrfToken = req.csrfToken();
-  res.cookie("XSRF-TOKEN", csrfToken);
+  res.cookie('XSRF-TOKEN', csrfToken);
   res.status(200).json({
-    'XSRF-Token': csrfToken
+    'XSRF-Token': csrfToken,
   });
 });
 // ...

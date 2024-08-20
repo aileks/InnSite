@@ -8,8 +8,8 @@ frontend to your Express application.
 
 ## Set Up
 
-Create a folder called __frontend__ at the very root of the application. It
-should be at the same level as the __backend__ folder.
+Create a folder called **frontend** at the very root of the application. It
+should be at the same level as the **backend** folder.
 
 Your file structure should now look like this:
 
@@ -22,14 +22,14 @@ authenticate-me
 └── package.json
 ```
 
-`cd` into the __frontend__ folder.
+`cd` into the **frontend** folder.
 
 ## Phases
 
-* Frontend Phases
-  * Phase 0 - Choose your path
-  * Phase 1 - Login form page
-  * Phase 2 - Signup form page
-  * Phase 3 - Logout
-  * Bonus Phase - Make the login form page into a modal
-* Deployment to Render with a React Frontend
+- Frontend Phases
+  - Phase 0 - Choose your path
+  - Phase 1 - Login form page
+  - Phase 2 - Signup form page
+  - Phase 3 - Logout
+  - Bonus Phase - Make the login form page into a modal
+- Deployment to Render with a React Frontend

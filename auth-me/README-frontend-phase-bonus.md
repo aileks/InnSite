@@ -11,7 +11,7 @@ instead of the `Navigation` component.
 ## `Navigation`
 
 Reminder: the `Navigation` component lives in the
-__frontend/src/components/Navigation/Navigation.js__ file.
+**frontend/src/components/Navigation/Navigation.js** file.
 
 First, you need the application to render the profile button and dropdown menu
 regardless of whether or not the user is logged in. Currently, this logic lies in the
@@ -36,7 +36,7 @@ function Navigation({ isLoaded }) {
   return (
     <ul>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to='/'>Home</NavLink>
       </li>
       {isLoaded && (
         <li>
@@ -53,16 +53,16 @@ export default Navigation;
 ## `ProfileButton`
 
 Reminder: the `ProfileButton` component lives in the
-__frontend/src/components/Navigation/ProfileButton.jsx__ file.
+**frontend/src/components/Navigation/ProfileButton.jsx** file.
 
 Now, update the `ProfileButton` component to render a different list of dropdown
 menus depending on whether or not there is a session user. If there is a session
 user, show the same user session information and the logout button. If there is
 **no** session user, show two menu options:
 
-* `OpenModalButton` that renders a button text of `Log In` and opens the
+- `OpenModalButton` that renders a button text of `Log In` and opens the
   `LoginFormModal` when clicked
-* another `OpenModalButton` that renders a button text of `Sign Up` and opens
+- another `OpenModalButton` that renders a button text of `Sign Up` and opens
   the `SignupFormModal` when clicked
 
 Here's an example of what the `ProfileButton` component could look like now:
@@ -83,7 +83,7 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
-  const toggleMenu = (e) => {
+  const toggleMenu = e => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
   };
@@ -91,7 +91,7 @@ function ProfileButton({ user }) {
   useEffect(() => {
     if (!showMenu) return;
 
-    const closeMenu = (e) => {
+    const closeMenu = e => {
       if (!ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
@@ -99,47 +99,51 @@ function ProfileButton({ user }) {
 
     document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
+    return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
 
-  const logout = (e) => {
+  const logout = e => {
     e.preventDefault();
     dispatch(sessionActions.logout());
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
 
   return (
     <>
       <button onClick={toggleMenu}>
         <FaUserCircle />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
+      <ul
+        className={ulClassName}
+        ref={ulRef}
+      >
+        {user ?
           <>
             <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
+            <li>
+              {user.firstName} {user.lastName}
+            </li>
             <li>{user.email}</li>
             <li>
               <button onClick={logout}>Log Out</button>
             </li>
           </>
-        ) : (
-          <>
+        : <>
             <li>
               <OpenModalButton
-                buttonText="Log In"
+                buttonText='Log In'
                 modalComponent={<LoginFormModal />}
               />
             </li>
             <li>
               <OpenModalButton
-                buttonText="Sign Up"
+                buttonText='Sign Up'
                 modalComponent={<SignupFormModal />}
               />
             </li>
           </>
-        )}
+        }
       </ul>
     </>
   );
@@ -193,7 +197,7 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
-  const toggleMenu = (e) => {
+  const toggleMenu = e => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
   };
@@ -201,7 +205,7 @@ function ProfileButton({ user }) {
   useEffect(() => {
     if (!showMenu) return;
 
-    const closeMenu = (e) => {
+    const closeMenu = e => {
       if (!ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
@@ -209,52 +213,56 @@ function ProfileButton({ user }) {
 
     document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
+    return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
 
   const closeMenu = () => setShowMenu(false);
 
-  const logout = (e) => {
+  const logout = e => {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
 
   return (
     <>
       <button onClick={toggleMenu}>
         <FaUserCircle />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
+      <ul
+        className={ulClassName}
+        ref={ulRef}
+      >
+        {user ?
           <>
             <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
+            <li>
+              {user.firstName} {user.lastName}
+            </li>
             <li>{user.email}</li>
             <li>
               <button onClick={logout}>Log Out</button>
             </li>
           </>
-        ) : (
-          <>
+        : <>
             <li>
               <OpenModalButton
-                buttonText="Log In"
+                buttonText='Log In'
                 onButtonClick={closeMenu}
                 modalComponent={<LoginFormModal />}
               />
             </li>
             <li>
               <OpenModalButton
-                buttonText="Sign Up"
+                buttonText='Sign Up'
                 onButtonClick={closeMenu}
                 modalComponent={<SignupFormModal />}
               />
             </li>
           </>
-        )}
+        }
       </ul>
     </>
   );
@@ -274,15 +282,15 @@ any other dropdown menu list item, then you can create another generic component
 much like the `OpenModalButton` component that will use an `li` element instead
 of a `button` element to trigger the opening of the modals.
 
-Inside the __frontend/src/components/Navigation__ folder, create a file called
-__OpenModalMenuItem.jsx__. Inside of that file, create and export as default a
+Inside the **frontend/src/components/Navigation** folder, create a file called
+**OpenModalMenuItem.jsx**. Inside of that file, create and export as default a
 function component called `OpenModalMenuItem`.
 
 The `OpenModalMenuItem` component code should look **exactly** like the
 `OpenModalButton` component code except:
 
-* change the `buttonText` prop to `itemText`
-* change the `onButtonClick` prop to `onItemClick`
+- change the `buttonText` prop to `itemText`
+- change the `onButtonClick` prop to `onItemClick`
 
 Here's an example of what the `OpenModalMenuItem` component could look like:
 
@@ -296,19 +304,17 @@ function OpenModalMenuItem({
   modalComponent, // component to render inside the modal
   itemText, // text of the menu item that opens the modal
   onItemClick, // optional: callback function that will be called once the menu item that opens the modal is clicked
-  onModalClose // optional: callback function that will be called once the modal is closed
+  onModalClose, // optional: callback function that will be called once the modal is closed
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
   const onClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
     setModalContent(modalComponent);
-    if (typeof onItemClick === "function") onItemClick();
+    if (typeof onItemClick === 'function') onItemClick();
   };
 
-  return (
-    <li onClick={onClick}>{itemText}</li>
-  );
+  return <li onClick={onClick}>{itemText}</li>;
 }
 
 export default OpenModalMenuItem;
@@ -334,7 +340,7 @@ function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
-  const toggleMenu = (e) => {
+  const toggleMenu = e => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
   };
@@ -342,7 +348,7 @@ function ProfileButton({ user }) {
   useEffect(() => {
     if (!showMenu) return;
 
-    const closeMenu = (e) => {
+    const closeMenu = e => {
       if (!ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
@@ -350,48 +356,52 @@ function ProfileButton({ user }) {
 
     document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
+    return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
 
   const closeMenu = () => setShowMenu(false);
 
-  const logout = (e) => {
+  const logout = e => {
     e.preventDefault();
     dispatch(sessionActions.logout());
     closeMenu();
   };
 
-  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
+  const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
 
   return (
     <>
       <button onClick={toggleMenu}>
         <FaUserCircle />
       </button>
-      <ul className={ulClassName} ref={ulRef}>
-        {user ? (
+      <ul
+        className={ulClassName}
+        ref={ulRef}
+      >
+        {user ?
           <>
             <li>{user.username}</li>
-            <li>{user.firstName} {user.lastName}</li>
+            <li>
+              {user.firstName} {user.lastName}
+            </li>
             <li>{user.email}</li>
             <li>
               <button onClick={logout}>Log Out</button>
             </li>
           </>
-        ) : (
-          <>
+        : <>
             <OpenModalMenuItem
-              itemText="Log In"
+              itemText='Log In'
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
             <OpenModalMenuItem
-              itemText="Sign Up"
+              itemText='Sign Up'
               onItemClick={closeMenu}
               modalComponent={<SignupFormModal />}
             />
           </>
-        )}
+        }
       </ul>
     </>
   );

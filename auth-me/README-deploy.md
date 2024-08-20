@@ -18,18 +18,18 @@ Right now, your React application is on a different localhost port than your
 Express application. However, since your React application consists entirely of
 static files that don't need to bundled continuously with changes in production,
 your Express application can serve the React assets in production too. To
-generate these static files, run `npm run build` in the __frontend__ folder. By
+generate these static files, run `npm run build` in the **frontend** folder. By
 default, the build command will store the generated files in the
-__frontend/dist__ folder.
+**frontend/dist** folder.
 
 To enable your backend to serve these frontend files, add the following changes
-to your __backend/routes.index.js__ file.
+to your **backend/routes.index.js** file.
 
 In a production environment, have the root route serve the React application's
-static __index.html__ file along with an `XSRF-TOKEN` cookie. Then serve up all
+static **index.html** file along with an `XSRF-TOKEN` cookie. Then serve up all
 the React application's static files using the `express.static` middleware.
-Serve the __index.html__ and set an `XSRF-TOKEN` cookie again on all routes that
-don't start in `/api`. Your __backend/routes/index.js__ should now look like
+Serve the **index.html** and set an `XSRF-TOKEN` cookie again on all routes that
+don't start in `/api`. Your **backend/routes/index.js** should now look like
 this:
 
 ```js
@@ -53,7 +53,7 @@ if (process.env.NODE_ENV === 'production') {
   });
 
   // Serve the static assets in the frontend's build folder
-  router.use(express.static(path.resolve("../frontend/dist")));
+  router.use(express.static(path.resolve('../frontend/dist')));
 
   // Serve the frontend's index.html file at all other routes NOT starting with /api
   router.get(/^(?!\/?api).*/, (req, res) => {
@@ -66,11 +66,11 @@ if (process.env.NODE_ENV === 'production') {
 
 // Add a XSRF-TOKEN cookie in development
 if (process.env.NODE_ENV !== 'production') {
-  router.get("/api/csrf/restore", (req, res) => {
+  router.get('/api/csrf/restore', (req, res) => {
     const csrfToken = req.csrfToken();
-    res.cookie("XSRF-TOKEN", csrfToken);
+    res.cookie('XSRF-TOKEN', csrfToken);
     res.status(200).json({
-      'XSRF-Token': csrfToken
+      'XSRF-Token': csrfToken,
     });
   });
 }
@@ -83,15 +83,15 @@ module.exports = router;
 Deploying your Express site with a static React frontend means that you can
 generate your frontend build files before you deploy your app; you do not need
 to generate them while deploying. In fact, if you open your
-__frontend/package.json__, you will see that the `vite` package appears under
+**frontend/package.json**, you will see that the `vite` package appears under
 `devDependencies`, not `dependencies`. You have no need to run `vite` in
 production!
 
 While this makes deployment somewhat simpler--no need to add frontend build
-commands to your root __package.json__!--it also means that you yourself are
+commands to your root **package.json**!--it also means that you yourself are
 responsible for making sure that you re-build your frontend files after any
 change. You should accordingly make it a habit to **ALWAYS run `npm run build`
-in your __frontend__ folder and commit those changes before deploying / pushing
+in your **frontend** folder and commit those changes before deploying / pushing
 to GitHub.**
 
 **Note:** If you do not make this a habit, then at some point you will likely
@@ -99,31 +99,31 @@ spend hours trying to figure out why the bug fixes, styling, and/or other
 changes you've made to your frontend are not having their desired effects.
 
 As mentioned above, `npm run build` will store your build files in the
-__frontend/dist__ folder. These are the static files that your backend server
+**frontend/dist** folder. These are the static files that your backend server
 will serve. To make them available in production, you need to do one more thing.
 
-Open __frontend/.gitignore__. You will likely see `dist` listed as one of the
+Open **frontend/.gitignore**. You will likely see `dist` listed as one of the
 folders `git` should ignore. Folders with build files are typically gitignored
 because they can be large and the included files can always be regenerated
 locally. Now, however, you need those files pushed to GitHub so you can access
 them in deployment. Accordingly, add a `!` before `dist` in your frontend
-__.gitignore__ (or add the whole phrase if `dist` does not already appear):
+**.gitignore** (or add the whole phrase if `dist` does not already appear):
 
 ```plaintext
 !dist
 ```
 
 The `!` cancels the following pattern from being gitignored. This ensures that
-your frontend __dist__ folder will be available for pushes to GitHub even if
-other parent directories have __.gitignore__ files that would exclude it.
+your frontend **dist** folder will be available for pushes to GitHub even if
+other parent directories have **.gitignore** files that would exclude it.
 
-Finally, run `npm run build` in your __frontend__ directory and commit your
+Finally, run `npm run build` in your **frontend** directory and commit your
 changes.
 
 **Tip:** It's worth stating again: **You must ALWAYS run `npm run build` in your
-__frontend__ folder and commit those changes before pushing to GitHub /
+**frontend** folder and commit those changes before pushing to GitHub /
 deploying.** To help with this, you can add the `--watch` flag to the build
-script in your __frontend/package.json__:
+script in your **frontend/package.json**:
 
 ```json
   "build": "vite build --watch"
@@ -145,7 +145,7 @@ your app's page, and click the `Manual Deploy` button on the upper right. Select
 
 That's it! You shouldn't need to change anything on Render: you are still just
 building and running your backend server. Now that backend server just has some
-new routes that will serve files from the new __frontend/dist__ folder.
+new routes that will serve files from the new **frontend/dist** folder.
 
 Open your deployed site--log in to [Render] if you don't remember the URL--and
 check to see if you have successfully deployed your Express + React application
@@ -163,8 +163,8 @@ back. You're a web developer!
 
 If you ever need to update/redeploy your frontend, just follow these steps:
 
-1. Make your changes to the files in the __frontend__ directory.
-2. Run `npm run build` to refresh the build files in the __frontend/dist__
+1. Make your changes to the files in the **frontend** directory.
+2. Run `npm run build` to refresh the build files in the **frontend/dist**
    directory with your changes.
 3. Commit all changes to the `main` branch.
 4. Push to GitHub.

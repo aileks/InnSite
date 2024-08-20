@@ -36,7 +36,7 @@ Make sure to test this setup by creating the following test route in the
 // backend/routes/api/index.js
 // ...
 
-router.post('/test', function(req, res) {
+router.post('/test', function (req, res) {
   res.json({ requestBody: req.body });
 });
 
@@ -58,13 +58,15 @@ Example fetch request:
 
 ```js
 fetch('/api/test', {
-  method: "POST",
+  method: 'POST',
   headers: {
-    "Content-Type": "application/json",
-    "XSRF-TOKEN": `<value of XSRF-TOKEN cookie>`
+    'Content-Type': 'application/json',
+    'XSRF-TOKEN': `<value of XSRF-TOKEN cookie>`,
   },
-  body: JSON.stringify({ hello: 'world' })
-}).then(res => res.json()).then(data => console.log(data));
+  body: JSON.stringify({ hello: 'world' }),
+})
+  .then(res => res.json())
+  .then(data => console.log(data));
 ```
 
 Replace the `<value of XSRF-TOKEN cookie>` with the value of the `XSRF-TOKEN`
