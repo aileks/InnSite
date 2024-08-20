@@ -23,7 +23,7 @@ module.exports = {
             model: 'Spots',
           },
           onUpdate: 'CASCADE',
-          onDelete: 'CASCADE'
+          onDelete: 'CASCADE',
         },
         userId: {
           type: Sequelize.INTEGER,
@@ -31,7 +31,7 @@ module.exports = {
             model: 'Users',
           },
           onUpdate: 'CASCADE',
-          onDelete: 'CASCADE'
+          onDelete: 'CASCADE',
         },
         review: {
           type: Sequelize.STRING,
@@ -52,7 +52,7 @@ module.exports = {
           defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
         },
       },
-      options,
+      options
     );
   },
   async down(queryInterface, Sequelize) {

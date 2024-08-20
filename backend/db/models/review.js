@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notNull: {
             args: [true],
-            msg: 'Stars are required'
+            msg: 'Stars are required',
           },
           min: {
             args: [1],
@@ -49,7 +49,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'Review',
-    },
+    }
   );
   return Review;
 };

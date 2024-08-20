@@ -16,19 +16,19 @@ router.get('/current', requireAuth, async (req, res, next) => {
     include: [
       {
         model: User,
-        attributes: ['id', 'firstName', 'lastName']
+        attributes: ['id', 'firstName', 'lastName'],
       },
       {
         model: Spot,
         attributes: {
-          exclude: ['createdAt', 'updatedAt']
-        }
+          exclude: ['createdAt', 'updatedAt'],
+        },
       },
       {
         model: ReviewImage,
-        attributes: ['id', 'url']
-      }
-    ]
+        attributes: ['id', 'url'],
+      },
+    ],
   });
 
   res.json(reviews);

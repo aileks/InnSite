@@ -113,7 +113,13 @@ module.exports = {
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(options, {
       address: {
-        [Op.in]: ['202 Bourbon Street', '101 Ocean Drive', '789 Broadway', '456 Sunset Boulevard', '123 Disney Lane'],
+        [Op.in]: [
+          '202 Bourbon Street',
+          '101 Ocean Drive',
+          '789 Broadway',
+          '456 Sunset Boulevard',
+          '123 Disney Lane',
+        ],
       },
     });
   },

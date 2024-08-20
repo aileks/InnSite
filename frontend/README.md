@@ -22,5 +22,5 @@ To run the app, type `npm run dev` in the root directory.
 
 ## Reminders
 
-Don't forget to update this README, change the `title` in __index.html__, and
-change the `"name"` in __package.json__ when making a new project!
+Don't forget to update this README, change the `title` in **index.html**, and
+change the `"name"` in **package.json** when making a new project!

@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class SpotImage extends Model {
     /**
@@ -10,35 +8,38 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      SpotImage.belongsTo(models.Spot, { foreignKey: 'spotId'})
+      SpotImage.belongsTo(models.Spot, { foreignKey: 'spotId' });
     }
   }
-  SpotImage.init({
-    spotId: DataTypes.INTEGER,
-    url: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    preview: {
-      type: DataTypes.BOOLEAN,
-      validate: {
-        async hasPreview(val) {
-          const previewImage = await SpotImage.findOne({
-            where: {
-              spotId: this.spotId,
-              preview: true
-            }
-          });
+  SpotImage.init(
+    {
+      spotId: DataTypes.INTEGER,
+      url: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      preview: {
+        type: DataTypes.BOOLEAN,
+        validate: {
+          async hasPreview(val) {
+            const previewImage = await SpotImage.findOne({
+              where: {
+                spotId: this.spotId,
+                preview: true,
+              },
+            });
 
-          if (previewImage && val) {
-            throw new Error('Only one preview image allowed');
-          }
-        }
-      }
+            if (previewImage && val) {
+              throw new Error('Only one preview image allowed');
+            }
+          },
+        },
+      },
+    },
+    {
+      sequelize,
+      modelName: 'SpotImage',
     }
-  }, {
-    sequelize,
-    modelName: 'SpotImage',
-  });
+  );
   return SpotImage;
 };

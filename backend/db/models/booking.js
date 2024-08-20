@@ -1,7 +1,5 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Booking extends Model {
     /**
@@ -11,43 +9,47 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Booking.belongsTo(models.User, {
-        foreignKey: 'userId'
+        foreignKey: 'userId',
       });
       Booking.belongsTo(models.Spot, {
-        foreignKey: 'spotId'
-      })
+        foreignKey: 'spotId',
+      });
     }
   }
-  Booking.init({
-    spotId: DataTypes.INTEGER,
-    userId: DataTypes.INTEGER,
-    startDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      validate: {
-        notPast(value) {
-          const today = new Date();
-          const year = today.getFullYear();
-          const month = String(today.getMonth() + 1).padStart(2, '0');
-          const day = String(today.getDate()).padStart(2, '0')
+  Booking.init(
+    {
+      spotId: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER,
+      startDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        validate: {
+          notPast(value) {
+            const today = new Date();
+            const year = today.getFullYear();
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const day = String(today.getDate()).padStart(2, '0');
 
-          const todayStr = `${year}-${month}-${day}`;
+            const todayStr = `${year}-${month}-${day}`;
 
-          if (value < todayStr) throw new Error('startDate cannot be in the past');
-
-        }
-      }
+            if (value < todayStr)
+              throw new Error('startDate cannot be in the past');
+          },
+        },
+      },
+      endDate: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        validate(value) {
+          if (value <= this.startDate)
+            throw new Error('endDate cannot be on or before startDate');
+        },
+      },
     },
-    endDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      validate(value) {
-        if (value <= this.startDate) throw new Error('endDate cannot be on or before startDate')
-      }
+    {
+      sequelize,
+      modelName: 'Booking',
     }
-  }, {
-    sequelize,
-    modelName: 'Booking',
-  });
+  );
   return Booking;
 };

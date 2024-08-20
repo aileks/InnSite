@@ -106,7 +106,12 @@ app.use((err, _req, _res, next) => {
 app.use((err, _req, res, _next) => {
   res.status(err.status || 500);
   res.json({
-    title: !isProduction ? (err.title ? err.title : 'Server Error') : undefined,
+    title:
+      !isProduction ?
+        err.title ?
+          err.title
+        : 'Server Error'
+      : undefined,
     message: err.title,
     errors: err.errors,
     stack: isProduction ? undefined : err.stack,

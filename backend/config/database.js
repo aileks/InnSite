@@ -4,10 +4,10 @@ const config = require('./index');
 module.exports = {
   development: {
     storage: config.dbFile,
-    dialect: "sqlite",
-    seederStorage: "sequelize",
+    dialect: 'sqlite',
+    seederStorage: 'sequelize',
     logQueryParameters: true,
-    typeValidation: true
+    typeValidation: true,
   },
   production: {
     use_env_variable: 'DATABASE_URL',
@@ -16,11 +16,11 @@ module.exports = {
     dialectOptions: {
       ssl: {
         require: true,
-        rejectUnauthorized: false
-      }
+        rejectUnauthorized: false,
+      },
     },
     define: {
-      schema: process.env.SCHEMA
-    }
-  }
+      schema: process.env.SCHEMA,
+    },
+  },
 };

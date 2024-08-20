@@ -13,7 +13,7 @@ router.delete('/:imageId', requireAuth, async (req, res, next) => {
 
   if (!image) {
     return res.status(404).json({
-      message: "Review Image couldn't be found"
+      message: "Review Image couldn't be found",
     });
   }
 
@@ -22,14 +22,14 @@ router.delete('/:imageId', requireAuth, async (req, res, next) => {
 
   if (review.userId !== userId) {
     return res.status(403).json({
-      message: 'Forbidden'
+      message: 'Forbidden',
     });
   }
 
   await image.destroy();
 
   res.json({
-    message: 'Successfully deleted'
+    message: 'Successfully deleted',
   });
 });
 
