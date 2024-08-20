@@ -33,7 +33,7 @@ const LoginForm = () => {
   };
 
   return (
-    <>
+    <main>
       <h1>Log In</h1>
 
       <form onSubmit={handleSubmit}>
@@ -47,7 +47,7 @@ const LoginForm = () => {
           />
         </label>
 
-        <label>
+        <label id='password'>
           Password
           <input
             type='password'
@@ -61,7 +61,7 @@ const LoginForm = () => {
 
         <button type='submit'>Log In</button>
       </form>
-    </>
+    </main>
   );
 };
 
