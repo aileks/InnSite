@@ -2,7 +2,7 @@ import './LoginForm.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import * as sessionActions from '../../store/session';
+import { login } from '../../store/session';
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -24,12 +24,10 @@ const LoginForm = () => {
 
     setErrors({});
 
-    return dispatch(sessionActions.login({ credential, password })).catch(
-      async res => {
-        const data = await res.json();
-        if (data?.errors) setErrors(data.errors);
-      }
-    );
+    return dispatch(login({ credential, password })).catch(async res => {
+      const data = await res.json();
+      if (data?.errors) setErrors(data.errors);
+    });
   };
 
   return (
