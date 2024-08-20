@@ -34,7 +34,7 @@ dependencies:
 ### Setting up the Redux store
 
 First, setup your Redux store. Make a folder in __frontend/src__ called `store`
-and add a __store.js__file. (You can make an __index.js__ file to import and
+and add a __store.js__ file. (You can make an __index.js__ file to import and
 export the store if you wish.) In this file, import `createStore`,
 `combineReducers`, `applyMiddleware`, and `compose` from the `redux` package.
 Import `thunk` from `redux-thunk`.
