@@ -31,13 +31,17 @@ export default function LoginForm() {
   };
 
   return (
-    <main>
-      <h1>Log In</h1>
+    <main id='login-container'>
+      <h1 id='login-header'>Log In</h1>
 
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form
+        className='login-form'
+        onSubmit={handleSubmit}
+      >
+        <label className='login-label'>
           Username or Email
           <input
+            className='login-input'
             type='text'
             value={credential}
             onChange={e => setCredential(e.target.value)}
@@ -45,9 +49,12 @@ export default function LoginForm() {
           />
         </label>
 
-        <label id='password'>
+        <label
+          className='login-label'
+        >
           Password
           <input
+            className='login-input'
             type='password'
             value={password}
             onChange={e => setPassword(e.target.value)}
@@ -57,7 +64,12 @@ export default function LoginForm() {
 
         {errors.credential && <p>{errors.credential}</p>}
 
-        <button type='submit'>Log In</button>
+        <button
+          id='login-button'
+          type='submit'
+        >
+          Log In
+        </button>
       </form>
     </main>
   );

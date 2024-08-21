@@ -1,49 +1,33 @@
-main {
+#login-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
-h1 {
-  text-align: center;
+#login-header {
+  margin-top: 1.5rem;
+  font-size: 2.15rem;
+  text-decoration: underline;
 }
 
-form {
+.login-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1 auto;
+  gap: 10px;
+}
+
+.login-label {
+  font-weight: bold;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: 120px;
-  width: 300px;
+  margin-bottom: 6px;
 }
 
-label {
-  font-size: 1.1rem;
-  display: flex;
-  flex-direction: column;
-}
-
-#password {
-  margin-top: 18px;
-}
-
-input {
-  margin-top: 8px;
-}
-
-button {
-  font-size: 1.1rem;
-  color: white;
-  width: 100px;
-  padding: 4px, 6px;
-  margin: 18px 0;
-  background: darkgreen;
-  border: solid darkgreen 2px;
+.login-input {
+  margin-top: 4px;
+  padding: 8px;
+  border: 1px solid #aaaaaa;
   border-radius: 4px;
-  transition: all ease-in-out;
-  transition-duration: 150ms;
-}
-
-button:hover {
-  background: green;
 }
