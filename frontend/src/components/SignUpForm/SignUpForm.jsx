@@ -2,7 +2,7 @@ import './SignUpForm.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { signup } from '../../store/session';
 
 export default function SignUpForm() {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ export default function SignUpForm() {
       setErrors({});
 
       return dispatch(
-        signUp({
+        signup({
           email,
           username,
           firstName,
