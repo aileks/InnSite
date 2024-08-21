@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { login } from '../../store/session';
 
-const LoginForm = () => {
+export default function LoginForm() {
   const dispatch = useDispatch();
   const sessionUser = useSelector(state => state.session.user);
   const [credential, setCredential] = useState('');
@@ -61,6 +61,4 @@ const LoginForm = () => {
       </form>
     </main>
   );
-};
-
-export default LoginForm;
+}
