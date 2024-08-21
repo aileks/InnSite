@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { restoreUser } from './store/session';
 import LoginForm from './components/LoginForm';
 import SignUpForm from './components/SignUpForm';
+import Navigation from './components/Navigation';
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-
 function Layout() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -36,7 +36,12 @@ function Layout() {
     });
   }, [dispatch]);
 
-  return <>{isLoaded && <Outlet />}</>;
+  return (
+    <>
+      <Navigation isLoaded={isLoaded} />
+      <Outlet />
+    </>
+  );
 }
 
 function App() {
