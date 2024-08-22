@@ -10,7 +10,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <h1>Welcome!</h1>,
+        element: <h1 style={{ padding: '8px 10px' }}>Welcome!</h1>,
       },
     ],
   },
