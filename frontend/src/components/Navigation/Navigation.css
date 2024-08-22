@@ -6,17 +6,16 @@ a:hover {
   text-decoration: underline;
 }
 
-ul {
-  margin: 0;
-  padding: 0;
-  border: solid red 4px;
+#nav {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   gap: 12px;
+  padding: 0 8px;
+  height: 60px;
 }
 
-li {
+.nav-link {
   list-style: none;
   font-weight: bold;
   font-size: 1.1rem;
@@ -26,16 +25,7 @@ li {
   margin-right: auto;
 }
 
-#nav-logout {
-  all: unset;
-  font-weight: normal;
-  color: white;
-  background: #4682b4;
-  border: solid #315f7d 1px;
-  border-radius: 4px;
-  padding: 1px 6px;
-}
-
 #nav-logout:hover {
   cursor: pointer;
+  text-decoration: underline;
 }

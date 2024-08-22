@@ -11,6 +11,24 @@
   text-decoration: underline;
 }
 
+#login-button {
+  font-size: 1.1rem;
+  color: white;
+  padding: 4px 16px;
+  margin-top: 12px;
+  background: #4682b4;
+  border: solid #315f7d 2px;
+  border-radius: 4px;
+  transition: all ease-in-out;
+  transition-duration: 200ms;
+}
+
+#login-button:hover {
+  background: #5a8dac;
+  border-color: #4a6a8a;
+  cursor: pointer;
+}
+
 .login-form {
   display: grid;
   grid-template-columns: 1fr;

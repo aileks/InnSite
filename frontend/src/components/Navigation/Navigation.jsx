@@ -17,11 +17,11 @@ export default function Navigation({ isLoaded }) {
   const sessionLinks =
     user ?
       <>
-        <li>
+        <li className='nav-link'>
           <ProfileButton user={user} />
         </li>
 
-        <li>
+        <li className='nav-link'>
           <button
             id='nav-logout'
             onClick={destroy}
@@ -31,18 +31,18 @@ export default function Navigation({ isLoaded }) {
         </li>
       </>
     : <>
-        <li>
+        <li className='nav-link'>
           <NavLink to='/login'>Log In</NavLink>
         </li>
 
-        <li>
+        <li className='nav-link'>
           <NavLink to='/signup'>Sign Up</NavLink>
         </li>
       </>;
 
   return (
-    <ul>
-      <li id='home-link'>
+    <ul id='nav'>
+      <li className='nav-link' id='home-link'>
         <NavLink to='/'>Home</NavLink>
       </li>
 
