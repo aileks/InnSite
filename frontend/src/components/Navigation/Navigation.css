@@ -4,20 +4,14 @@ a:hover {
 
 #nav {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  gap: 12px;
-  padding: 0 8px;
-  height: 60px;
 }
 
 .nav-link {
   font-weight: 600;
   font-size: 1.1rem;
-}
-
-#home-link {
-  margin-right: auto;
+  padding: 8px 24px;
 }
 
 #nav-logout {
@@ -26,4 +20,26 @@ a:hover {
 
 #nav-logout:hover {
   text-decoration: underline;
+}
+
+.profile-dropdown {
+  position: absolute;
+  border: 1px solid #bbbbbb;
+  border-radius: 4px;
+  margin-right: 4px;
+  right: 0;
+  z-index: 1000;
+}
+
+.profile-dropdown.hidden {
+  display: none;
+}
+
+.profile-dropdown li {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.profile-dropdown li:hover {
+  background-color: #f0f0f0;
 }
