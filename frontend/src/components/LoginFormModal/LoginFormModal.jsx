@@ -1,8 +1,9 @@
 import './LoginFormModal.css';
 import { useState } from 'react';
-import * as sessionActions from '../../store/session';
+import { login } from '../../store/session';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
+import { IoIosCloseCircle } from 'react-icons/io';
 
 export default function LoginFormModal() {
   const dispatch = useDispatch();
@@ -13,8 +14,10 @@ export default function LoginFormModal() {
 
   const handleSubmit = e => {
     e.preventDefault();
+
     setErrors({});
-    return dispatch(sessionActions.login({ credential, password }))
+
+    return dispatch(login({ credential, password }))
       .then(closeModal)
       .catch(async res => {
         const data = await res.json();
@@ -25,44 +28,53 @@ export default function LoginFormModal() {
   };
 
   return (
-    <div id='login-container'>
-      <h1 id='login-header'>Log In</h1>
-
-      <form
-        id='login-form'
-        onSubmit={handleSubmit}
+    <>
+      <span
+        onClick={closeModal}
+        id='close-button'
       >
-        <label className='login-label'>
-          Username or Email
-          <input
-            className='login-input'
-            type='text'
-            value={credential}
-            onChange={e => setCredential(e.target.value)}
-            required
-          />
-        </label>
+        <IoIosCloseCircle />
+      </span>
 
-        <label className='login-label'>
-          Password
-          <input
-            className='login-input'
-            type='password'
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
-        </label>
+      <div id='login-container'>
+        <h1 id='login-header'>Log In</h1>
 
-        {errors.credential && <p>{errors.credential}</p>}
-
-        <button
-          id='login-button'
-          type='submit'
+        <form
+          id='login-form'
+          onSubmit={handleSubmit}
         >
-          Log In
-        </button>
-      </form>
-    </div>
+          <label className='login-label'>
+            Username or Email
+            <input
+              className='login-input'
+              type='text'
+              value={credential}
+              onChange={e => setCredential(e.target.value)}
+              required
+            />
+          </label>
+
+          <label className='login-label'>
+            Password
+            <input
+              className='login-input'
+              type='password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+          </label>
+
+          {errors.credential && <p>{errors.credential}</p>}
+
+          <button
+            id='login-button'
+            type='submit'
+          >
+            Log In
+          </button>
+        </form>
+      </div>
+    </>
   );
 }

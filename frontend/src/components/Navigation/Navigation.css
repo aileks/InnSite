@@ -54,3 +54,12 @@ a:hover {
 .profile-dropdown li:hover {
   background-color: #f0f0f0;
 }
+
+#close-button {
+  position: absolute;
+  font-size: 1.1rem;
+  color: #bbbbbb;
+  top: 6px;
+  right: 6px;
+  cursor: pointer;
+}
