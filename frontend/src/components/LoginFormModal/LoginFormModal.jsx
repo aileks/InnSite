@@ -28,7 +28,10 @@ export default function LoginFormModal() {
     <div id='login-container'>
       <h1 id='login-header'>Log In</h1>
 
-      <form id='login-form' onSubmit={handleSubmit}>
+      <form
+        id='login-form'
+        onSubmit={handleSubmit}
+      >
         <label className='login-label'>
           Username or Email
           <input
@@ -53,7 +56,12 @@ export default function LoginFormModal() {
 
         {errors.credential && <p>{errors.credential}</p>}
 
-        <button id='login-button' type='submit'>Log In</button>
+        <button
+          id='login-button'
+          type='submit'
+        >
+          Log In
+        </button>
       </form>
     </div>
   );

@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { LuUserCircle } from 'react-icons/lu';
 import logout from '../../store/session';
-import OpenModalButton from '../OpenModalButton';
+import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignUpFormModal';
 
@@ -29,6 +29,8 @@ function ProfileButton({ user }) {
 
     return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
+
+  const closeMenu = () => setShowMenu(false);
 
   const destroy = e => {
     e.preventDefault();
@@ -64,19 +66,16 @@ function ProfileButton({ user }) {
             </li>
           </>
         : <>
-            <li className='nav-link'>
-              <OpenModalButton
-                buttonText='Log In'
-                modalComponent={<LoginFormModal />}
-              />
-            </li>
-
-            <li className='nav-link'>
-              <OpenModalButton
-                buttonText='Sign Up'
-                modalComponent={<SignUpFormModal />}
-              />
-            </li>
+            <OpenModalMenuItem
+              itemText='Log In'
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+            />
+            <OpenModalMenuItem
+              itemText='Sign Up'
+              onItemClick={closeMenu}
+              modalComponent={<SignUpFormModal />}
+            />
           </>
         }
       </ul>

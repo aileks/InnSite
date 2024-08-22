@@ -1,9 +1,9 @@
 import { useModal } from '../../context/Modal';
 
-export default function OpenModalButton({
+export default function OpenModalMenuItem({
   modalComponent,
-  buttonText,
-  onButtonClick,
+  itemText,
+  onItemClick,
   onModalClose,
 }) {
   const { setModalContent, setOnModalClose } = useModal();
@@ -11,15 +11,15 @@ export default function OpenModalButton({
   const onClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
     setModalContent(modalComponent);
-    if (typeof onButtonClick === 'function') onButtonClick();
+    if (typeof onItemClick === 'function') onItemClick();
   };
 
   return (
-    <button
-      className='modal-button'
+    <li
+      className='nav-link'
       onClick={onClick}
     >
-      {buttonText}
-    </button>
+      {itemText}
+    </li>
   );
 }

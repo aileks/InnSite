@@ -8,7 +8,10 @@ export default function Navigation({ isLoaded }) {
 
   return (
     <ul id='nav'>
-      <li id='home-link' className='nav-link'>
+      <li
+        id='home-link'
+        className='nav-link'
+      >
         <NavLink to='/'>Home</NavLink>
       </li>
       {isLoaded && (
