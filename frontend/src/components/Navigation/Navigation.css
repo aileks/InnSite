@@ -8,12 +8,6 @@ a:hover {
   align-items: center;
 }
 
-.nav-link {
-  font-weight: 600;
-  font-size: 1.2rem;
-  padding: 8px 20px;
-}
-
 #home-link {
   margin-right: auto;
 }
@@ -23,6 +17,16 @@ a:hover {
 }
 
 #nav-logout:hover {
+  text-decoration: underline;
+}
+
+.nav-link {
+  font-weight: 600;
+  font-size: 1.2rem;
+  padding: 8px 20px;
+}
+
+.modal-button:hover {
   text-decoration: underline;
 }
 
