@@ -182,8 +182,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
   for (let booking of bookings) {
     booking = booking.toJSON();
 
-    console.log(booking);
-
     booking.Spot.previewImage = booking.Spot.SpotImages[0].url;
     delete booking.Spot.SpotImages;
 
