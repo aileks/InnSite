@@ -1,12 +1,14 @@
-#signup-content {
+#signup-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 500px;
+  height: 400px;
 }
 
 #signup-header {
-  margin-top: 1.5rem;
+  margin-bottom: 2rem;
   font-size: 2.15rem;
   text-decoration: underline;
 }
@@ -15,7 +17,7 @@
   font-size: 1.1rem;
   color: white;
   padding: 4px 16px;
-  margin-top: 12px;
+  margin-top: 1rem;
   background: #4682b4;
   border: solid #315f7d 2px;
   border-radius: 4px;
@@ -29,7 +31,7 @@
   cursor: pointer;
 }
 
-.signup-form {
+#signup-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, auto);
@@ -37,10 +39,10 @@
 }
 
 .signup-label {
+  font-weight: 600;
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;
-  font-weight: bold;
 }
 
 .signup-input {

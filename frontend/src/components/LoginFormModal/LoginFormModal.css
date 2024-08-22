@@ -3,10 +3,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 400px;
+  height: 400px;
 }
 
 #login-header {
-  margin-top: 1.5rem;
+  margin-bottom: 2rem;
   font-size: 2.15rem;
   text-decoration: underline;
 }
@@ -15,12 +17,13 @@
   font-size: 1.1rem;
   color: white;
   padding: 4px 16px;
-  margin-top: 12px;
+  margin-top: 2rem;
   background: #4682b4;
   border: solid #315f7d 2px;
   border-radius: 4px;
   transition: all ease-in-out;
   transition-duration: 200ms;
+  font-weight: 500;
 }
 
 #login-button:hover {
@@ -29,7 +32,7 @@
   cursor: pointer;
 }
 
-.login-form {
+#login-form {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1 auto;
@@ -37,7 +40,7 @@
 }
 
 .login-label {
-  font-weight: bold;
+  font-weight: 600;
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;

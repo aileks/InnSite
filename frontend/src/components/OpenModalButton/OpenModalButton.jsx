@@ -1,6 +1,6 @@
 import { useModal } from '../../context/Modal';
 
-function OpenModalButton({
+export default function OpenModalButton({
   modalComponent,
   buttonText,
   onButtonClick,
@@ -16,5 +16,3 @@ function OpenModalButton({
 
   return <button onClick={onClick}>{buttonText}</button>;
 }
-
-export default OpenModalButton;
