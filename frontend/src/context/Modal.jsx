@@ -1,5 +1,5 @@
 import './Modal.css';
-import { useRef, useState, useContext, createContext } from 'react';
+import { useRef, useState, useEffect, useContext, createContext } from 'react';
 import ReactDOM from 'react-dom';
 
 const ModalContext = createContext();
@@ -41,6 +41,15 @@ export default function ModelProvider({ children }) {
 
 export const Modal = () => {
   const { modalRef, modalContent, closeModal } = useContext(ModalContext);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    if (modalContent) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  }, [modalContent]);
 
   // If there is no div referenced by the modalRef or modalContent is not a
   // truthy value, render nothing:
@@ -48,7 +57,10 @@ export const Modal = () => {
 
   // Render the following component to the div referenced by the modalRef
   return ReactDOM.createPortal(
-    <div id='modal'>
+    <div
+      id='modal'
+      className={isVisible ? 'show' : ''}
+    >
       <div
         id='modal-background'
         onClick={closeModal}

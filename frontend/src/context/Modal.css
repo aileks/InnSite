@@ -7,6 +7,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0.3s ease-in-out;
+}
+
+#modal.show {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+#modal.hide {
+  animation: fadeOutDown 0.3s ease-in-out forwards;
 }
 
 #modal-background {
@@ -23,4 +39,36 @@
   background-color: white;
   border-radius: 8px;
   overflow: hidden;
+  transform: translateY(20px);
+  transition: transform 0.3s ease-in-out;
+}
+
+#modal.show #modal-content {
+  transform: translateY(0);
+}
+
+#modal.hide #modal-content {
+  animation: fadeOutDown 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
 }
