@@ -21,10 +21,6 @@
   visibility: visible;
 }
 
-#modal.hide {
-  animation: fadeOutDown 0.3s ease-in-out forwards;
-}
-
 #modal-background {
   position: fixed;
   top: 0;
@@ -45,30 +41,4 @@
 
 #modal.show #modal-content {
   transform: translateY(0);
-}
-
-#modal.hide #modal-content {
-  animation: fadeOutDown 0.3s ease-in-out forwards;
-}
-
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeOutDown {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(20px);
-  }
 }
