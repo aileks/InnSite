@@ -1,18 +1,19 @@
 import { csrfFetch } from './csrf';
+import { createSelector } from 'reselect';
 
-const LOAD_INNS = 'inns/loadInns';
-const SINGLE_INN = 'inns/singleInn';
+const LOAD_ALL = 'inns/loadAll';
+const LOAD_ONE = 'inns/loanOne';
 
-export const loadInns = inns => {
+export const loadAll = inns => {
   return {
-    type: LOAD_INNS,
+    type: LOAD_ALL,
     inns,
   };
 };
 
-export const singleInn = inn => {
+export const loadOne = inn => {
   return {
-    type: SINGLE_INN,
+    type: LOAD_ONE,
     inn,
   };
 };
@@ -22,28 +23,34 @@ export const getAllInns = () => async dispatch => {
 
   if (res.ok) {
     const data = await res.json();
-    dispatch(loadInns(data.Spots));
+    dispatch(loadAll(data.Spots));
   }
 
   return res;
 };
 
-export const getInnById = innId => async dispatch => {
-  const res = await csrfFetch(`/api/spots/${innId}`);
+export const getInnById = id => async dispatch => {
+  const res = await csrfFetch(`/api/spots/${id}`);
 
   if (res.ok) {
-    const inn = await res.json();
-    dispatch(singleInn(inn))
+    const data = await res.json();
+    dispatch(loadOne(data));
   }
 
   return res;
 };
+
+export const selectInns = state => state.inns;
+export const selectInnById = innId => state => state.inns[innId];
+export const selectInnsArray = createSelector(selectInns, inns => {
+  return Object.values(inns);
+});
 
 const intitialState = {};
 
 const innsReducer = (state = intitialState, action) => {
   switch (action.type) {
-    case LOAD_INNS: {
+    case LOAD_ALL: {
       const newState = {};
 
       action.inns.forEach(inn => {
@@ -55,6 +62,11 @@ const innsReducer = (state = intitialState, action) => {
         ...newState,
       };
     }
+    case LOAD_ONE:
+      return {
+        ...state,
+        [action.inn.id]: action.inn,
+      };
     default:
       return state;
   }

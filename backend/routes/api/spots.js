@@ -348,7 +348,6 @@ router.get('/current', requireAuth, async (req, res) => {
 router.get('/:spotId', async (req, res, next) => {
   try {
     const { spotId } = req.params;
-    const userId = req.user.id;
     let spot = await Spot.findByPk(spotId, {
       include: [
         {
@@ -368,12 +367,6 @@ router.get('/:spotId', async (req, res, next) => {
     if (!spot) {
       return res.status(404).json({
         message: "Spot couldn't be found",
-      });
-    }
-
-    if (spot.ownerId !== userId) {
-      return res.status(403).json({
-        message: 'Forbidden',
       });
     }
 

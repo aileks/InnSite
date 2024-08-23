@@ -5,6 +5,7 @@ import { restoreUser } from './store/session';
 import Navigation from './components/Navigation';
 import Index from './components/Index';
 import NotFound from './components/404';
+import SingleInn from './components/SingleInn';
 
 const router = createBrowserRouter([
   {
@@ -12,16 +13,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        children: [
-          {
-            index: true,
-            element: <Index />,
-          },
-          {
-            path: 'inns/:id',
-            element: <h1>Inn Goes Here</h1>
-          }
-        ]
+        element: <Index />,
+      },
+      {
+        path: 'inns/:id',
+        element: <SingleInn />,
       },
       {
         path: '*',

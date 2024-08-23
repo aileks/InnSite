@@ -12,7 +12,7 @@ export default function Navigation({ isLoaded }) {
         <li className='nav-link'>
           <img
             id='logo'
-            src='logo.jpeg'
+            src='/logo.jpeg'
             alt='InnSite logo'
           />
         </li>

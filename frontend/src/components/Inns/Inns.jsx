@@ -2,12 +2,11 @@ import './Inns.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
-import { getAllInns } from '../../store/inns';
+import { getAllInns, selectInnsArray } from '../../store/inns';
 
 export default function Inns() {
   const dispatch = useDispatch();
-  const inns = useSelector(state => state.inns);
-  const innsArr = Object.values(inns);
+  const inns = useSelector(selectInnsArray);
 
   useEffect(() => {
     dispatch(getAllInns());
@@ -15,7 +14,7 @@ export default function Inns() {
 
   return (
     <ul>
-      {innsArr.map(inn => (
+      {inns?.map(inn => (
         <li key={inn.id}>
           <Link to={`inns/${inn.id}`}>{inn.name}</Link>
         </li>
