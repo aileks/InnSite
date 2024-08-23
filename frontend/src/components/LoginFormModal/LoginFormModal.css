@@ -9,7 +9,6 @@
 
 #login-header {
   margin-bottom: 2rem;
-  font-size: 2.15rem;
   text-decoration: underline;
 }
 
@@ -40,10 +39,11 @@
 }
 
 .login-label {
-  font-weight: 600;
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .login-input {
@@ -51,4 +51,6 @@
   padding: 8px;
   border: 1px solid #aaaaaa;
   border-radius: 4px;
+  font-weight: 400;
+  font-size: 1rem;
 }

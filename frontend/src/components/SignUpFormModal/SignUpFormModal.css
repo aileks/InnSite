@@ -3,13 +3,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 400px;
+  width: 550px;
+  height: 450px;
 }
 
 #signup-header {
   margin-bottom: 2rem;
-  font-size: 2.15rem;
   text-decoration: underline;
 }
 
@@ -34,15 +33,16 @@
 #signup-form {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, auto);
+  grid-auto-rows: repeat(3, auto);
   gap: 10px;
 }
 
 .signup-label {
-  font-weight: 600;
   display: flex;
   flex-direction: column;
   margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 .signup-input {
@@ -50,10 +50,19 @@
   padding: 8px;
   border: 1px solid #aaaaaa;
   border-radius: 4px;
+  font-weight: 400;
+  font-size: 1rem;
 }
 
 .button-container {
   grid-column: span 2;
   display: flex;
   justify-content: flex-end;
+}
+
+.error {
+  grid-column: span 2;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  width: 100%;
 }

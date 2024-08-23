@@ -50,6 +50,16 @@ textarea {
 }
 /* End Reset */
 
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
 body {
   font-family: 'Moderustic', 'Helvetica Neue', Arial, sans-serif;
   font-optical-sizing: auto;
@@ -58,4 +68,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-smooth: always;
   text-rendering: optimizeLegibility;
+  background-color: #f7f7f7;
+}
+
+.error {
+  color: #d9534f;
+  font-style: italic;
 }

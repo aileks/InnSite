@@ -12,6 +12,8 @@ export default function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+  console.log(errors);
+
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -21,8 +23,9 @@ export default function LoginFormModal() {
       .then(closeModal)
       .catch(async res => {
         const data = await res.json();
-        if (data && data.errors) {
-          setErrors(data.errors);
+
+        if (data && data.message) {
+          setErrors(data);
         }
       });
   };
@@ -65,7 +68,7 @@ export default function LoginFormModal() {
             />
           </label>
 
-          {errors.credential && <p>{errors.credential}</p>}
+          <div className="error">{errors && <p>{errors.message}</p>}</div>
 
           <button
             id='login-button'
