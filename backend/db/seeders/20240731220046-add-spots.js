@@ -12,91 +12,109 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     const spots = [
       {
-        address: '123 Disney Lane',
-        city: 'San Francisco',
-        state: 'California',
-        country: 'United States of America',
-        lat: 37.7645358,
-        lng: -122.4730327,
-        name: 'App Academy',
-        description: 'Place where web developers are created',
-        price: 123,
+        address: '7 Bag End Lane',
+        city: 'Hobbiton',
+        state: 'The Shire',
+        country: 'Middle-earth',
+        lat: -34.50739, // Fictional coordinates
+        lng: 149.128232, // Fictional coordinates
+        name: 'The Green Dragon Inn',
+        description: 'A cozy pub serving hobbit ale and pies',
+        price: 15,
         ownerId: (
           await User.findOne({
             where: {
-              username: 'Demo-lition',
+              username: 'FrodoBaggins',
             },
           })
         ).id,
       },
       {
-        address: '456 Sunset Boulevard',
-        city: 'Los Angeles',
-        state: 'California',
-        country: 'United States of America',
-        lat: 34.0980031,
-        lng: -118.3261728,
-        name: 'Hollywood Dreams',
-        description: 'Experience the glamour of Hollywood',
-        price: 250,
+        address: '44 Diagon Alley',
+        city: 'London',
+        state: 'The Magical District',
+        country: 'Wizarding World',
+        lat: 51.5074, // Fictional coordinates
+        lng: -0.1278, // Fictional coordinates
+        name: 'The Leaky Cauldron',
+        description: 'A hidden pub for witches and wizards',
+        price: 50,
         ownerId: (
           await User.findOne({
             where: {
-              username: 'FakeUser1',
+              username: 'Hagrid',
             },
           })
         ).id,
       },
       {
-        address: '789 Broadway',
-        city: 'New York',
-        state: 'New York',
-        country: 'United States of America',
-        lat: 40.7589632,
-        lng: -73.9851853,
-        name: 'Times Square Loft',
-        description: 'Stay in the heart of the city that never sleeps',
-        price: 300,
+        address: '1233 Edgewater Drive',
+        city: 'Eldoria',
+        state: 'Eldoria',
+        country: 'Mythos Realm',
+        lat: 52.3676, // Fictional coordinates
+        lng: 4.9041, // Fictional coordinates
+        name: 'The Dragon’s Breath Inn',
+        description: 'An inn known for its magical dragon-fire cuisine',
+        price: 120,
         ownerId: (
           await User.findOne({
             where: {
-              username: 'FakeUser2',
+              username: 'ElaraStarwind',
             },
           })
         ).id,
       },
       {
-        address: '101 Ocean Drive',
-        city: 'Miami',
-        state: 'Florida',
-        country: 'United States of America',
-        lat: 25.7742658,
-        lng: -80.1307602,
-        name: 'Beachfront Paradise',
-        description: 'Luxurious condo with stunning ocean views',
-        price: 280,
+        address: '9 Coursen’s Crossing',
+        city: 'Gondor',
+        state: 'Minas Tirith',
+        country: 'Middle-earth',
+        lat: 41.8919, // Fictional coordinates
+        lng: 12.5113, // Fictional coordinates
+        name: 'The White City Tavern',
+        description: 'A grand tavern with views of the White City',
+        price: 85,
         ownerId: (
           await User.findOne({
             where: {
-              username: 'Demo-lition',
+              username: 'Aragorn',
             },
           })
         ).id,
       },
       {
-        address: '202 Bourbon Street',
-        city: 'New Orleans',
-        state: 'Louisiana',
-        country: 'United States of America',
-        lat: 29.9584497,
-        lng: -90.0653834,
-        name: 'French Quarter Gem',
-        description: 'Historic house in the heart of NOLA',
-        price: 175,
+        address: '11 Evergreen Way',
+        city: 'Narnia',
+        state: 'Aslan’s Land',
+        country: 'Narnia',
+        lat: 36.7783, // Fictional coordinates
+        lng: -119.4179, // Fictional coordinates
+        name: 'The Silver Chair Inn',
+        description: 'An inn with a magical silver chair and tales of old',
+        price: 95,
         ownerId: (
           await User.findOne({
             where: {
-              username: 'Demo-lition',
+              username: 'SusanPevensie',
+            },
+          })
+        ).id,
+      },
+      {
+        address: '42 Cloud Road',
+        city: 'Avalon',
+        state: 'Mystic Isles',
+        country: 'Legendaria',
+        lat: 37.7749, // Fictional coordinates
+        lng: -122.4194, // Fictional coordinates
+        name: 'The Enchanted Haven',
+        description: 'An inn hidden in the clouds, with enchanted amenities',
+        price: 150,
+        ownerId: (
+          await User.findOne({
+            where: {
+              username: 'Merlin',
             },
           })
         ).id,
@@ -114,11 +132,12 @@ module.exports = {
     return queryInterface.bulkDelete(options, {
       address: {
         [Op.in]: [
-          '202 Bourbon Street',
-          '101 Ocean Drive',
-          '789 Broadway',
-          '456 Sunset Boulevard',
-          '123 Disney Lane',
+          '7 Bag End Lane',
+          '44 Diagon Alley',
+          '1233 Edgewater Drive',
+          '9 Coursen’s Crossing',
+          '11 Evergreen Way',
+          '42 Cloud Road',
         ],
       },
     });

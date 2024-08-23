@@ -13,25 +13,46 @@ module.exports = {
     await User.bulkCreate(
       [
         {
-          email: 'demo@user.io',
-          username: 'Demo-lition',
-          firstName: 'Jon',
-          lastName: 'Doe',
-          hashedPassword: bcrypt.hashSync('password'),
+          email: 'frodo.baggins@middleearth.com',
+          username: 'FrodoBaggins',
+          firstName: 'Frodo',
+          lastName: 'Baggins',
+          hashedPassword: bcrypt.hashSync('ringBearer123'),
         },
         {
-          email: 'user1@user.io',
-          username: 'FakeUser1',
-          firstName: 'Jon',
-          lastName: 'Doe',
-          hashedPassword: bcrypt.hashSync('password2'),
+          email: 'hagrid@wizardworld.com',
+          username: 'Hagrid',
+          firstName: 'Rubeus',
+          lastName: 'Hagrid',
+          hashedPassword: bcrypt.hashSync('magicalCreatures'),
         },
         {
-          email: 'user2@user.io',
-          username: 'FakeUser2',
-          firstName: 'Jon',
-          lastName: 'Doe',
-          hashedPassword: bcrypt.hashSync('password3'),
+          email: 'elara.starwind@eldoria.com',
+          username: 'ElaraStarwind',
+          firstName: 'Elara',
+          lastName: 'Starwind',
+          hashedPassword: bcrypt.hashSync('moonlightGlimmer'),
+        },
+        {
+          email: 'aragorn@middleearth.com',
+          username: 'Aragorn',
+          firstName: 'Aragorn',
+          lastName: 'Elessar',
+          hashedPassword: bcrypt.hashSync('striderWarrior'),
+        },
+        {
+          email: 'susan.pevensie@narnia.com',
+          username: 'SusanPevensie',
+          firstName: 'Susan',
+          lastName: 'Pevensie',
+          hashedPassword: bcrypt.hashSync('bowAndArrow'),
+        },
+        {
+          email: 'merlin@legendaria.com',
+          username: 'Merlin',
+          firstName: 'Merlin',
+          lastName: 'TheWizard',
+          hashedPassword: bcrypt.hashSync('arcaneMagic'),
         },
       ],
       { validate: true }
@@ -44,7 +65,16 @@ module.exports = {
     return queryInterface.bulkDelete(
       options,
       {
-        username: { [Op.in]: ['Demo-lition', 'FakeUser1', 'FakeUser2'] },
+        username: {
+          [Op.in]: [
+            'FrodoBaggins',
+            'Hagrid',
+            'ElaraStarwind',
+            'Aragorn',
+            'SusanPevensie',
+            'Merlin',
+          ],
+        },
       },
       {}
     );
