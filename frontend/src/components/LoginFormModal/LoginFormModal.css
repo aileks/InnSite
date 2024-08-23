@@ -3,8 +3,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 500px;
-  height: 350px;
+  width: 420px;
+  height: 400px;
 }
 
 #login-header {
@@ -13,9 +13,10 @@
 }
 
 #login-form {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
   gap: 10px;
 }
 
@@ -34,13 +35,6 @@
   border-radius: 4px;
   font-weight: 400;
   font-size: 1rem;
-}
-
-.button-container {
-  grid-column: span 2;
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 1rem;
 }
 
 #login-button {

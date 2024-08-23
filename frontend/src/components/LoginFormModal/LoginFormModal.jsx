@@ -12,8 +12,6 @@ export default function LoginFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
-  console.log(errors);
-
   const handleSubmit = e => {
     e.preventDefault();
 
