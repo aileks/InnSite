@@ -13,6 +13,7 @@ module.exports = {
     await User.bulkCreate(
       [
         {
+          id: 1,
           email: 'frodo.baggins@middleearth.com',
           username: 'FrodoBaggins',
           firstName: 'Frodo',
@@ -20,6 +21,7 @@ module.exports = {
           hashedPassword: bcrypt.hashSync('ringBearer123'),
         },
         {
+          id: 2,
           email: 'hagrid@wizardworld.com',
           username: 'Hagrid',
           firstName: 'Rubeus',
@@ -27,6 +29,7 @@ module.exports = {
           hashedPassword: bcrypt.hashSync('magicalCreatures'),
         },
         {
+          id: 3,
           email: 'elara.starwind@eldoria.com',
           username: 'ElaraStarwind',
           firstName: 'Elara',
@@ -34,6 +37,7 @@ module.exports = {
           hashedPassword: bcrypt.hashSync('moonlightGlimmer'),
         },
         {
+          id: 4,
           email: 'aragorn@middleearth.com',
           username: 'Aragorn',
           firstName: 'Aragorn',
@@ -41,6 +45,7 @@ module.exports = {
           hashedPassword: bcrypt.hashSync('striderWarrior'),
         },
         {
+          id: 5,
           email: 'susan.pevensie@narnia.com',
           username: 'SusanPevensie',
           firstName: 'Susan',
@@ -48,6 +53,7 @@ module.exports = {
           hashedPassword: bcrypt.hashSync('bowAndArrow'),
         },
         {
+          id: 6,
           email: 'merlin@legendaria.com',
           username: 'Merlin',
           firstName: 'Merlin',

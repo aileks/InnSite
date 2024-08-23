@@ -10,65 +10,81 @@ if (process.env.NODE_ENV === 'production') {
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    const spots = await Spot.findAll();
-    const spotIds = [];
-
-    spots.forEach(spot => {
-      spotIds.push(spot.id);
-    });
-
     const reviews = [
       {
-        spotId: spotIds[0],
+        spotId: (
+          await Spot.findOne({
+            where: { name: 'The Green Dragon Inn' },
+          })
+        ).id,
         userId: (
           await User.findOne({
-            where: {
-              username: 'FakeUser1',
-            },
+            where: { username: 'FrodoBaggins' },
           })
         ).id,
         review:
-          "The spot was okay, but I don't think it's worth the hype. There are other places nearby that offer a similar experience at a better value.",
-        stars: 3,
-      },
-      {
-        spotId: spotIds[1],
-        userId: (
-          await User.findOne({
-            where: {
-              username: 'Demo-lition',
-            },
-          })
-        ).id,
-        review:
-          "This is hands down the best place I've visited this year. The experience was outstanding and it exceeded all my expectations. Highly recommended!",
+          'A cozy and charming inn! The hobbit ale was delightful and the pies were the best I have ever had. Highly recommend for a peaceful stay in the Shire.',
         stars: 5,
       },
       {
-        spotId: spotIds[3],
+        spotId: (
+          await Spot.findOne({
+            where: { name: 'The Leaky Cauldron' },
+          })
+        ).id,
         userId: (
           await User.findOne({
-            where: {
-              username: 'Demo-lition',
-            },
+            where: { username: 'Hagrid' },
           })
         ).id,
         review:
-          'I really enjoyed visiting this spot. The atmosphere was great and the service was excellent. However, I think there could be some improvements in the amenities offered.',
+          'A fantastic place to meet fellow witches and wizards. The atmosphere is magical and the food is quite satisfying. A bit noisy at times, but it adds to the charm.',
         stars: 4,
       },
       {
-        spotId: spotIds[3],
+        spotId: (
+          await Spot.findOne({
+            where: { name: 'The Dragon’s Breath Inn' },
+          })
+        ).id,
         userId: (
           await User.findOne({
-            where: {
-              username: 'FakeUser2',
-            },
+            where: { username: 'ElaraStarwind' },
           })
         ).id,
         review:
-          'I was initially impressed with this location, but my experience was marred by poor maintenance and cleanliness issues. I expected better for the price.',
-        stars: 2,
+          'The best inn in Eldoria! The dragon-fire cuisine was spectacular and the ambiance was enchanting. Perfect for a magical getaway.',
+        stars: 5,
+      },
+      {
+        spotId: (
+          await Spot.findOne({
+            where: { name: 'The White City Tavern' },
+          })
+        ).id,
+        userId: (
+          await User.findOne({
+            where: { username: 'Aragorn' },
+          })
+        ).id,
+        review:
+          'A grand tavern with great views of Minas Tirith. The food and service were excellent, though the prices were a bit high. Still, a memorable experience.',
+        stars: 4,
+      },
+      {
+        spotId: (
+          await Spot.findOne({
+            where: { name: 'The Silver Chair Inn' },
+          })
+        ).id,
+        userId: (
+          await User.findOne({
+            where: { username: 'SusanPevensie' },
+          })
+        ).id,
+        review:
+          'A lovely inn with a touch of Narnian magic. The silver chair was truly enchanting and the rooms were cozy. A perfect retreat in Narnia.',
+        stars: 5,
       },
     ];
 
@@ -78,14 +94,48 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    options.tableName = 'Reviews';
     const Op = Sequelize.Op;
+
+    const spots = await Spot.findAll({
+      where: {
+        name: {
+          [Sequelize.Op.in]: [
+            'The Green Dragon Spot',
+            'The Leaky Cauldron',
+            'The Dragon’s Breath Spot',
+            'The White City Tavern',
+            'The Silver Chair Spot',
+          ],
+        },
+      },
+    });
+
+    const spotIds = spots.map(spot => spot.id);
+
+    const users = await User.findAll({
+      where: {
+        username: {
+          [Op.in]: [
+            'FrodoBaggins',
+            'Hagrid',
+            'ElaraStarwind',
+            'Aragorn',
+            'SusanPevensie',
+          ],
+        },
+      },
+    });
+
+    const userIds = users.map(user => user.id);
+
+    options.tableName = 'Reviews';
+
     return queryInterface.bulkDelete(options, {
       spotId: {
-        [Op.in]: [1, 2, 3],
+        [Op.in]: spotIds,
       },
       userId: {
-        [Op.in]: [1, 3],
+        [Op.in]: userIds,
       },
     });
   },
