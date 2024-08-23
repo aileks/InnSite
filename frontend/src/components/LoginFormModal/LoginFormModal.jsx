@@ -68,14 +68,16 @@ export default function LoginFormModal() {
             />
           </label>
 
-          <div className="error">{errors && <p>{errors.message}</p>}</div>
+          <div className='error'>{errors && <p>{errors.message}</p>}</div>
 
-          <button
-            id='login-button'
-            type='submit'
-          >
-            Log In
-          </button>
+          <div className='button-container'>
+            <button
+              id='login-button'
+              type='submit'
+            >
+              Log In
+            </button>
+          </div>
         </form>
       </div>
     </>

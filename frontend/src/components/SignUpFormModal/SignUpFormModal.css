@@ -13,7 +13,8 @@
 }
 
 #signup-button {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
   color: white;
   padding: 4px 16px;
   margin-top: 1rem;
