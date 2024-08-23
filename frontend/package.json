@@ -8,7 +8,7 @@
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "deploy": "vite build && git add && git commit -m 'build & deploy' && git push"
+    "deploy": "vite build && git add -A && git commit -m 'build & deploy' && git push"
   },
   "dependencies": {
     "js-cookie": "^3.0.5",
