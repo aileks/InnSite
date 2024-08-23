@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { restoreUser } from './store/session';
 import Navigation from './components/Navigation';
+import Index from './components/Index';
+import NotFound from './components/404';
 
 const router = createBrowserRouter([
   {
@@ -10,52 +12,20 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: (
-          <div
-            style={{
-              marginTop: '20vh',
-            }}
-          >
-            <h1 style={{ textAlign: 'center', marginBottom: '10px' }}>
-              Welcome!
-            </h1>
-
-            <h2 style={{ textAlign: 'center', marginTop: '10px' }}>
-              We&apos;re still under construction...
-              <br />
-              <img
-                style={{ marginTop: '10px' }}
-                src='https://media1.tenor.com/m/XPRG-4ujVMIAAAAd/cat-work-in-progress.gif'
-                alt=''
-              />
-            </h2>
-          </div>
-        ),
+        children: [
+          {
+            index: true,
+            element: <Index />,
+          },
+          {
+            path: 'inns/:id',
+            element: <h1>Inn Goes Here</h1>
+          }
+        ]
       },
       {
         path: '*',
-        element: (
-          <div
-            style={{
-              marginTop: '20vh',
-              width: '100vw',
-            }}
-          >
-            <h1 style={{ textAlign: 'center', margin: '10px 0' }}>
-              Something went wrong...
-            </h1>
-
-            <h2 style={{ textAlign: 'center' }}>
-              Page not found
-              <br />
-              <img
-                style={{ marginTop: '10px' }}
-                src='https://media1.tenor.com/m/KfTzPr3nyowAAAAd/what-que.gif'
-                alt=''
-              />
-            </h2>
-          </div>
-        ),
+        element: <NotFound />,
       },
     ],
   },
