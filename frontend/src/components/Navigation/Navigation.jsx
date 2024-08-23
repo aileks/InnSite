@@ -10,16 +10,16 @@ export default function Navigation({ isLoaded }) {
     <ul id='nav'>
       <span id='left-items'>
         <li className='nav-link'>
-          <img
-            id='logo'
-            src='/logo.jpeg'
-            alt='InnSite logo'
-          />
+          <NavLink to='/'>
+            <img
+              id='logo'
+              src='/logo.jpeg'
+              alt='InnSite logo'
+            />
+          </NavLink>
         </li>
 
-        <li className='nav-link'>
-          <NavLink to='/'>Home</NavLink>
-        </li>
+        <li className='nav-link'></li>
       </span>
 
       {isLoaded && (
