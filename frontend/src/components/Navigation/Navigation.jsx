@@ -8,12 +8,20 @@ export default function Navigation({ isLoaded }) {
 
   return (
     <ul id='nav'>
-      <li
-        id='home-link'
-        className='nav-link'
-      >
-        <NavLink to='/'>Home</NavLink>
-      </li>
+      <span id='left-items'>
+        <li className='nav-link'>
+          <img
+            id='logo'
+            src='logo.jpeg'
+            alt='InnSite logo'
+          />
+        </li>
+
+        <li className='nav-link'>
+          <NavLink to='/'>Home</NavLink>
+        </li>
+      </span>
+
       {isLoaded && (
         <li className='nav-link'>
           <ProfileButton user={user} />

@@ -9,22 +9,17 @@ a:hover {
   margin: 8px 0;
 }
 
-#home-link {
+#left-items {
+  display: flex;
+  justify-self: center;
+  align-items: center;
   margin-right: auto;
-}
-
-#nav-logout {
-  cursor: pointer;
-}
-
-#nav-logout:hover {
-  text-decoration: underline;
 }
 
 .nav-link {
   font-weight: 600;
   font-size: 1.2rem;
-  padding: 8px 20px;
+  padding: 4px 10px;
 }
 
 .modal-button:hover {
@@ -62,4 +57,9 @@ a:hover {
   top: 6px;
   right: 6px;
   cursor: pointer;
+}
+
+#logo {
+  width: 50px;
+  border-radius: 100%;
 }
