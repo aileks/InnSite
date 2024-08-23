@@ -2,7 +2,7 @@ import { csrfFetch } from './csrf';
 import { createSelector } from 'reselect';
 
 const LOAD_ALL = 'inns/loadAll';
-const LOAD_ONE = 'inns/loanOne';
+const LOAD_ONE = 'inns/loadOne';
 
 export const loadAll = inns => {
   return {
@@ -59,13 +59,16 @@ const innsReducer = (state = intitialState, action) => {
 
       return {
         ...state,
-        ...newState,
+        ...newState
       };
     }
     case LOAD_ONE:
       return {
         ...state,
-        [action.inn.id]: action.inn,
+        [action.inn.id]: {
+          ...action.inn,
+          previewImage: action.inn.SpotImages.find(image => image.preview).url
+        },
       };
     default:
       return state;

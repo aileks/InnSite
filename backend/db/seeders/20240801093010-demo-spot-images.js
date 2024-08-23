@@ -20,27 +20,32 @@ module.exports = {
     const images = [
       {
         spotId: spotIds[0],
-        url: 'fake-image-1',
+        url: 'https://media1.popsugar-assets.com/files/thumbor/UJTw3i-g7xDNCGgEt2QHjjtLc2c/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2017/05/10/784/n/1922441/e9821f6b880f8053_GD_bar/i/Inside-Green-Dragon-Inn-you-can-enjoy-complimentary-drink.jpg',
         preview: true,
       },
       {
         spotId: spotIds[1],
-        url: 'fake-image-2',
+        url: 'https://orlandoinformer.com/wp-content/uploads/2023/08/20230803-DSC07297.jpg',
         preview: true,
       },
       {
         spotId: spotIds[2],
-        url: 'fake-image-3',
+        url: '/images/The_Dragons_Breath_Inn.jpeg',
         preview: true,
       },
       {
         spotId: spotIds[3],
-        url: 'fake-image-4',
+        url: '/images/The_White_City_Tavern.jpeg',
         preview: true,
       },
       {
         spotId: spotIds[4],
-        url: 'fake-image-5',
+        url: '/images/The_Silver_Chair_Inn.jpeg',
+        preview: true,
+      },
+      {
+        spotId: spotIds[5],
+        url: '/images/The_Enchanted_Haven.jpeg',
         preview: true,
       },
     ];
