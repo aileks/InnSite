@@ -7,7 +7,6 @@ import { getAllInns, selectInnsArray } from '../../store/inns';
 export default function Inns() {
   const dispatch = useDispatch();
   const inns = useSelector(selectInnsArray);
-  console.log(inns);
 
   useEffect(() => {
     dispatch(getAllInns());

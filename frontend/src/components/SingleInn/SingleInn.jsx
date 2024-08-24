@@ -45,9 +45,7 @@ export default function SingleInn() {
             </div>
           </div>
 
-          <div id='reviews-container'>
-            <Reviews />
-          </div>
+          <Reviews />
         </>
       : <NotFound />}
     </>

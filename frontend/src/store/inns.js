@@ -48,7 +48,7 @@ export const selectInnsArray = createSelector(selectInns, inns => {
 
 const intitialState = {};
 
-const innsReducer = (state = intitialState, action) => {
+export default function innsReducer(state = intitialState, action) {
   switch (action.type) {
     case LOAD_ALL: {
       const newState = {};
@@ -59,7 +59,7 @@ const innsReducer = (state = intitialState, action) => {
 
       return {
         ...state,
-        ...newState
+        ...newState,
       };
     }
     case LOAD_ONE:
@@ -67,12 +67,10 @@ const innsReducer = (state = intitialState, action) => {
         ...state,
         [action.inn.id]: {
           ...action.inn,
-          previewImage: action.inn.SpotImages.find(image => image.preview).url
+          previewImage: action.inn.SpotImages.find(image => image.preview).url,
         },
       };
     default:
       return state;
   }
-};
-
-export default innsReducer;
+}
