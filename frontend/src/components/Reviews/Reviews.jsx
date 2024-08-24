@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getAllReviews, selectReviewsArray } from '../../store/reviews';
 import { useParams } from 'react-router-dom';
+import StarRating from './StarRating';
 
 export default function Reviews() {
   const dispatch = useDispatch();
@@ -26,6 +27,8 @@ export default function Reviews() {
             {review.User.firstName} {review.User.lastName}
             <span className='timestamp'> {timestamp(review.createdAt)}</span>
           </h3>
+
+          <StarRating rating={review.stars} />
 
           <p className='review-body'>{review.review}</p>
         </div>

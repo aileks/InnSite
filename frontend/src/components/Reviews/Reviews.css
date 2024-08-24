@@ -1,0 +1,13 @@
+.filled, .empty {
+  color: #6a0dad;
+  font-size: 1.2rem;
+}
+
+.empty {
+  opacity: 50%;
+}
+
+#wands {
+  display: inline-flex;
+  margin: 4px 0 4px 2px;
+}
