@@ -38,7 +38,6 @@ export default function reviewsReducer(state = initialState, action) {
       });
 
       return {
-        ...state,
         ...newState,
       };
     }
