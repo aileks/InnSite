@@ -1,4 +1,4 @@
-import './SignupFormModal.css';
+import './SignUpFormModal.css';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
@@ -29,7 +29,7 @@ export default function SignupFormModal() {
           firstName,
           lastName,
           password,
-        })
+        }),
       )
         .then(closeModal)
         .catch(async res => {
@@ -41,8 +41,7 @@ export default function SignupFormModal() {
     }
 
     return setErrors({
-      confirmPassword:
-        'Confirm Password field must be the same as the Password field',
+      confirmPassword: 'Confirm Password field must be the same as the Password field',
     });
   };
 
@@ -149,9 +148,7 @@ export default function SignupFormModal() {
               />
             </label>
 
-            {errors.confirmPassword && (
-              <p className='error'>{errors.confirmPassword}</p>
-            )}
+            {errors.confirmPassword && <p className='error'>{errors.confirmPassword}</p>}
           </div>
 
           <div className='button-container'>
