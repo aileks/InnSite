@@ -41,12 +41,16 @@ export default function Reviews({ userId, ownerId }) {
         reviews?.map(review => (
           <div key={review.id}>
             <h3 className='review-heading'>
+
               {review.User.firstName}
+
               {' • '}{' '}
+
               <span className='date'>
                 posted {months[new Date(review.createdAt).getMonth()]}{' '}
                 {new Date(review.createdAt).getFullYear()}
               </span>
+
               <span className='time-ago'> ({timestamp(review.createdAt)})</span>
             </h3>
 
