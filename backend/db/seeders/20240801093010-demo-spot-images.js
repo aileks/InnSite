@@ -63,7 +63,7 @@ module.exports = {
             },
           })
         ).id,
-        url: '/images/Silver_Chair_Inn/building.jpeg',
+        url: '/images/Silver_Chair/building.jpeg',
         preview: true,
       },
       {
