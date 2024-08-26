@@ -17,25 +17,25 @@ module.exports = {
           type: Sequelize.INTEGER,
         },
         username: {
-          type: Sequelize.TEXT(30),
+          type: Sequelize.STRING(30),
           allowNull: false,
           unique: true,
         },
         firstName: {
-          type: Sequelize.TEXT(50),
+          type: Sequelize.STRING(50),
           allowNull: false,
         },
         lastName: {
-          type: Sequelize.TEXT(50),
+          type: Sequelize.STRING(50),
           allowNull: false,
         },
         email: {
-          type: Sequelize.TEXT(256),
+          type: Sequelize.STRING(256),
           allowNull: false,
           unique: true,
         },
         hashedPassword: {
-          type: Sequelize.TEXT.BINARY,
+          type: Sequelize.STRING.BINARY,
           allowNull: false,
         },
         createdAt: {

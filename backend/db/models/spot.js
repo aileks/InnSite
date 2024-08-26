@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   Spot.init(
     {
       address: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notNull: {
@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       city: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notNull: {
@@ -45,7 +45,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       state: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notNull: {
@@ -59,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       country: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notNull: {
@@ -101,7 +101,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       name: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notEmpty: {
@@ -115,7 +115,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       description: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING,
         allowNull: false,
         validate: {
           notNull: {
