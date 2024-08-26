@@ -12,7 +12,6 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     const spots = [
       {
-        id: 1,
         address: '7 Bag End Lane',
         city: 'Hobbiton',
         state: 'The Shire',
@@ -31,7 +30,6 @@ module.exports = {
         ).id,
       },
       {
-        id: 2,
         address: '44 Diagon Alley',
         city: 'London',
         state: 'The Magical District',
@@ -50,7 +48,6 @@ module.exports = {
         ).id,
       },
       {
-        id: 3,
         address: '1233 Edgewater Drive',
         city: 'Eldoria',
         state: 'Eldoria',
@@ -69,7 +66,6 @@ module.exports = {
         ).id,
       },
       {
-        id: 4,
         address: '9 Coursen’s Crossing',
         city: 'Gondor',
         state: 'Minas Tirith',
@@ -88,7 +84,6 @@ module.exports = {
         ).id,
       },
       {
-        id: 5,
         address: '11 Evergreen Way',
         city: 'Narnia',
         state: 'Aslan’s Land',
@@ -107,7 +102,6 @@ module.exports = {
         ).id,
       },
       {
-        id: 6,
         address: '42 Cloud Road',
         city: 'Avalon',
         state: 'Mystic Isles',
