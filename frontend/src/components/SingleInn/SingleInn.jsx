@@ -71,9 +71,11 @@ export default function SingleInn() {
           </div>
 
           <div id='callout-container'>
-            <div id='inn-price'>${inn.price} / night</div>
+            <div id='price'>${inn.price} / night</div>
 
-            <AvgRating inn={inn} />
+            <div id='rating'>
+              <AvgRating inn={inn} />
+            </div>
 
             <button
               onClick={handleClick}

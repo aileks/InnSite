@@ -5,13 +5,13 @@ export default function AvgRating({ inn }) {
 
   return (
     <div id='avg-rating'>
-      {avgStarRating && <span>Rating: {avgStarRating.toFixed(2)}</span>}
+      {avgStarRating && <div>Rating: {avgStarRating.toFixed(2)}</div>}
 
       {numReviews ? (
-        <span>
+        <div>
           {numReviews === 1 ? `• ${numReviews} Review` : `• ${numReviews} Reviews`}
           <SlMagicWand style={{ color: '#6a0dad', fontSize: '0.9em' }} />
-        </span>
+        </div>
       ): '*New*' }
 
     </div>
