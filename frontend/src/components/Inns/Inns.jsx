@@ -9,8 +9,6 @@ export default function Inns() {
   const dispatch = useDispatch();
   const inns = useSelector(selectInnsArray);
 
-  console.log(inns);
-
   useEffect(() => {
     dispatch(getAllInns());
   }, [dispatch]);
@@ -32,7 +30,7 @@ export default function Inns() {
             {' • '}
             {inn.city}, {inn.state}
             {' • '}
-            {inn.avgRating ? inn.avgRating.toFixed(2) : 'New'} <SlMagicWand style={{ color: '#6a0dad', fontSize: '0.9em' }} />
+            {inn.avgRating ? inn.avgRating.toFixed(2) : '*New*'} <SlMagicWand style={{ color: '#6a0dad', fontSize: '0.9em' }} />
             {' • '}
             ${inn.price}/night
           </div>

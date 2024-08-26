@@ -5,6 +5,7 @@ import { selectInnById, getInnById } from '../../store/inns';
 import { useEffect } from 'react';
 import NotFound from '../404';
 import Reviews from '../Reviews';
+import { SlMagicWand } from 'react-icons/sl';
 
 export default function SingleInn() {
   const dispatch = useDispatch();
@@ -52,7 +53,19 @@ export default function SingleInn() {
 
               <h1 id='inn-title'>{inn.name}</h1>
 
-              <div id='avg-rating'>Rating: {inn?.avgStarRating?.toFixed(2)} / 5 </div>
+              <div id='avg-rating'>
+                {inn?.avgStarRating ? (
+                  <>
+                    Rating: {inn?.avgStarRating?.toFixed(2)}
+                    {inn.numReviews === 1
+                      ? ` • ${inn.numReviews} Review `
+                      : ` • ${inn.numReviews} Reviews `}
+                  </>
+                ) : (
+                  '*New* '
+                )}
+                <SlMagicWand style={{ color: '#6a0dad', fontSize: '0.9em' }} />
+              </div>
 
               <div id='inn-location'>
                 <h3 id='inn-country'>{inn.country}</h3>
@@ -68,7 +81,12 @@ export default function SingleInn() {
               </div>
             </div>
 
-            <button onClick={handleClick} id='reserve-button'>Reserve</button>
+            <button
+              onClick={handleClick}
+              id='reserve-button'
+            >
+              Reserve
+            </button>
           </div>
 
           <Reviews />
