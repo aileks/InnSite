@@ -1,6 +1,6 @@
 import './SingleInn.css';
 import { useSelector, useDispatch } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { selectInnById, getInnById } from '../../store/inns';
 import { useEffect } from 'react';
 import NotFound from '../404';
