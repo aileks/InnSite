@@ -1,6 +1,7 @@
-#inn-container,
-#reviews-container {
-  margin: 8px;
+#info-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
 }
 
 .inn-image,
@@ -42,7 +43,6 @@
   border-radius: 6px;
   width: 400px;
   align-items: center;
-  margin: 20px 0;
 }
 
 #price {

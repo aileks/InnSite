@@ -32,64 +32,64 @@ export default function SingleInn() {
   return (
     <>
       {inn ? (
-        <>
+        <div className='content-container'>
           <div id='inn-container'>
-            <Link to='/'>Go Back</Link>
+            <h1 id='inn-title'>{inn.name}</h1>
 
-            <div id='inn-content'>
-              <span id='images'>
+            <div id='inn-location'>
+              <h3 id='inn-country'>{inn.country}</h3>
+              {inn.city}, {inn.state}
+            </div>
+
+            <span id='images'>
+              <img
+                id='preview-image'
+                src={inn.previewImage}
+                alt={inn.name}
+                title={inn.name}
+              />
+
+              {images?.map(image => (
                 <img
-                  id='preview-image'
-                  src={inn.previewImage}
-                  alt={inn.name}
-                  title={inn.name}
+                  key={image.id}
+                  className='inn-image'
+                  src={`${image.url}`}
+                  alt=''
                 />
+              ))}
+            </span>
 
-                {images?.map(image => (
-                  <img
-                    key={image.id}
-                    className='inn-image'
-                    src={`${image.url}`}
-                    alt=''
-                  />
-                ))}
-              </span>
+            <div id='info-container'>
+              <div id='text-container'>
+                <h3 id='hosted'>
+                  Hosted by {inn?.Owner?.firstName} {inn?.Owner?.lastName}
+                </h3>
 
-              <h1 id='inn-title'>{inn.name}</h1>
-
-              <div id='inn-location'>
-                <h3 id='inn-country'>{inn.country}</h3>
-                {inn.city}, {inn.state}
+                <p id='inn-description'>{inn.description}.</p>
               </div>
 
-              <h2 id='inn-description'>{inn.description}.</h2>
+              <div id='callout-container'>
+                <div id='price'>${inn.price} / night</div>
 
-              <div id='hosted'>
-                Hosted by {inn?.Owner?.firstName} {inn?.Owner?.lastName}
+                <div id='rating'>
+                  <AvgRating inn={inn} />
+                </div>
+
+                <button
+                  onClick={handleClick}
+                  id='reserve-button'
+                >
+                  Reserve
+                </button>
               </div>
             </div>
-          </div>
-
-          <div id='callout-container'>
-            <div id='price'>${inn.price} / night</div>
-
-            <div id='rating'>
-              <AvgRating inn={inn} />
-            </div>
-
-            <button
-              onClick={handleClick}
-              id='reserve-button'
-            >
-              Reserve
-            </button>
           </div>
 
           <Reviews
             ownerId={inn.ownerId}
             userId={userId}
           />
-        </>
+        </div>
       ) : (
         <NotFound />
       )}

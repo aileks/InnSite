@@ -5,15 +5,15 @@ export default function AvgRating({ inn }) {
 
   return (
     <div id='avg-rating'>
-      {avgStarRating && <div>Rating: {avgStarRating.toFixed(2)}</div>}
+      {avgStarRating && <>Rating: {avgStarRating.toFixed(2)}</>}
+
+      <SlMagicWand style={{ color: '#6a0dad', fontSize: '0.9em' }} />
 
       {numReviews ? (
-        <div>
-          {numReviews === 1 ? `• ${numReviews} Review` : `• ${numReviews} Reviews`}
-          <SlMagicWand style={{ color: '#6a0dad', fontSize: '0.9em' }} />
-        </div>
-      ): '*New*' }
-
+        <>{numReviews === 1 ? `• ${numReviews} Review` : `• ${numReviews} Reviews`} </>
+      ) : (
+        '*New*'
+      )}
     </div>
   );
 }
