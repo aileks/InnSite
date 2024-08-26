@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Moderustic:wght@300..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada:ital,wght@0,300..700;1,300..700&display=swap');
 
 /* CSS Reset */
 * {
@@ -61,7 +61,7 @@ h2 {
 }
 
 body {
-  font-family: 'Moderustic', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Radio Canada', 'Helvetica Neue', Arial, sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
@@ -74,4 +74,8 @@ body {
 .error {
   color: #d9534f;
   font-style: italic;
+}
+
+.content-container {
+  margin: 8px;
 }
