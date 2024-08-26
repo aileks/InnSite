@@ -5,7 +5,7 @@ import { selectInnById, getInnById } from '../../store/inns';
 import { useEffect } from 'react';
 import NotFound from '../404';
 import Reviews from '../Reviews';
-import { SlMagicWand } from 'react-icons/sl';
+import AvgRating from '../Reviews/AvgRating';
 
 export default function SingleInn() {
   const dispatch = useDispatch();
@@ -57,20 +57,6 @@ export default function SingleInn() {
 
               <h1 id='inn-title'>{inn.name}</h1>
 
-              <div id='avg-rating'>
-                {inn?.avgStarRating ? (
-                  <>
-                    Rating: {inn?.avgStarRating?.toFixed(2)}
-                    {inn.numReviews === 1
-                      ? ` • ${inn.numReviews} Review `
-                      : ` • ${inn.numReviews} Reviews `}
-                  </>
-                ) : (
-                  '*New* '
-                )}
-                <SlMagicWand style={{ color: '#6a0dad', fontSize: '0.9em' }} />
-              </div>
-
               <div id='inn-location'>
                 <h3 id='inn-country'>{inn.country}</h3>
                 {inn.city}, {inn.state}
@@ -78,11 +64,17 @@ export default function SingleInn() {
 
               <h2 id='inn-description'>{inn.description}.</h2>
 
-              <div id='inn-price'>${inn.price} per night</div>
-
               <div id='hosted'>
-                Hosted By: {inn?.Owner?.firstName} {inn?.Owner?.lastName}
+                Hosted by {inn?.Owner?.firstName} {inn?.Owner?.lastName}
               </div>
+            </div>
+          </div>
+
+          <div id='callout-container'>
+            <div id='price'>${inn.price} / night</div>
+
+            <div id='rating'>
+              <AvgRating inn={inn} />
             </div>
 
             <button
