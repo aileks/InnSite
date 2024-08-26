@@ -6,12 +6,29 @@ import { getAllReviews, selectReviewsArray } from '../../store/reviews';
 import { useParams } from 'react-router-dom';
 import StarRating from './StarRating';
 
-export default function Reviews() {
+export default function Reviews({ userId, ownerId }) {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const reviews = useSelector(selectReviewsArray).sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  const reviews = useSelector(selectReviewsArray).sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
+  );
 
-  console.log();
+  console.log(userId, ownerId);
+
+  const months = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
 
   useEffect(() => {
     dispatch(getAllReviews(id));
@@ -19,18 +36,29 @@ export default function Reviews() {
 
   return (
     <div id='reviews-container'>
-      {reviews?.map(review => (
-        <div key={review.id}>
-          <h3 className='review-heading'>
-            {review.User.firstName} {review.User.lastName}
-            <span className='timestamp'> {timestamp(review.createdAt)}</span>
-          </h3>
+      {reviews.length ? (
+        reviews?.map(review => (
+          <div key={review.id}>
+            <h3 className='review-heading'>
+              {review.User.firstName} {review.User.lastName}
+              {' • '}{' '}
+              <span className='date'>
+                posted {months[new Date(review.createdAt).getMonth()]}{' '}
+                {new Date(review.createdAt).getFullYear()}
+              </span>
+              <span className='time-ago'> ({timestamp(review.createdAt)})</span>
+            </h3>
 
-          <StarRating rating={review.stars} />
+            <StarRating rating={review.stars} />
 
-          <p className='review-body'>{review.review}</p>
-        </div>
-      ))}
+            <p className='review-body'>{review.review}</p>
+          </div>
+        ))
+      ) : userId !== ownerId ? (
+        <p>Be the first to post review!</p>
+      ) : (
+        ''
+      )}
     </div>
   );
 }
