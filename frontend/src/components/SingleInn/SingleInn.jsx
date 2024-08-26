@@ -15,6 +15,10 @@ export default function SingleInn() {
   // Get non-preview images
   const images = inn?.SpotImages?.filter(image => image.preview === false);
 
+  // Get user ID for comparison in Reviews component
+  const user = useSelector(state => state.session.user) || null;
+  const userId = user ? user.id : null;
+
   const handleClick = e => {
     e.preventDefault();
 
@@ -89,7 +93,10 @@ export default function SingleInn() {
             </button>
           </div>
 
-          <Reviews />
+          <Reviews
+            ownerId={inn.ownerId}
+            userId={userId}
+          />
         </>
       ) : (
         <NotFound />

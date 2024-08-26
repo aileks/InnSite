@@ -16,9 +16,9 @@ export default function timestamp(dateString) {
     const elapsed = Math.floor(diffInSeconds / secondsInUnit);
 
     if (elapsed > 1) {
-      return `posted ${elapsed} ${unit}s ago`;
+      return `${elapsed} ${unit}s ago`;
     } else if (elapsed === 1) {
-      return `posted 1 ${unit} ago`;
+      return `1 ${unit} ago`;
     }
   }
 

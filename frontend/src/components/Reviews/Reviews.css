@@ -11,3 +11,12 @@
   display: inline-flex;
   margin: 4px 0 4px 2px;
 }
+
+.date {
+  font-size: 1rem;
+}
+
+.time-ago {
+  color: #000000a5;
+  font-size: 0.9rem;
+}
