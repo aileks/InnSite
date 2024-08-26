@@ -11,43 +11,71 @@ export default function SingleInn() {
   const { id } = useParams();
   const inn = useSelector(selectInnById(id));
 
+  // Get non-preview images
+  const images = inn?.SpotImages?.filter(image => image.preview === false);
+
+  const handleClick = e => {
+    e.preventDefault();
+
+    alert('Feature coming soon!');
+  };
+
   useEffect(() => {
     dispatch(getInnById(id));
   }, [id, dispatch]);
 
   return (
     <>
-      {inn ?
+      {inn ? (
         <>
           <div id='inn-container'>
             <Link to='/'>Go Back</Link>
 
             <div id='inn-content'>
-              <img
-                id='inn-image'
-                src={`${inn.previewImage}`}
-                alt={`${inn.name}`}
-                title={`${inn.name}`}
-              />
+              <span id='images'>
+                <img
+                  id='preview-image'
+                  src={inn.previewImage}
+                  alt={inn.name}
+                  title={inn.name}
+                />
+
+                {images?.map(image => (
+                  <img
+                    key={image.id}
+                    className='inn-image'
+                    src={`${image.url}`}
+                    alt=''
+                  />
+                ))}
+              </span>
 
               <h1 id='inn-title'>{inn.name}</h1>
 
-              <h3 id='inn-country'>{inn.country}</h3>
+              <div id='avg-rating'>Rating: {inn?.avgStarRating?.toFixed(2)} / 5 </div>
 
-              <h2 id='inn-description'>{inn.description}</h2>
+              <div id='inn-location'>
+                <h3 id='inn-country'>{inn.country}</h3>
+                {inn.city}, {inn.state}
+              </div>
+
+              <h2 id='inn-description'>{inn.description}.</h2>
 
               <div id='inn-price'>${inn.price} per night</div>
 
-              <div id='inn-location'>
-                Located in {inn.city}, {inn.state}
-                <br />
+              <div id='hosted'>
+                Hosted By: {inn?.Owner?.firstName} {inn?.Owner?.lastName}
               </div>
             </div>
+
+            <button onClick={handleClick} id='reserve-button'>Reserve</button>
           </div>
 
           <Reviews />
         </>
-      : <NotFound />}
+      ) : (
+        <NotFound />
+      )}
     </>
   );
 }

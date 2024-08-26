@@ -3,6 +3,30 @@
   margin: 8px;
 }
 
-#inn-image {
+.inn-image,
+#preview-image {
+  margin: 1px;
+}
+
+#preview-image {
   width: 600px;
+}
+
+.inn-image {
+  width: 300px;
+}
+
+#reserve-button {
+  background-color: #228b22;
+  color: #f0e68c;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 2px solid #006400;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+#reserve-button:hover {
+  background-color: #006400;
 }

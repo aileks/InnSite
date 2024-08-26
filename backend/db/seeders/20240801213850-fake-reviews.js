@@ -191,6 +191,126 @@ module.exports = {
           'The Green Dragon Inn was not as enchanting as I hoped. The hobbit ale was underwhelming and the pies were rather bland. The inn lacked the magical touch that would have made it a truly memorable experience.',
         stars: 2,
       },
+      {
+        spotId: (
+          await Spot.findOne({
+            where: { name: 'The Silver Chair Inn' },
+          })
+        ).id,
+        userId: (
+          await User.findOne({
+            where: { username: 'FrodoBaggins' },
+          })
+        ).id,
+        review:
+          'The Silver Chair Inn was quite a pleasant surprise. The ambiance was cozy, and the staff was friendly. However, the magic seemed a bit too subtle, almost like it was fading. A decent stay, but it didn’t fully capture the magic I was hoping for.',
+        stars: 3,
+      },
+      {
+        spotId: (
+          await Spot.findOne({
+            where: { name: 'The Green Dragon Inn' },
+          })
+        ).id,
+        userId: (
+          await User.findOne({
+            where: { username: 'Hagrid' },
+          })
+        ).id,
+        review:
+          'The Green Dragon Inn was alright, I suppose. The ale was good, but the portions were too small for my liking. It’s a cozy spot for a quick pint, but not the best for a hearty meal after a long day of wrangling magical creatures.',
+        stars: 3,
+      },
+      {
+        spotId: (
+          await Spot.findOne({
+            where: { name: 'The Enchanted Haven' },
+          })
+        ).id,
+        userId: (
+          await User.findOne({
+            where: { username: 'ElaraStarwind' },
+          })
+        ).id,
+        review:
+          'The Enchanted Haven was everything I could have hoped for and more. The magical energy was palpable, and every detail seemed infused with a mystical touch. The rooms were serene and the service was impeccable. A truly enchanting experience!',
+        stars: 5,
+      },
+      {
+        spotId: (
+          await Spot.findOne({
+            where: { name: "The Dragon's Breath Inn" },
+          })
+        ).id,
+        userId: (
+          await User.findOne({
+            where: { username: 'Aragorn' },
+          })
+        ).id,
+        review:
+          'The Dragon’s Breath Inn was decent enough. The food was hearty and the service was efficient, but it lacked a certain warmth. The atmosphere was more intense than welcoming, which made it feel less like a place to unwind and more like a place to simply pass through.',
+        stars: 3,
+      },
+      {
+        spotId: (
+          await Spot.findOne({
+            where: { name: 'The White City Tavern' },
+          })
+        ).id,
+        userId: (
+          await User.findOne({
+            where: { username: 'SusanPevensie' },
+          })
+        ).id,
+        review:
+          'The White City Tavern was quite underwhelming. The views were stunning, but the food and service didn’t match the grandeur. It felt like style over substance, which was disappointing considering the reputation of the place.',
+        stars: 2,
+      },
+      {
+        spotId: (
+          await Spot.findOne({
+            where: { name: 'The Leaky Cauldron' },
+          })
+        ).id,
+        userId: (
+          await User.findOne({
+            where: { username: 'Merlin' },
+          })
+        ).id,
+        review:
+          'The Leaky Cauldron is a wonderful spot for those who enjoy a lively atmosphere and a touch of magical chaos. The food was delightful, and the constant buzz of conversation and spells added to the charm. Not the place for quiet contemplation, but perfect for a bit of fun.',
+        stars: 4,
+      },
+      {
+        spotId: (
+          await Spot.findOne({
+            where: { name: 'The Enchanted Haven' },
+          })
+        ).id,
+        userId: (
+          await User.findOne({
+            where: { username: 'FrodoBaggins' },
+          })
+        ).id,
+        review:
+          'The Enchanted Haven was nice, but it didn’t quite live up to its name. The decor was charming, and the staff was kind, but the magic felt a bit too subtle. A pleasant stay, but not quite the magical retreat I was expecting.',
+        stars: 3,
+      },
+      {
+        spotId: (
+          await Spot.findOne({
+            where: { name: 'The Leaky Cauldron' },
+          })
+        ).id,
+        userId: (
+          await User.findOne({
+            where: { username: 'ElaraStarwind' },
+          })
+        ).id,
+        review:
+          'The Leaky Cauldron was an interesting experience, but not entirely my style. The atmosphere was a bit too chaotic for my tastes, and the magic felt more haphazard than enchanting. It’s a fun place for some, but not the serene retreat I usually seek.',
+        stars: 3,
+      },
     ];
 
     for (const review of reviews) {
@@ -205,11 +325,11 @@ module.exports = {
       where: {
         name: {
           [Sequelize.Op.in]: [
-            'The Green Dragon Spot',
+            'The Green Dragon Inn',
             'The Leaky Cauldron',
-            "The Dragon's Breath Spot",
+            "The Dragon's Breath Inn",
             'The White City Tavern',
-            'The Silver Chair Spot',
+            'The Silver Chair Inn',
           ],
         },
       },
