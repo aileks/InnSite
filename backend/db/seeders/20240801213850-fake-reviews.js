@@ -44,7 +44,7 @@ module.exports = {
       {
         spotId: (
           await Spot.findOne({
-            where: { name: 'The Dragon’s Breath Inn' },
+            where: { name: "The Dragon's Breath Inn" },
           })
         ).id,
         userId: (
@@ -207,7 +207,7 @@ module.exports = {
           [Sequelize.Op.in]: [
             'The Green Dragon Spot',
             'The Leaky Cauldron',
-            'The Dragon’s Breath Spot',
+            "The Dragon's Breath Spot",
             'The White City Tavern',
             'The Silver Chair Spot',
           ],
@@ -220,13 +220,7 @@ module.exports = {
     const users = await User.findAll({
       where: {
         username: {
-          [Op.in]: [
-            'FrodoBaggins',
-            'Hagrid',
-            'ElaraStarwind',
-            'Aragorn',
-            'SusanPevensie',
-          ],
+          [Op.in]: ['FrodoBaggins', 'Hagrid', 'ElaraStarwind', 'Aragorn', 'SusanPevensie'],
         },
       },
     });

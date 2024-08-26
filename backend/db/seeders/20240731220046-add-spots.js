@@ -2,7 +2,6 @@
 
 const { Spot, User } = require('../models');
 
-
 let options = {};
 if (process.env.NODE_ENV === 'production') {
   options.schema = process.env.SCHEMA; // define your schema in options object
@@ -11,7 +10,6 @@ if (process.env.NODE_ENV === 'production') {
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-
     const spots = [
       {
         id: 1,
@@ -58,8 +56,8 @@ module.exports = {
         state: 'Eldoria',
         country: 'Mythos Realm',
         lat: 52.3676,
-        lng: 4.9041, 
-        name: 'The Dragon’s Breath Inn',
+        lng: 4.9041,
+        name: "The Dragon's Breath Inn",
         description: 'An inn known for its magical dragon-fire cuisine',
         price: 120,
         ownerId: (
