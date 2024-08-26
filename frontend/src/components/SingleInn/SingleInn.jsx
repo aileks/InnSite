@@ -85,6 +85,8 @@ export default function SingleInn() {
             </div>
           </div>
 
+          <hr />
+
           <Reviews
             ownerId={inn.ownerId}
             userId={userId}

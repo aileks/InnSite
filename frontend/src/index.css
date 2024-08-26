@@ -50,14 +50,24 @@ textarea {
 }
 /* End Reset */
 
+h1, h2, h3, h4 {
+  font-weight: 600;
+}
+
 h1 {
   font-size: 2rem;
-  font-weight: 700;
 }
 
 h2 {
   font-size: 1.5rem;
-  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+h4 {
+  font-size: 1.1rem;
 }
 
 body {
@@ -69,6 +79,12 @@ body {
   font-smooth: always;
   text-rendering: optimizeLegibility;
   background-color: #f7f7f7;
+}
+
+hr {
+  border-top: solid 2px black;
+  border-radius: 6px;
+  margin: 20px 0;
 }
 
 .error {
