@@ -119,7 +119,7 @@ module.exports = {
       {
         spotId: (
           await Spot.findOne({
-            where: { name: 'The Dragon’s Breath Inn' },
+            where: { name: "The Dragon's Breath Inn" },
           })
         ).id,
         userId: (
@@ -128,7 +128,7 @@ module.exports = {
           })
         ).id,
         review:
-          'The Dragon’s Breath Inn was a bit of a letdown. The dragon-fire cuisine was too spicy and lacked the hearty, comforting flavors I enjoy. The ambiance was more intense than enchanting, making it a less enjoyable experience than I expected.',
+          "The Dragon's Breath Inn was a bit of a letdown. The dragon-fire cuisine was too spicy and lacked the hearty, comforting flavors I enjoy. The ambiance was more intense than enchanting, making it a less enjoyable experience than I expected.",
         stars: 3,
       },
       {
@@ -164,7 +164,7 @@ module.exports = {
       {
         spotId: (
           await Spot.findOne({
-            where: { name: 'The Dragon’s Breath Inn' },
+            where: { name: "The Dragon's Breath Inn" },
           })
         ).id,
         userId: (

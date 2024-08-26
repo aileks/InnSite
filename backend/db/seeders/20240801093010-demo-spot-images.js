@@ -37,7 +37,7 @@ module.exports = {
         spotId: (
           await Spot.findOne({
             where: {
-              name: "The Dragon's Breath Inn",
+              id: 3,
             },
           })
         ).id,
