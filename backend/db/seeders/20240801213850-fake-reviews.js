@@ -12,11 +12,7 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     const reviews = [
       {
-        spotId: (
-          await Spot.findOne({
-            where: { name: 'The Green Dragon Inn' },
-          })
-        ).id,
+        spotId: 1,
         userId: (
           await User.findOne({
             where: { username: 'FrodoBaggins' },
@@ -27,11 +23,7 @@ module.exports = {
         stars: 5,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: { name: 'The Leaky Cauldron' },
-          })
-        ).id,
+        spotId: 2,
         userId: (
           await User.findOne({
             where: { username: 'Hagrid' },
@@ -42,11 +34,7 @@ module.exports = {
         stars: 4,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: { name: "The Dragon's Breath Inn" },
-          })
-        ).id,
+        spotId: 3,
         userId: (
           await User.findOne({
             where: { username: 'ElaraStarwind' },
@@ -57,11 +45,7 @@ module.exports = {
         stars: 5,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: { name: 'The White City Tavern' },
-          })
-        ).id,
+        spotId: 4,
         userId: (
           await User.findOne({
             where: { username: 'Aragorn' },
@@ -72,11 +56,7 @@ module.exports = {
         stars: 4,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: { name: 'The Silver Chair Inn' },
-          })
-        ).id,
+        spotId: 5,
         userId: (
           await User.findOne({
             where: { username: 'SusanPevensie' },
@@ -87,11 +67,7 @@ module.exports = {
         stars: 5,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: { name: 'The Enchanted Haven' },
-          })
-        ).id,
+        spotId: 6,
         userId: (
           await User.findOne({
             where: { username: 'Merlin' },
@@ -102,11 +78,7 @@ module.exports = {
         stars: 5,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: { name: 'The Leaky Cauldron' },
-          })
-        ).id,
+        spotId: 1,
         userId: (
           await User.findOne({
             where: { username: 'FrodoBaggins' },
@@ -117,11 +89,7 @@ module.exports = {
         stars: 2,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: { name: 'The Dragon’s Breath Inn' },
-          })
-        ).id,
+        spotId: 2,
         userId: (
           await User.findOne({
             where: { username: 'Hagrid' },
@@ -132,11 +100,7 @@ module.exports = {
         stars: 3,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: { name: 'The White City Tavern' },
-          })
-        ).id,
+        spotId: 3,
         userId: (
           await User.findOne({
             where: { username: 'ElaraStarwind' },
@@ -147,11 +111,7 @@ module.exports = {
         stars: 2,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: { name: 'The Silver Chair Inn' },
-          })
-        ).id,
+        spotId: 4,
         userId: (
           await User.findOne({
             where: { username: 'Aragorn' },
@@ -162,11 +122,7 @@ module.exports = {
         stars: 2,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: { name: 'The Dragon’s Breath Inn' },
-          })
-        ).id,
+        spotId: 5,
         userId: (
           await User.findOne({
             where: { username: 'SusanPevensie' },
@@ -177,11 +133,7 @@ module.exports = {
         stars: 1,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: { name: 'The Green Dragon Inn' },
-          })
-        ).id,
+        spotId: 6,
         userId: (
           await User.findOne({
             where: { username: 'Merlin' },

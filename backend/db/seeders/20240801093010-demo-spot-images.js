@@ -12,79 +12,37 @@ module.exports = {
   async up(queryInterface, Sequelize) {
     const images = [
       {
-        spotId: (
-          await Spot.findOne({
-            where: {
-              name: 'The Green Dragon Inn',
-            },
-          })
-        ).id,
+        spotId: 1,
         url: 'https://media1.popsugar-assets.com/files/thumbor/UJTw3i-g7xDNCGgEt2QHjjtLc2c/fit-in/1024x1024/filters:format_auto-!!-:strip_icc-!!-/2017/05/10/784/n/1922441/e9821f6b880f8053_GD_bar/i/Inside-Green-Dragon-Inn-you-can-enjoy-complimentary-drink.jpg',
         preview: true,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: {
-              name: 'The Leaky Cauldron',
-            },
-          })
-        ).id,
+        spotId: 2,
         url: 'https://orlandoinformer.com/wp-content/uploads/2023/08/20230803-DSC07297.jpg',
         preview: true,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: {
-              name: "The Dragon's Breath Inn",
-            },
-          })
-        ).id,
+        spotId: 3,
         url: '/images/Dragons_Breath_Inn/building.jpeg',
         preview: true,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: {
-              name: 'The White City Tavern',
-            },
-          })
-        ).id,
+        spotId: 4,
         url: '/images/White_City_Tavern/building.jpeg',
         preview: true,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: {
-              name: 'The Silver Chair Inn',
-            },
-          })
-        ).id,
+        spotId: 5,
         url: '/images/Silver_Chair_Inn/building.jpeg',
         preview: true,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: {
-              name: 'The Enchanted Haven',
-            },
-          })
-        ).id,
+        spotId: 6,
         url: '/images/Enchanted_Haven/building.jpeg',
         preview: true,
       },
       {
-        spotId: (
-          await Spot.findOne({
-            where: {
-              name: 'The Enchanted Haven',
-            },
-          })
-        ).id,
+        spotId: 6,
         url: '/images/Enchanted_Haven/inside.jpeg',
         preview: false,
       },
