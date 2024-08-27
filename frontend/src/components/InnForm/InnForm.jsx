@@ -16,6 +16,8 @@ export default function InnForm() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState();
+  const [previewImage, setPreviewImage] = useState('');
+  const [otherImages, setOtherImages] = useState([]);
 
   const user = useSelector(state => state.session.user);
 
@@ -189,6 +191,50 @@ export default function InnForm() {
             placeholder='Price per night (Gold)'
             onChange={e => setPrice(e.target.value)}
             required
+          />
+        </div>
+
+        <hr className='line' />
+
+        <div className='form-group'>
+          <label className='form-label'>
+            <h2>Show off your Inn</h2>
+          </label>
+          <p className='label-subheading'>A picture is worth a thousand words, they say... Now imagine five of them!</p>
+          <input
+            type='string'
+            className='form-input'
+            value={previewImage}
+            placeholder='Preview Image URL'
+            onChange={e => setPreviewImage(e.target.value)}
+          />
+          <input
+            type='number'
+            className='form-input'
+            value={otherImages[0]}
+            placeholder='Image URL'
+            onChange={e => setOtherImages([...otherImages, e.target.value])}
+          />
+          <input
+            type='number'
+            className='form-input'
+            value={otherImages[1]}
+            placeholder='Image URL'
+            onChange={e => setOtherImages([...otherImages, e.target.value])}
+          />
+          <input
+            type='number'
+            className='form-input'
+            value={otherImages[2]}
+            placeholder='Image URL'
+            onChange={e => setOtherImages([...otherImages, e.target.value])}
+          />
+          <input
+            type='number'
+            className='form-input'
+            value={otherImages[3]}
+            placeholder='Image URL'
+            onChange={e => setOtherImages([...otherImages, e.target.value])}
           />
         </div>
 
