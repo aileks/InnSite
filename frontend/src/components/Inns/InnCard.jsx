@@ -39,13 +39,14 @@ export default function InnCard({ inn }) {
             {isInProfile && (
               <div className='modify-buttons'>
                 <Link
-                  to={`/inn/${inn.id}/edit`}
+                  to={`/inns/${inn.id}/edit`}
                   className='edit'
                 >
                   Update
                 </Link>
                 {' • '}
                 <Link
+                  to={`/inns/${inn.id}/delete`}
                   className='delete'
                 >
                   Delete

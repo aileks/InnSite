@@ -28,6 +28,14 @@ const router = createBrowserRouter([
             path: 'new',
             element: <InnForm />,
           },
+          {
+            path: ':id/edit',
+            element: <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Coming soon...</h1>,
+          },
+          {
+            path: ':id/delete',
+            element: <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Coming soon...</h1>,
+          }
         ],
       },
       {
