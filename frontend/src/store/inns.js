@@ -6,25 +6,6 @@ const LOAD_ONE = 'inns/loadOne';
 const CREATE = 'inns/create';
 const ADD_IMAGE = 'images/addImage';
 
-export const addInnImage = (id, image) => async dispatch => {
-  const res = await csrfFetch(`/api/spots/${id}/images`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      url: image.url ? image.url : image,
-      preview: image.preview ? true : false,
-    }),
-  });
-
-  if (res.ok) {
-    const data = await res.json();
-    dispatch(add(data));
-  }
-
-  return res;
-};
 export const loadAll = inns => {
   return {
     type: LOAD_ALL,

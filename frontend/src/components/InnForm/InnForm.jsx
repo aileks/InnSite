@@ -59,11 +59,11 @@ export default function InnForm() {
     try {
       const createdInn = await dispatch(createInn(newInn));
 
-      let newImage = await dispatch(addNewImage(createdInn.id, previewImage));
+      await dispatch(addNewImage(createdInn.id, previewImage));
 
       if (images.length > 0) {
         for (const image of images) {
-          newImage = await dispatch(addNewImage(createdInn.id, image));
+          await dispatch(addNewImage(createdInn.id, image));
         }
       }
 
