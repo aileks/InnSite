@@ -29,7 +29,7 @@ export default function Navigation({ isLoaded }) {
               to='inns/new'
               id='create-inn-button'
             >
-              Create Inn
+              Create a New Inn
             </NavLink>
           )}
 
