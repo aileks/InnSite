@@ -34,15 +34,20 @@ export default function SingleInn() {
       {inn ? (
         <div className='content-container'>
           <div id='inn-container'>
-            <h1 id='inn-title'>{inn.name}</h1>
+            <div id='inn-header'>
+              <h1 id='inn-title'>{inn.name}</h1>
 
-            <div id='inn-location'>
-              <h3 id='inn-country'>{inn.country}</h3>
-              {inn.city}, {inn.state}
+              <div id='inn-location'>
+                <h3 id='inn-country'>{inn.country}</h3>
+                {inn.city}, {inn.state}
+              </div>
             </div>
 
             <span id='images'>
-              <div className='preview' id='preview-container'>
+              <div
+                className='preview'
+                id='preview-container'
+              >
                 <img
                   className='preview'
                   id='preview-image'
@@ -93,8 +98,8 @@ export default function SingleInn() {
           <hr />
 
           <Reviews
-            ownerId={inn.ownerId}
             userId={userId}
+            inn={inn}
           />
         </div>
       ) : (

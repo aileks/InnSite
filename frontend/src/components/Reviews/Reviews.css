@@ -1,3 +1,12 @@
+.review-title {
+  margin-top: 10px;
+}
+
+#wands {
+  display: inline-flex;
+  margin: 4px 0 4px 2px;
+}
+
 .filled,
 .empty {
   color: #6a0dad;
@@ -6,11 +15,6 @@
 
 .empty {
   opacity: 50%;
-}
-
-#wands {
-  display: inline-flex;
-  margin: 4px 0 4px 2px;
 }
 
 .date {

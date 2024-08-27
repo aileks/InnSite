@@ -50,7 +50,10 @@ textarea {
 }
 /* End Reset */
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
   font-weight: 600;
 }
 
@@ -93,5 +96,6 @@ hr {
 }
 
 .content-container {
+  padding: 1.25rem;
   margin: 8px;
 }

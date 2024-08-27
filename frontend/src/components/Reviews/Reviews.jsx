@@ -5,15 +5,15 @@ import { useEffect } from 'react';
 import { getAllReviews, selectReviewsArray } from '../../store/reviews';
 import { useParams } from 'react-router-dom';
 import StarRating from './StarRating';
+import { SlMagicWand } from 'react-icons/sl';
 
-export default function Reviews({ userId, ownerId }) {
+export default function Reviews({ userId, inn }) {
   const dispatch = useDispatch();
   const { id } = useParams();
   const reviews = useSelector(selectReviewsArray).sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
   );
-
-  console.log(userId, ownerId);
+  const { ownerId } = inn || null;
 
   const months = [
     'Jan',
@@ -36,21 +36,19 @@ export default function Reviews({ userId, ownerId }) {
 
   return (
     <div id='reviews-container'>
-      <h2 id='reviews-heading'>Reviews</h2>
+      <h2 id='reviews-header'>
+        Reviews {' • '} {inn?.avgStarRating.toFixed(2)} <SlMagicWand style={{ color: '#6a0dad' }} />
+      </h2>
       {reviews.length ? (
         reviews?.map(review => (
           <div key={review.id}>
-            <h3 className='review-heading'>
-
+            <h3 className='review-title'>
               {review.User.firstName}
-
               {' • '}{' '}
-
               <span className='date'>
                 posted {months[new Date(review.createdAt).getMonth()]}{' '}
                 {new Date(review.createdAt).getFullYear()}
               </span>
-
               <span className='time-ago'> ({timestamp(review.createdAt)})</span>
             </h3>
 
