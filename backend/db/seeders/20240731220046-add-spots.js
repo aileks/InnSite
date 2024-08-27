@@ -21,13 +21,6 @@ module.exports = {
         name: 'The Green Dragon Inn',
         description: 'A cozy pub serving hobbit ale and pies',
         price: 15,
-        ownerId: (
-          await User.findOne({
-            where: {
-              username: 'FrodoBaggins',
-            },
-          })
-        ).id,
       },
       {
         address: '44 Diagon Alley',
@@ -39,13 +32,6 @@ module.exports = {
         name: 'The Leaky Cauldron',
         description: 'A hidden pub for witches and wizards',
         price: 50,
-        ownerId: (
-          await User.findOne({
-            where: {
-              username: 'Hagrid',
-            },
-          })
-        ).id,
       },
       {
         address: '1233 Edgewater Drive',
@@ -57,13 +43,6 @@ module.exports = {
         name: "The Dragon's Breath Inn",
         description: 'An inn known for its magical dragon-fire cuisine',
         price: 120,
-        ownerId: (
-          await User.findOne({
-            where: {
-              username: 'ElaraStarwind',
-            },
-          })
-        ).id,
       },
       {
         address: '9 Coursen’s Crossing',
@@ -75,13 +54,6 @@ module.exports = {
         name: 'The White City Tavern',
         description: 'A grand tavern with views of the White City',
         price: 85,
-        ownerId: (
-          await User.findOne({
-            where: {
-              username: 'Aragorn',
-            },
-          })
-        ).id,
       },
       {
         address: '11 Evergreen Way',
@@ -93,13 +65,6 @@ module.exports = {
         name: 'The Silver Chair Inn',
         description: 'An inn with a magical silver chair and tales of old',
         price: 95,
-        ownerId: (
-          await User.findOne({
-            where: {
-              username: 'SusanPevensie',
-            },
-          })
-        ).id,
       },
       {
         address: '42 Cloud Road',
@@ -111,18 +76,18 @@ module.exports = {
         name: 'The Enchanted Haven',
         description: 'An inn hidden in the clouds, with enchanted amenities',
         price: 150,
-        ownerId: (
-          await User.findOne({
-            where: {
-              username: 'Merlin',
-            },
-          })
-        ).id,
       },
     ];
 
     for (const spot of spots) {
-      await Spot.create(spot);
+      const { id } = await User.findOne({
+        attributes: ['id'],
+        where: {
+          email: 'admin@innsite.com',
+        },
+      });
+
+      await Spot.create({...spot, ownerId: id});
     }
   },
 

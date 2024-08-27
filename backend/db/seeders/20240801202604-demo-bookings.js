@@ -18,9 +18,7 @@ module.exports = {
         {
           model: User,
           where: {
-            username: {
-              [Op.in]: ['Hagrid', 'ElaraStarwind', 'Aragorn'],
-            },
+            email: 'admin@innsite.com',
           },
         },
       ],

@@ -4,17 +4,14 @@
   margin: 10px 0;
 }
 
-.inn-image,
-#preview-image {
-  margin: 1px;
-}
-
-#preview-image {
-  width: 600px;
+.preview {
+  width: 604px;
+  height: 404px;
 }
 
 .inn-image {
-  width: 300px;
+  width: 400px;
+  height: 200px;
 }
 
 #reserve-button {
@@ -87,4 +84,29 @@
 #avg-rating div {
   display: flex;
   align-items: center;
+}
+
+#images {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 4px;
+}
+
+#preview-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#image-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 4px;
+}
+
+#preview-image, .inn-image {
+  border: solid 1px #000000a5;
+  border-radius: 4px;
+  overflow: hidden;
 }

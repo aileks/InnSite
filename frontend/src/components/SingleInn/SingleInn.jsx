@@ -42,21 +42,26 @@ export default function SingleInn() {
             </div>
 
             <span id='images'>
-              <img
-                id='preview-image'
-                src={inn.previewImage}
-                alt={inn.name}
-                title={inn.name}
-              />
-
-              {images?.map(image => (
+              <div className='preview' id='preview-container'>
                 <img
-                  key={image.id}
-                  className='inn-image'
-                  src={`${image.url}`}
-                  alt=''
+                  class='preview'
+                  id='preview-image'
+                  src={inn.previewImage}
+                  alt={inn.name}
+                  title={inn.name}
                 />
-              ))}
+              </div>
+
+              <div id='image-grid'>
+                {images?.map(image => (
+                  <img
+                    key={image.id}
+                    className='inn-image'
+                    src={`${image.url}`}
+                    alt=''
+                  />
+                ))}
+              </div>
             </span>
 
             <div id='info-container'>
