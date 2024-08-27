@@ -252,14 +252,6 @@ router.post('/:spotId/reviews', requireAuth, async (req, res, next) => {
 
     res.status(201).json(newReview);
   } catch (err) {
-    // if (err instanceof Sequelize.ValidationError) {
-    //   res.status(400).json({
-    //     message: 'Bad Request',
-    //     errors: {
-    //       [err.errors[0].path]: err.errors[0].message,
-    //     },
-    //   });
-    // }
     next(err);
   }
 });

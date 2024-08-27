@@ -8,11 +8,14 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#form-title {
+#form-header {
   text-align: center;
+  margin-bottom: 6px;
+}
+
+#form-title {
   font-weight: 700;
-  margin-bottom: 20px;
-  font-size: 24px;
+  font-size: 1.8rem;
 }
 
 .inn-form {
@@ -113,4 +116,8 @@
 
 #city {
   width: 450px;
+}
+
+.image-input {
+  margin-top: 8px;
 }

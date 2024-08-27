@@ -2,28 +2,44 @@ import './InnForm.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createInn } from '../../store/inns';
+import { createInn, addNewImage } from '../../store/inns';
 
 export default function InnForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector(state => state.session.user);
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [country, setCountry] = useState('');
-  const [lat, setLat] = useState();
-  const [lng, setLng] = useState();
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
-  const [price, setPrice] = useState();
-  const [previewImage, setPreviewImage] = useState('');
-  const [otherImages, setOtherImages] = useState([]);
+  const [price, setPrice] = useState(0);
+  const [images, setImages] = useState([]);
+  const [previewImage, setPreviewImage] = useState({ preview: true, url: '' });
 
-  const user = useSelector(state => state.session.user);
+  const imageInputs = Array.from({ length: 4 }, (_, index) => (
+    <input
+      key={index}
+      type='text'
+      className='form-input image-input'
+      value={images[index] || ''}
+      placeholder={`Image URL`}
+      onChange={e => handleImageChange(index, e.target.value)}
+    />
+  ));
 
   if (!user) {
     navigate('/');
   }
+
+  const handleImageChange = (index, value) => {
+    const newImages = [...images];
+    newImages[index] = value;
+    setImages(newImages);
+  };
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -42,17 +58,27 @@ export default function InnForm() {
 
     try {
       const createdInn = await dispatch(createInn(newInn));
-      console.log(createdInn);
+
+      let newImage = await dispatch(addNewImage(createdInn.id, previewImage));
+
+      if (images.length > 0) {
+        for (const image of images) {
+          newImage = await dispatch(addNewImage(createdInn.id, image));
+        }
+      }
+
       navigate(`/inns/${createdInn.id}`);
     } catch (err) {
-      console.error('Error creating new Inn:', err);
+      console.error('Error creating new inn:', err);
     }
   };
 
   return (
     <div id='form-container'>
-      <h1 id='form-title'>Create a new Inn</h1>
-
+      <div id='form-header'>
+        <h1 id='form-title'>Create a new Inn</h1>
+        <p>(We also accept Taverns...)</p>
+      </div>
       <form
         className='inn-form'
         onSubmit={handleSubmit}
@@ -75,7 +101,12 @@ export default function InnForm() {
             required
           />
 
-          <label id='street-address' className='form-label'>Street Address:</label>
+          <label
+            id='street-address'
+            className='form-label'
+          >
+            Street Address:
+          </label>
           <input
             type='text'
             className='form-input'
@@ -119,10 +150,9 @@ export default function InnForm() {
                 type='number'
                 step='any'
                 className='form-input'
-                value={lat}
+                value={lat || ''}
                 placeholder='Latitude'
                 onChange={e => setLat(e.target.value)}
-                required
               />
             </div>
 
@@ -132,10 +162,9 @@ export default function InnForm() {
                 type='number'
                 step='any'
                 className='form-input'
-                value={lng}
+                value={lng || ''}
                 placeholder='Longitude'
                 onChange={e => setLng(e.target.value)}
-                required
               />
             </div>
           </div>
@@ -183,11 +212,11 @@ export default function InnForm() {
           <label className='form-label'>
             <h2>Set a base price for your Inn</h2>
           </label>
-          <p className='label-subheading'>Make sure to account for any dragons in the area!</p>
+          <p className='label-subheading'>Will that be cash or credit?</p>
           <input
             type='number'
             className='form-input'
-            value={price}
+            value={price || ''}
             placeholder='Price per night (Gold)'
             onChange={e => setPrice(e.target.value)}
             required
@@ -200,42 +229,20 @@ export default function InnForm() {
           <label className='form-label'>
             <h2>Show off your Inn</h2>
           </label>
-          <p className='label-subheading'>A picture is worth a thousand words, they say... Now imagine five of them!</p>
+
+          <p className='label-subheading'>
+            A picture is worth a thousand words, they say... Now imagine five of them!
+          </p>
+
           <input
-            type='string'
-            className='form-input'
-            value={previewImage}
+            type='text'
+            className='form-input image-input'
+            value={previewImage.url}
             placeholder='Preview Image URL'
-            onChange={e => setPreviewImage(e.target.value)}
+            onChange={e => setPreviewImage({ ...previewImage, url: e.target.value })}
           />
-          <input
-            type='number'
-            className='form-input'
-            value={otherImages[0]}
-            placeholder='Image URL'
-            onChange={e => setOtherImages([...otherImages, e.target.value])}
-          />
-          <input
-            type='number'
-            className='form-input'
-            value={otherImages[1]}
-            placeholder='Image URL'
-            onChange={e => setOtherImages([...otherImages, e.target.value])}
-          />
-          <input
-            type='number'
-            className='form-input'
-            value={otherImages[2]}
-            placeholder='Image URL'
-            onChange={e => setOtherImages([...otherImages, e.target.value])}
-          />
-          <input
-            type='number'
-            className='form-input'
-            value={otherImages[3]}
-            placeholder='Image URL'
-            onChange={e => setOtherImages([...otherImages, e.target.value])}
-          />
+
+          {imageInputs}
         </div>
 
         <hr className='line' />

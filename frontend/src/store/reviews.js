@@ -28,9 +28,7 @@ export const selectReviewsArray = createSelector(selectReviews, reviews => {
   return Object.values(reviews);
 });
 
-const initialState = {};
-
-export default function reviewsReducer(state = initialState, action) {
+export default function reviewsReducer(state = {}, action) {
   switch (action.type) {
     case LOAD_ALL: {
       const newState = {};
