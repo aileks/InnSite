@@ -42,6 +42,7 @@ a:hover {
   display: flex;
   align-items: center;
   margin-bottom: 4px;
+  gap: 4px;
 }
 
 .inn-card-price {
