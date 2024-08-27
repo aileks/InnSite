@@ -35,6 +35,7 @@ export default function ProfileButton({ user }) {
   const destroy = e => {
     e.preventDefault();
     dispatch(logout());
+    closeMenu();
   };
 
   const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');

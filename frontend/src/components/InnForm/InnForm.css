@@ -1,7 +1,7 @@
 #form-container {
   max-width: 600px;
   padding: 20px;
-  margin: 3rem auto;
+  margin: 1rem auto;
   background: #f7f7f7;
   border: solid 1px #bbbbbb;
   border-radius: 6px;
@@ -21,13 +21,21 @@
 }
 
 .form-group {
-  margin-bottom: 1rem;
+  margin-bottom: 4px;
 }
 
 .form-label {
   display: block;
-  margin-bottom: 4px;
+  margin: 8px 0 6px;
   font-weight: 600;
+}
+
+.label-subheading {
+  margin: 1rem 0;
+}
+
+.form-input {
+  height: 40px;
 }
 
 .form-input,
@@ -42,7 +50,7 @@
 
 .form-textarea {
   height: 100px;
-  resize: vertical;
+  resize: none;
 }
 
 .form-button {
@@ -84,4 +92,22 @@
   background-color: #00796b;
   color: #ffffff;
   transform: translateY(-1px);
+}
+
+.stacked-inputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  gap: 10px;
+}
+
+.label-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+#city {
+  width: 350px;
 }
