@@ -6,7 +6,7 @@ import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignUpFormModal';
 
-function ProfileButton({ user }) {
+export default function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
@@ -40,13 +40,14 @@ function ProfileButton({ user }) {
   const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
 
   return (
-    <>
+    <div id='profile-button'>
       <button
         style={{ color: 'black', fontSize: '2.2rem' }}
         onClick={toggleMenu}
       >
         <LuUserCircle />
       </button>
+
       <ul
         className={ulClassName}
         ref={ulRef}
@@ -71,6 +72,7 @@ function ProfileButton({ user }) {
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
+
             <OpenModalMenuItem
               itemText='Sign Up'
               onItemClick={closeMenu}
@@ -79,8 +81,6 @@ function ProfileButton({ user }) {
           </>
         }
       </ul>
-    </>
+    </div>
   );
 }
-
-export default ProfileButton;

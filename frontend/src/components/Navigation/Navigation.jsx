@@ -7,26 +7,26 @@ export default function Navigation({ isLoaded }) {
   const user = useSelector(state => state.session.user);
 
   return (
-    <ul id='nav'>
-      <span id='left-items'>
-        <li className='nav-link'>
+    <nav id='nav'>
+      <div id='logo'>
+        <div className='nav-link'>
           <NavLink to='/'>
             <img
-              id='logo'
+              id='logo-image'
               src='/logo.jpeg'
               alt='InnSite logo'
             />
           </NavLink>
-        </li>
+        </div>
+      </div>
 
-        <li className='nav-link'></li>
-      </span>
+      <h1 id="title">InnSite</h1>
 
       {isLoaded && (
-        <li className='nav-link'>
+        <div className='nav-link'>
           <ProfileButton user={user} />
-        </li>
+        </div>
       )}
-    </ul>
+    </nav>
   );
 }
