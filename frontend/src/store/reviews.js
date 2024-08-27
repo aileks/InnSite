@@ -16,6 +16,8 @@ export const getAllReviews = id => async dispatch => {
   if (res.ok) {
     const data = await res.json();
     dispatch(loadAll(data.Reviews));
+
+    return data;
   }
 
   return res;
