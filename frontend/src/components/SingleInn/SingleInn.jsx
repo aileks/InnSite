@@ -79,7 +79,7 @@ export default function SingleInn() {
               </div>
 
               <div id='callout-container'>
-                <div id='price'>${inn.price} / night</div>
+                <div id='price'>{inn.price} Gold / Night</div>
 
                 <div id='rating'>
                   <AvgRating inn={inn} />
