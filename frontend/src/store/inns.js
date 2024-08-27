@@ -20,10 +20,11 @@ export const loadOne = inn => {
 
 export const getAllInns = () => async dispatch => {
   const res = await csrfFetch('/api/spots');
-
   if (res.ok) {
     const data = await res.json();
     dispatch(loadAll(data.Spots));
+
+    return data;
   }
 
   return res;
@@ -35,6 +36,8 @@ export const getInnById = id => async dispatch => {
   if (res.ok) {
     const data = await res.json();
     dispatch(loadOne(data));
+    
+    return data;
   }
 
   return res;

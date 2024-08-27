@@ -37,7 +37,7 @@ export default function Reviews({ userId, inn }) {
   return (
     <div id='reviews-container'>
       <h2 id='reviews-header'>
-        Reviews {' • '} {inn?.avgStarRating.toFixed(2)} <SlMagicWand style={{ color: '#6a0dad' }} />
+        Reviews {' • '} {inn?.avgStarRating?.toFixed(2)} <SlMagicWand style={{ color: '#6a0dad' }} />
       </h2>
       {reviews.length ? (
         reviews?.map(review => (

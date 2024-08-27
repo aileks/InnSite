@@ -97,7 +97,7 @@
 .inn-image {
   aspect-ratio: 16 / 9;
   border: solid 1px #000000a5;
-  border-radius: 4px;
+  border-radius: 6px;
   overflow: hidden;
 }
 
