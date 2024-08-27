@@ -75,7 +75,7 @@ export default function InnForm() {
             required
           />
 
-          <label className='form-label'>Street Address:</label>
+          <label id='street-address' className='form-label'>Street Address:</label>
           <input
             type='text'
             className='form-input'
