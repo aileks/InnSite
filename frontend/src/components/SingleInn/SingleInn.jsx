@@ -44,7 +44,7 @@ export default function SingleInn() {
             <span id='images'>
               <div className='preview' id='preview-container'>
                 <img
-                  class='preview'
+                  className='preview'
                   id='preview-image'
                   src={inn.previewImage}
                   alt={inn.name}
