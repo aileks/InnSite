@@ -7,6 +7,7 @@ import Index from './components/Index';
 import NotFound from './components/404';
 import SingleInn from './components/SingleInn';
 import InnForm from './components/InnForm';
+import Profile from './components/Profile';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: 'inns/new',
         element: <InnForm />
+      },
+      {
+        path: 'profile',
+        element: <Profile />
       },
       {
         path: '*',
