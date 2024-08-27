@@ -102,16 +102,15 @@
   height: 100%;
 }
 
+#text-container {
+  grid-column: 1 / 2;
+}
+
 #preview-image,
 .inn-image {
   aspect-ratio: 16 / 9;
-  border: solid 1px #000000a5;
+  border: solid 1px #aaaaaa;
   border-radius: 6px;
-  overflow: hidden;
-}
-
-#text-container {
-  grid-column: 1 / 2;
 }
 
 .preview,
@@ -119,4 +118,5 @@
   height: 100%;
   width: 100%;
   object-fit: cover;
+  object-position: center;
 }

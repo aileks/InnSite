@@ -9,7 +9,7 @@ export default function Navigation({ isLoaded }) {
   return (
     <nav id='nav'>
       <div id='logo'>
-        <div className='nav-link'>
+        <div className='nav-item'>
           <NavLink to='/'>
             <img
               id='logo-image'
@@ -33,7 +33,7 @@ export default function Navigation({ isLoaded }) {
             </NavLink>
           )}
 
-          <div className='nav-link'>
+          <div className='nav-item'>
             <ProfileButton user={user} />
           </div>
         </div>

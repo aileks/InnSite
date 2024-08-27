@@ -98,7 +98,7 @@ module.exports = {
             },
           })
         ).id,
-        url: 'https://static.wikia.nocookie.net/harrypotter/images/8/8f/LeakyCauldron_WB_F1_SomeoneOutsideLeakyCauldron_Illust_080615_Land.jpg/revision/latest/scale-to-width-down/1000?cb=20161213212113',
+        url: '/images/Leaky_Cauldron/bed.jpg',
         preview: false,
       },
       {
@@ -109,7 +109,7 @@ module.exports = {
             },
           })
         ).id,
-        url: 'https://static.wikia.nocookie.net/harrypotter/images/8/8f/LeakyCauldron_WB_F1_SomeoneOutsideLeakyCauldron_Illust_080615_Land.jpg/revision/latest/scale-to-width-down/1000?cb=20161213212113',
+        url: '/images/Leaky_Cauldron/meals.jpg',
         preview: false,
       },
       {
