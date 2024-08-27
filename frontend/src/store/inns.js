@@ -46,6 +46,19 @@ export const getAllInns = () => async dispatch => {
   return res;
 };
 
+export const getUserInns = () => async dispatch => {
+  const res = await csrfFetch('/api/spots/current');
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(loadAll(data.Spots));
+
+    return data;
+  }
+
+  return res;
+}
+
 export const getInnById = id => async dispatch => {
   const res = await csrfFetch(`/api/spots/${id}`);
 
@@ -133,8 +146,8 @@ export default function innsReducer(state = {}, action) {
         ...state,
         [action.image.spotId]: {
           ...action.image.spotId,
-          previewImage: action.image.url
-        }
+          previewImage: action.image.url,
+        },
       };
     default:
       return state;

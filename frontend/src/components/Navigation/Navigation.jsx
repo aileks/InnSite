@@ -25,12 +25,9 @@ export default function Navigation({ isLoaded }) {
       {isLoaded && (
         <div id='right-items'>
           {user && (
-            <NavLink
-              to='inns/new'
-              id='create-inn-button'
-            >
-              Create a New Inn
-            </NavLink>
+            <button className='create-inn-button'>
+              <NavLink to='/inns/new'>Create a New Inn</NavLink>
+            </button>
           )}
 
           <div className='nav-item'>

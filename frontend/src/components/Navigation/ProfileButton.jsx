@@ -5,6 +5,7 @@ import { logout } from '../../store/session';
 import OpenModalMenuItem from './OpenModalMenuItem';
 import LoginFormModal from '../LoginFormModal';
 import SignUpFormModal from '../SignUpFormModal';
+import { NavLink } from 'react-router-dom';
 
 export default function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -62,6 +63,8 @@ export default function ProfileButton({ user }) {
             </li>
 
             <li>{user.email}</li>
+
+            <li><NavLink onClick={closeMenu} to='/profile'>Manage Inns</NavLink></li>
 
             <li>
               <button onClick={destroy}>Log Out</button>
