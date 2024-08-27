@@ -8,31 +8,17 @@
   margin-bottom: 1rem;
 }
 
-#reserve-button {
-  font-size: 1.1rem;
-  color: #f0e68c;
-  background-color: #228b22;
-  border: solid 1px #006400;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-}
-
-#reserve-button:hover {
-  background-color: #006400;
-}
-
 #callout-container {
   grid-column: 2 / 3;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto auto;
-  gap: 6px;
   padding: 2rem 1rem;
   border: solid 1px #aaaaaa;
   border-radius: 6px;
   width: 500px;
   align-items: center;
+  grid-row-gap: 20px;
 }
 
 #price {
@@ -52,19 +38,42 @@
 #reserve-button {
   grid-column: 1 / -1;
   grid-row: 2 / 3;
-  background-color: #228b22;
+  background-color: #004d40;
   color: #f0e68c;
-  font-size: 16px;
-  padding: 10px 20px;
-  border: solid 1px #006400;
+  font-size: 0.9rem;
+  padding: 10px 0;
+  border: solid 2px #00796b;
   border-radius: 6px;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
-  width: 100%;
+  margin-top: 8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    background-color 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
+}
+
+#reserve-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0) 60%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease-in-out;
+  z-index: 0;
+}
+
+#reserve-button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
 }
 
 #reserve-button:hover {
-  background-color: #006400;
+  background-color: #00796b;
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
 #avg-rating {
@@ -93,22 +102,21 @@
   height: 100%;
 }
 
-#preview-image,
-.inn-image {
-  aspect-ratio: 16 / 9;
-  border: solid 1px #000000a5;
-  border-radius: 6px;
-  overflow: hidden;
-}
-
 #text-container {
   grid-column: 1 / 2;
 }
 
-.preview, .inn-image {
+#preview-image,
+.inn-image {
+  aspect-ratio: 16 / 9;
+  border: solid 1px #aaaaaa;
+  border-radius: 6px;
+}
+
+.preview,
+.inn-image {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  object-position: center;
 }
-
-

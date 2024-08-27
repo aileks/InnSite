@@ -1,5 +1,4 @@
 import './Inns.css';
-import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
@@ -9,22 +8,24 @@ import { SlMagicWand } from 'react-icons/sl';
 export default function Inns() {
   const dispatch = useDispatch();
   const inns = useSelector(selectInnsArray);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    dispatch(getAllInns()).then(() => setIsLoading(false));
+    dispatch(getAllInns());
   }, [dispatch]);
-
-  if (isLoading) return <div>Loading...</div>;
 
   return (
     <>
+      <h3 id='landing-header'>Every adventurer needs their rest.</h3>
+
       <div id='inns-grid'>
         {inns?.map(inn => (
           <Link
             key={inn.id}
             to={`inns/${inn.id}`}
+            id='tooltip-container'
           >
+            <div id='tooltip-text'>{inn.name}</div>
+
             <div className='inn-card'>
               <div className='inn-image-container'>
                 <img

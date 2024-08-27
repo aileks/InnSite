@@ -16,7 +16,6 @@ export default function OpenModalMenuItem({
 
   return (
     <li
-      className='nav-link'
       onClick={onClick}
     >
       {itemText}
