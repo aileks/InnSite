@@ -14,41 +14,43 @@ export default function Inns() {
   }, [dispatch]);
 
   return (
-    <div id='inns-grid'>
-      {inns?.map(inn => (
-        <Link
-          key={inn.id}
-          to={`inns/${inn.id}`}
-          id='tooltip-container'
-        >
-          <div id='tooltip-text'>
-            {inn.name}
-          </div>
+    <>
+      <h3 id='landing-header'>Every adventurer needs their rest.</h3>
 
-          <div className='inn-card'>
-            <div className='inn-image-container'>
-              <img
-                className='inn-card-image'
-                src={inn.previewImage}
-                alt={inn.name}
-              />
-            </div>
+      <div id='inns-grid'>
+        {inns?.map(inn => (
+          <Link
+            key={inn.id}
+            to={`inns/${inn.id}`}
+            id='tooltip-container'
+          >
+            <div id='tooltip-text'>{inn.name}</div>
 
-            <div className='inn-card-info'>
-              <div className='inn-card-location'>
-                {inn.city}, {inn.state}
+            <div className='inn-card'>
+              <div className='inn-image-container'>
+                <img
+                  className='inn-card-image'
+                  src={inn.previewImage}
+                  alt={inn.name}
+                />
               </div>
 
-              <div className='inn-card-rating'>
-                {inn.avgRating ? inn.avgRating.toFixed(2) : ' *New* '}
-                <SlMagicWand style={{ color: '#6a0dad', fontSize: '0.9em' }} />
-              </div>
+              <div className='inn-card-info'>
+                <div className='inn-card-location'>
+                  {inn.city}, {inn.state}
+                </div>
 
-              <div className='inn-card-price'>{inn.price} Gold / Night</div>
+                <div className='inn-card-rating'>
+                  {inn.avgRating ? inn.avgRating.toFixed(2) : ' *New* '}
+                  <SlMagicWand style={{ color: '#6a0dad', fontSize: '0.9em' }} />
+                </div>
+
+                <div className='inn-card-price'>{inn.price} Gold / Night</div>
+              </div>
             </div>
-          </div>
-        </Link>
-      ))}
-    </div>
+          </Link>
+        ))}
+      </div>
+    </>
   );
 }

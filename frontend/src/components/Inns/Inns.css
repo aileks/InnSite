@@ -2,6 +2,14 @@ a:hover {
   text-decoration: none;
 }
 
+#landing-header {
+  margin: 16px 0 0 24px;
+  font-family: 'Macondo', cursive;
+  font-size: 1.75rem;
+  font-weight: 400;
+  font-style: normal;
+}
+
 #inns-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -56,6 +64,7 @@ a:hover {
   display: inline-block;
 }
 
+/* Places tooltip above each inn card */
 #tooltip-text {
   visibility: hidden;
   width: 200px;
@@ -75,6 +84,7 @@ a:hover {
   font-size: 0.9em;
 }
 
+/* Adds a little arrow at the bottom */
 #tooltip-text::after {
   content: '';
   position: absolute;
