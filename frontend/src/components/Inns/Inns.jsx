@@ -1,9 +1,7 @@
 import './Inns.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { getAllInns, selectInnsArray } from '../../store/inns';
-import { SlMagicWand } from 'react-icons/sl';
 import InnCard from './InnCard';
 
 export default function Inns() {
@@ -18,9 +16,9 @@ export default function Inns() {
     <>
       <h3 id='landing-header'>Every adventurer needs their rest.</h3>
 
-      <div id='inns-grid'>
+      <div className='inns-grid'>
         {inns?.map(inn => (
-          <InnCard inn={inn} />
+          <InnCard key={inn.id} inn={inn} />
         ))}
       </div>
     </>

@@ -10,7 +10,7 @@ a:hover {
   font-style: normal;
 }
 
-#inns-grid {
+.inns-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;

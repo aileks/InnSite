@@ -10,17 +10,20 @@ export default function Navigation({ isLoaded }) {
     <nav id='nav'>
       <div id='logo'>
         <div className='nav-item'>
-          <NavLink to='/'>
-            <img
-              id='logo-image'
-              src='/logo.jpeg'
-              alt='InnSite logo'
-            />
+          <NavLink
+            to='/'
+          >
+            <span id='logo-link'>
+              <img
+                id='logo-image'
+                src='/logo.jpeg'
+                alt='InnSite logo'
+              />
+              <h1 id='title'>InnSite</h1>
+            </span>
           </NavLink>
         </div>
       </div>
-
-      <h1 id='title'>InnSite</h1>
 
       {isLoaded && (
         <div id='right-items'>

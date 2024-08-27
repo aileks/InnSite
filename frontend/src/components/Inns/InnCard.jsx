@@ -6,7 +6,6 @@ export default function InnCard({ inn }) {
     <>
       {inn && (
         <Link
-          key={inn.id}
           to={`inns/${inn.id}`}
           id='tooltip-container'
         >
