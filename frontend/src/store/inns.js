@@ -3,6 +3,7 @@ import { createSelector } from 'reselect';
 
 const LOAD_ALL = 'inns/loadAll';
 const LOAD_ONE = 'inns/loadOne';
+const CREATE = 'inns/create';
 
 export const loadAll = inns => {
   return {
@@ -15,6 +16,13 @@ export const loadOne = inn => {
   return {
     type: LOAD_ONE,
     inn,
+  };
+};
+
+export const create = newInn => {
+  return {
+    type: CREATE,
+    newInn,
   };
 };
 
@@ -36,7 +44,26 @@ export const getInnById = id => async dispatch => {
   if (res.ok) {
     const data = await res.json();
     dispatch(loadOne(data));
-    
+
+    return data;
+  }
+
+  return res;
+};
+
+export const createInn = newInn => async dispatch => {
+  const res = await csrfFetch('/api/spots', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newInn),
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(create(data));
+
     return data;
   }
 
@@ -49,9 +76,7 @@ export const selectInnsArray = createSelector(selectInns, inns => {
   return Object.values(inns);
 });
 
-const intitialState = {};
-
-export default function innsReducer(state = intitialState, action) {
+export default function innsReducer(state = {}, action) {
   switch (action.type) {
     case LOAD_ALL: {
       const newState = {};
@@ -72,6 +97,12 @@ export default function innsReducer(state = intitialState, action) {
           ...action.inn,
           previewImage: action.inn.SpotImages.find(image => image.preview).url,
         },
+      };
+
+    case CREATE:
+      return {
+        ...state,
+        [action.newInn.id]: action.newInn,
       };
     default:
       return state;
