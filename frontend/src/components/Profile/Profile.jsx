@@ -2,7 +2,7 @@ import './Profile.css';
 import { selectInnsArray, getUserInns } from '../../store/inns';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { useNavigate, Link, useParams } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import InnCard from '../Inns/InnCard';
 
 export default function Profile() {
@@ -36,7 +36,7 @@ export default function Profile() {
         </>
       ) : (
         <div id='profile-container'>
-          <h2>You don't have any inns yet!</h2>
+          <h2>You don&aspo;t have any inns yet!</h2>
 
           <button
             className='create-inn-button'
