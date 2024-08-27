@@ -20,11 +20,22 @@ export default function Navigation({ isLoaded }) {
         </div>
       </div>
 
-      <h1 id="title">InnSite</h1>
+      <h1 id='title'>InnSite</h1>
 
       {isLoaded && (
-        <div className='nav-link'>
-          <ProfileButton user={user} />
+        <div id='right-items'>
+          {user && (
+            <NavLink
+              to='inns/new'
+              id='create-inn-button'
+            >
+              Create Inn
+            </NavLink>
+          )}
+
+          <div className='nav-link'>
+            <ProfileButton user={user} />
+          </div>
         </div>
       )}
     </nav>

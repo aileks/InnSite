@@ -73,3 +73,50 @@ a:hover {
   font-weight: 500;
   align-self: center;
 }
+
+#right-items {
+  display: flex;
+  align-items: center;
+}
+
+#create-inn-button {
+  font-size: 0.9rem;
+  margin-bottom: 6px;
+  height: auto;
+  color: #f0e68c;
+  background-color: #004d40;
+  border: solid 1px #00796b;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition:
+    background-color 0.2s ease-in-out,
+    transform 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+}
+
+#create-inn-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 250%;
+  height: 250%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0) 60%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 0;
+}
+
+#create-inn-button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#create-inn-button:hover {
+  background-color: #00796b;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
