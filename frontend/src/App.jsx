@@ -18,16 +18,21 @@ const router = createBrowserRouter([
         element: <Index />,
       },
       {
-        path: 'inns/:id',
-        element: <SingleInn />,
-      },
-      {
-        path: 'inns/new',
-        element: <InnForm />
+        path: 'inns',
+        children: [
+          {
+            path: ':id',
+            element: <SingleInn />,
+          },
+          {
+            path: 'new',
+            element: <InnForm />,
+          },
+        ],
       },
       {
         path: 'profile',
-        element: <Profile />
+        element: <Profile />,
       },
       {
         path: '*',
@@ -44,9 +49,7 @@ const router = createBrowserRouter([
           width: '100vw',
         }}
       >
-        <h1 style={{ textAlign: 'center', margin: '10px 0' }}>
-          Something went wrong...
-        </h1>
+        <h1 style={{ textAlign: 'center', margin: '10px 0' }}>Something went wrong...</h1>
 
         <h2 style={{ textAlign: 'center' }}>
           Page not found

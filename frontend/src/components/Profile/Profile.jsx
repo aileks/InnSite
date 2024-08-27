@@ -2,7 +2,7 @@ import './Profile.css';
 import { selectInnsArray, getUserInns } from '../../store/inns';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 import InnCard from '../Inns/InnCard';
 
 export default function Profile() {
@@ -21,7 +21,7 @@ export default function Profile() {
   }
 
   return (
-    <div className='content-container'>
+    <>
       {userInns.length ? (
         <>
           <h1 id='profile-header'>Manage Inns</h1>
@@ -46,6 +46,6 @@ export default function Profile() {
           </button>
         </div>
       )}
-    </div>
+    </>
   );
 }

@@ -54,7 +54,7 @@ export default function ProfileButton({ user }) {
         className={ulClassName}
         ref={ulRef}
       >
-        {user ?
+        {user ? (
           <>
             <li>{user.username}</li>
 
@@ -64,13 +64,19 @@ export default function ProfileButton({ user }) {
 
             <li>{user.email}</li>
 
-            <li><NavLink onClick={closeMenu} to='/profile'>Manage Inns</NavLink></li>
+            <NavLink
+              onClick={closeMenu}
+              to='/profile'
+            >
+              <li>Manage Inns</li>
+            </NavLink>
 
             <li>
               <button onClick={destroy}>Log Out</button>
             </li>
           </>
-        : <>
+        ) : (
+          <>
             <OpenModalMenuItem
               itemText='Log In'
               onItemClick={closeMenu}
@@ -83,7 +89,7 @@ export default function ProfileButton({ user }) {
               modalComponent={<SignUpFormModal />}
             />
           </>
-        }
+        )}
       </ul>
     </div>
   );

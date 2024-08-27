@@ -10,9 +10,7 @@ export default function Navigation({ isLoaded }) {
     <nav id='nav'>
       <div id='logo'>
         <div className='nav-item'>
-          <NavLink
-            to='/'
-          >
+          <NavLink to='/'>
             <span id='logo-link'>
               <img
                 id='logo-image'
@@ -28,9 +26,12 @@ export default function Navigation({ isLoaded }) {
       {isLoaded && (
         <div id='right-items'>
           {user && (
-            <button className='create-inn-button'>
-              <NavLink to='/inns/new'>Create a New Inn</NavLink>
-            </button>
+            <NavLink
+              className='create-inn-button'
+              to='/inns/new'
+            >
+              Create a New Inn
+            </NavLink>
           )}
 
           <div className='nav-item'>
