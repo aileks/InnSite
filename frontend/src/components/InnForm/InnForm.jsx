@@ -62,7 +62,7 @@ export default function InnForm() {
             <h2>Where is your spot located?</h2>
           </label>
           <p className='label-subheading'>
-            Because, well, how else would adventurer's know there's a sweet Inn nearby!
+            Because, well, how else would adventurer&apos;s know there&apos;s a sweet Inn nearby!
           </p>
 
           <label className='form-label'>Country</label>
