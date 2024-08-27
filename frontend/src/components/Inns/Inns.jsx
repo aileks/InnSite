@@ -20,9 +20,8 @@ export default function Inns() {
   return (
     <div id='inns-grid'>
       {inns?.map(inn => (
-        <Link to={`inns/${inn.id}`}>
+        <Link key={inn.id} to={`inns/${inn.id}`}>
           <div
-            key={inn.id}
             className='inn-card'
           >
             <div className='inn-image-container'>
