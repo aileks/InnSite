@@ -1,7 +1,7 @@
 import './InnForm.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { createInn } from '../../store/inns';
 
 export default function InnForm() {
@@ -16,6 +16,12 @@ export default function InnForm() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [price, setPrice] = useState(0);
+
+  const user = useSelector(state => state.session.user);
+
+  if (!user) {
+    navigate('/')
+  }
 
   const handleSubmit = async e => {
     e.preventDefault();
