@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectInnById } from '../../store/inns';
+import { selectInnById, getInnById, updateInn } from '../../store/inns';
 
 export default function EditInn() {
   const { id } = useParams();
@@ -11,22 +11,38 @@ export default function EditInn() {
   const inn = useSelector(selectInnById(id));
   const user = useSelector(state => state.session.user);
 
-  const [address, setAddress] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [country, setCountry] = useState('');
-  const [lat, setLat] = useState(0);
-  const [lng, setLng] = useState(0);
-  const [name, setName] = useState('');
-  const [description, setDescription] = useState('');
-  const [price, setPrice] = useState(0);
+  const [address, setAddress] = useState(inn?.address);
+  const [city, setCity] = useState(inn?.city);
+  const [state, setState] = useState(inn?.state);
+  const [country, setCountry] = useState(inn?.country);
+  const [lat, setLat] = useState(inn?.lat);
+  const [lng, setLng] = useState(inn?.lng);
+  const [name, setName] = useState(inn?.name);
+  const [description, setDescription] = useState(inn?.description);
+  const [price, setPrice] = useState(inn?.price);
   // const [images, setImages] = useState([]);
   // const [previewImage, setPreviewImage] = useState({ preview: true, url: '' });
   const [errors, setErrors] = useState({});
 
-  if (!user) {
-    navigate('/');
-  }
+  useEffect(() => {
+    dispatch(getInnById(id)).then(data => {
+      setAddress(data.address);
+      setCity(data.city);
+      setState(data.state);
+      setCountry(data.country);
+      setLat(data.lat);
+      setLng(data.lng);
+      setName(data.name);
+      setDescription(data.description);
+      setPrice(data.price);
+    });
+  }, [id, dispatch]);
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   // const handleImageChange = (idx, value) => {
   //   const newImages = [...images];
@@ -82,7 +98,7 @@ export default function EditInn() {
     };
 
     try {
-      const inn = await dispatch(update(updatedInn));
+      const inn = await dispatch(updateInn(id, updatedInn));
 
       // await dispatch(updateImage(inn.id, previewImage));
 
@@ -101,9 +117,9 @@ export default function EditInn() {
   return (
     <div id='form-container'>
       <div id='form-header'>
-        <h1 id='form-title'>Create a new Inn</h1>
+        <h1 id='form-title'>Update Your Inn</h1>
 
-        <p>(We also accept Taverns...)</p>
+        <p>(Or Tavern...)</p>
       </div>
 
       <form
@@ -112,11 +128,13 @@ export default function EditInn() {
       >
         <div className='form-group'>
           <label className='form-label'>
-            <h2>Where is your spot located?</h2>
+            <h2>
+              Where is your inn located <em>now</em>?
+            </h2>
           </label>
 
           <p className='label-subheading'>
-            Because, well, how else would adventurer&apos;s know there&apos;s a sweet Inn nearby!
+            I didn't know you could move a whole building like that...
           </p>
 
           <label className='form-label'>Country</label>
@@ -128,6 +146,7 @@ export default function EditInn() {
             placeholder='Country'
             onChange={e => setCountry(e.target.value)}
           />
+
           {errors.country && <p className='error'>{errors.country}</p>}
 
           <label
@@ -219,8 +238,7 @@ export default function EditInn() {
           </label>
 
           <p className='label-subheading'>
-            Mention the best features of your Inn, any special amenities, like fire-brewed ale or
-            free nights for Dwarves!
+            An update to the menu, eh? Or perhaps the Dwarves got too rowdy...
           </p>
 
           {errors.description && <p className='error'>{errors.description}</p>}
@@ -240,7 +258,9 @@ export default function EditInn() {
             <h2>Give your Inn a name</h2>
           </label>
 
-          <p className='label-subheading'>Every name has its place! Err...wait...</p>
+          <p className='label-subheading'>
+            Memory potion needed? An Elixir of Greater Intellect, perhaps?
+          </p>
 
           {errors.name && <p className='error'>{errors.name}</p>}
 
@@ -260,7 +280,7 @@ export default function EditInn() {
             <h2>Set a base price for your Inn</h2>
           </label>
 
-          <p className='label-subheading'>Will that be cash or credit?</p>
+          <p className='label-subheading'>When times are tough...or maybe not-so-tough!</p>
 
           {errors.price && <p className='error'>{errors.price}</p>}
 

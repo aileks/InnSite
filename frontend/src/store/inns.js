@@ -73,6 +73,7 @@ export const getInnById = id => async dispatch => {
   if (res.ok) {
     const data = await res.json();
     dispatch(loadOne(data));
+    return data;
   }
 
   return res;
@@ -116,8 +117,12 @@ export const addNewImage = (id, image) => async dispatch => {
   return res;
 };
 
-export const updateInn = inn => async dispatch => {
-  const res = await csrfFetch(`/api/spots/${inn.id}`, {
+export const getInnToUpdate = id => async dispatch => {
+
+}
+
+export const updateInn = (id, inn) => async dispatch => {
+  const res = await csrfFetch(`/api/spots/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -172,6 +177,11 @@ export default function innsReducer(state = {}, action) {
     case ADD_IMAGE:
       return {
         ...state,
+      };
+    case UPDATE:
+      return {
+        ...state,
+        [action.inn.id]: action.inn,
       };
     default:
       return state;

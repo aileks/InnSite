@@ -16,9 +16,11 @@ export default function Profile() {
     dispatch(getUserInns());
   }, [dispatch]);
 
-  if (!user) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (!user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   return (
     <>
@@ -33,7 +35,7 @@ export default function Profile() {
         </>
       ) : (
         <div id="profile-container">
-          <h2>You don&aspo;t have any inns yet!</h2>
+          <h2>You don&apos;t have any inns yet!</h2>
 
           <button className="create-inn-button" id="profile-create-inn">
             <Link to="/inns/new">Create a New Inn</Link>
