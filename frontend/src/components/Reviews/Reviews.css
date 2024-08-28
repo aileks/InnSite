@@ -93,23 +93,23 @@
   gap: 6px;
 }
 
-.delete-container {
+.modal-container {
   align-self: flex-end;
+}
+
+.delete-container {
   color: #c0392b;
   border: solid 2px #c0392b;
   border-radius: 6px;
   padding: 6px 12px;
-  transition: background-color 0.2s ease-in-out;
-}
-
-.delete-container * {
-  transition: color 0.2s ease-in-out;
+  cursor: pointer;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
 }
 
 .delete-container:hover {
+  color: white;
   background-color: #c0392b;
 }
 
-.delete-container:hover * {
-  color: white;
-}
