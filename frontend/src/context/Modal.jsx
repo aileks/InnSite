@@ -1,6 +1,6 @@
-import './Modal.css';
-import { useRef, useState, useEffect, useContext, createContext } from 'react';
-import ReactDOM from 'react-dom';
+import "./Modal.css";
+import { useRef, useState, useEffect, useContext, createContext } from "react";
+import ReactDOM from "react-dom";
 
 const ModalContext = createContext();
 
@@ -15,7 +15,7 @@ export default function ModelProvider({ children }) {
 
     // If callback function is truthy, call the callback function
     // and reset it to null:
-    if (typeof onModalClose === 'function') {
+    if (typeof onModalClose === "function") {
       setOnModalClose(null);
       onModalClose();
     }
@@ -57,17 +57,11 @@ export const Modal = () => {
 
   // Render the following component to the div referenced by the modalRef
   return ReactDOM.createPortal(
-    <div
-      id='modal'
-      className={isVisible ? 'show' : ''}
-    >
-      <div
-        id='modal-background'
-        onClick={closeModal}
-      />
-      <div id='modal-content'>{modalContent}</div>
+    <div id="modal" className={isVisible ? "show" : ""}>
+      <div id="modal-background" onClick={closeModal} />
+      <div id="modal-content">{modalContent}</div>
     </div>,
-    modalRef.current
+    modalRef.current,
   );
 };
 

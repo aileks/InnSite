@@ -1,4 +1,4 @@
-import { useModal } from '../../context/Modal';
+import { useModal } from "../../context/Modal";
 
 export default function OpenReviewModal({
   modalComponent,
@@ -11,13 +11,11 @@ export default function OpenReviewModal({
   const onClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
     setModalContent(modalComponent);
-    if (typeof onItemClick === 'function') onItemClick();
+    if (typeof onItemClick === "function") onItemClick();
   };
 
   return (
-    <button id='review-button'
-      onClick={onClick}
-    >
+    <button id="review-button" onClick={onClick}>
       {itemText}
     </button>
   );

@@ -1,24 +1,24 @@
-import { csrfFetch } from './csrf';
-import { createSelector } from 'reselect';
+import { csrfFetch } from "./csrf";
+import { createSelector } from "reselect";
 
-const LOAD_ALL = 'reviews/loadAll';
-const ADD_REVIEW = 'reviews/add';
+const LOAD_ALL = "reviews/loadAll";
+const ADD_REVIEW = "reviews/add";
 
-export const loadAll = reviews => {
+export const loadAll = (reviews) => {
   return {
     type: LOAD_ALL,
     reviews,
   };
 };
 
-export const add = review => {
+export const add = (review) => {
   return {
     type: ADD_REVIEW,
     review,
   };
 };
 
-export const getAllReviews = id => async dispatch => {
+export const getAllReviews = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${id}/reviews`);
 
   if (res.ok) {
@@ -31,11 +31,11 @@ export const getAllReviews = id => async dispatch => {
   return res;
 };
 
-export const addReview = (id, review) => async dispatch => {
+export const addReview = (id, review) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${id}/reviews`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(review),
   });
@@ -58,8 +58,8 @@ export const addReview = (id, review) => async dispatch => {
   return res;
 };
 
-export const selectReviews = state => state.reviews;
-export const selectReviewsArray = createSelector(selectReviews, reviews => {
+export const selectReviews = (state) => state.reviews;
+export const selectReviewsArray = createSelector(selectReviews, (reviews) => {
   return Object.values(reviews);
 });
 
@@ -68,7 +68,7 @@ export default function reviewsReducer(state = {}, action) {
     case LOAD_ALL: {
       const newState = {};
 
-      action.reviews.forEach(review => {
+      action.reviews.forEach((review) => {
         newState[review.id] = review;
       });
 

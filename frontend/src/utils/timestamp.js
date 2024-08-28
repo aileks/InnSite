@@ -22,5 +22,5 @@ export default function timestamp(dateString) {
     }
   }
 
-  return 'posted just now';
+  return "posted just now";
 }

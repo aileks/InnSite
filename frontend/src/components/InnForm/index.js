@@ -1,3 +1,3 @@
-import InnForm from './InnForm';
+import InnForm from "./InnForm";
 
 export default InnForm;

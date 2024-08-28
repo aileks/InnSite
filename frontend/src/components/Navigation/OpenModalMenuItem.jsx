@@ -1,4 +1,4 @@
-import { useModal } from '../../context/Modal';
+import { useModal } from "../../context/Modal";
 
 export default function OpenModalMenuItem({
   modalComponent,
@@ -11,14 +11,8 @@ export default function OpenModalMenuItem({
   const onClick = () => {
     if (onModalClose) setOnModalClose(onModalClose);
     setModalContent(modalComponent);
-    if (typeof onItemClick === 'function') onItemClick();
+    if (typeof onItemClick === "function") onItemClick();
   };
 
-  return (
-    <li
-      onClick={onClick}
-    >
-      {itemText}
-    </li>
-  );
+  return <li onClick={onClick}>{itemText}</li>;
 }
