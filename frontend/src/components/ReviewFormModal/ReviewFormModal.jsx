@@ -84,7 +84,7 @@ export default function ReviewFormModal({ id }) {
             onChange={onChange}
           />
 
-          {errors.message && <p className='error'>You already have a review for this inn!</p>}
+          {errors.message && <p className='error'>{errors.message}</p>}
 
           <div className='button-container'>
             <button
