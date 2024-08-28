@@ -56,7 +56,7 @@ export default function Reviews({ userId, inn }) {
         )}
       </h2>
 
-      {userId && !userHasReview && (
+      {userId && !userHasReview && ownerId !== userId && (
         <OpenReviewModal
           modalComponent={<ReviewFormModal id={id} />}
           itemText='Post Your Review!'
