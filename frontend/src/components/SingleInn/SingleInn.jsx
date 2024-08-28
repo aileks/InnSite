@@ -1,11 +1,11 @@
-import "./SingleInn.css";
-import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
-import { selectInnById, getInnById } from "../../store/inns";
-import { useEffect } from "react";
-import NotFound from "../404";
-import Reviews from "../Reviews";
-import AvgRating from "../Reviews/AvgRating";
+import './SingleInn.css';
+import { useSelector, useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { selectInnById, getInnById } from '../../store/inns';
+import { useEffect } from 'react';
+import NotFound from '../404';
+import Reviews from '../Reviews';
+import AvgRating from '../Reviews/AvgRating';
 
 export default function SingleInn() {
   const dispatch = useDispatch();
@@ -13,17 +13,17 @@ export default function SingleInn() {
   const inn = useSelector(selectInnById(id));
 
   // Get non-preview images
-  const images = inn?.SpotImages?.filter((image) => image.preview === false);
+  const images = inn?.SpotImages?.filter(image => image.preview === false);
 
   // Get user ID for comparison in Reviews component
-  const user = useSelector((state) => state.session.user) || null;
+  const user = useSelector(state => state.session.user) || null;
   // Have to null check because of how state is
   const userId = user ? user.id : null;
 
-  const handleClick = (e) => {
+  const handleClick = e => {
     e.preventDefault();
 
-    alert("Feature coming soon!");
+    alert('Feature coming soon!');
   };
 
   useEffect(() => {
@@ -33,57 +33,63 @@ export default function SingleInn() {
   return (
     <>
       {inn ? (
-        <div className="content-container">
-          <div id="inn-container">
-            <div id="inn-header">
-              <h1 id="inn-title">{inn.name}</h1>
+        <div className='content-container'>
+          <div id='inn-container'>
+            <div id='inn-header'>
+              <h1 id='inn-title'>{inn.name}</h1>
 
-              <div id="inn-location">
-                <h3 id="inn-country">{inn.country}</h3>
+              <div id='inn-location'>
+                <h3 id='inn-country'>{inn.country}</h3>
                 {inn.city}, {inn.state}
               </div>
             </div>
 
-            <span id="images">
-              <div className="preview" id="preview-container">
+            <span id='images'>
+              <div
+                className='preview'
+                id='preview-container'
+              >
                 <img
-                  className="preview"
-                  id="preview-image"
+                  className='preview'
+                  id='preview-image'
                   src={inn.previewImage}
                   alt={inn.name}
                   title={inn.name}
                 />
               </div>
 
-              <div id="image-grid">
-                {images?.map((image) => (
+              <div id='image-grid'>
+                {images?.map(image => (
                   <img
                     key={image.id}
-                    className="inn-image"
+                    className='inn-image'
                     src={`${image.url}`}
-                    alt=""
+                    alt=''
                   />
                 ))}
               </div>
             </span>
 
-            <div id="info-container">
-              <div id="text-container">
-                <h3 id="hosted">
+            <div id='info-container'>
+              <div id='text-container'>
+                <h3 id='hosted'>
                   Hosted by {inn?.Owner?.firstName} {inn?.Owner?.lastName}
                 </h3>
 
-                <p id="inn-description">{inn.description}.</p>
+                <p id='inn-description'>{inn.description}.</p>
               </div>
 
-              <div id="callout-container">
-                <div id="price">{inn.price} Gold / Night</div>
+              <div id='callout-container'>
+                <div id='price'>{inn.price} Gold / Night</div>
 
-                <div id="rating">
+                <div id='rating'>
                   <AvgRating inn={inn} />
                 </div>
 
-                <button onClick={handleClick} id="reserve-button">
+                <button
+                  onClick={handleClick}
+                  id='reserve-button'
+                >
                   Reserve
                 </button>
               </div>
@@ -92,7 +98,10 @@ export default function SingleInn() {
 
           <hr />
 
-          <Reviews userId={userId} inn={inn} />
+          <Reviews
+            userId={userId}
+            inn={inn}
+          />
         </div>
       ) : (
         <NotFound />

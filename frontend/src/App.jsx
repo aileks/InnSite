@@ -5,9 +5,10 @@ import { restoreUser } from "./store/session";
 import Navigation from "./components/Navigation";
 import Index from "./components/Index";
 import NotFound from "./components/404";
+import Profile from "./components/Profile";
 import SingleInn from "./components/SingleInn";
 import InnForm from "./components/InnForm";
-import Profile from "./components/Profile";
+import EditInn from "./components/InnForm/EditInn";
 
 const router = createBrowserRouter([
   {
@@ -30,11 +31,7 @@ const router = createBrowserRouter([
           },
           {
             path: ":id/edit",
-            element: (
-              <h1 style={{ textAlign: "center", marginTop: "40px" }}>
-                Coming soon...
-              </h1>
-            ),
+            element: <EditInn/>,
           },
           {
             path: ":id/delete",

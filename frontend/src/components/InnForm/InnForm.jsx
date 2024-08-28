@@ -96,8 +96,6 @@ export default function InnForm() {
     }
   };
 
-  console.log(errors);
-
   return (
     <div id="form-container">
       <div id="form-header">
