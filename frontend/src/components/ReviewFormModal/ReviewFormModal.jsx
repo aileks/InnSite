@@ -22,7 +22,7 @@ export default function ReviewFormModal({ id }) {
     }
   }, [review, rating]);
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     setErrors({});
@@ -32,15 +32,21 @@ export default function ReviewFormModal({ id }) {
       stars: rating,
     };
 
-    return dispatch(addReview(id, newReview))
-      .then(closeModal)
-      .catch(async res => {
+    try {
+      await dispatch(addReview(id, newReview));
+      closeModal();
+    } catch (res) {
+      if (res.json) {
         const data = await res.json();
 
         if (data && data.message) {
           setErrors(data);
         }
-      });
+      } else {
+        console.error(res);
+        setErrors({ message: 'An unexpected error occurred.' });
+      }
+    }
   };
 
   const onChange = newRating => {
@@ -78,7 +84,7 @@ export default function ReviewFormModal({ id }) {
             onChange={onChange}
           />
 
-          {errors.message && <p className='error'>You already have a review for this spot!</p>}
+          {errors.message && <p className='error'>You already have a review for this inn!</p>}
 
           <div className='button-container'>
             <button
