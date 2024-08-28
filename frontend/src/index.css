@@ -111,6 +111,7 @@ hr {
   border-radius: 6px;
   padding: 8px 16px;
   cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition:
     color 0.3s ease-in-out,
     background-color 0.3s ease-in-out,
@@ -143,5 +144,6 @@ hr {
 .create-inn-button:hover {
   background-color: #00796b;
   color: white;
-  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
 }

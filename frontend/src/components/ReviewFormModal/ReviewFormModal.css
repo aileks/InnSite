@@ -1,55 +1,7 @@
-#review-button {
-  list-style: none;
-  background-color: #004d40;
-  color: #f0e68c;
-  font-size: 0.8rem;
-  padding: 6px 8px;
-  border: solid 1px #00796b;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 4px;
-  position: relative;
-  transition:
-    background-color 0.3s ease-in-out,
-    transform 0.3s ease-in-out;
-}
-
-#review-button::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 120%;
-  height: 120%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.2) 0%,
-    rgba(0, 0, 0, 0) 60%
-  );
-  transform: translate(-50%, -50%) scale(0);
-  transition: transform 0.2s ease-in-out;
-  z-index: 0;
-}
-
-#review-button:hover::before {
-  transform: translate(-50%, -50%) scale(1);
-}
-
-#review-button:hover {
-  background-color: #00796b;
-  color: #ffffff;
-  transform: translateY(-1px);
-}
-
-#review-container {
-  height: 400px;
-  width: 600px;
-}
-
 #review-input,
 #review-textarea {
   padding: 10px;
-  border: 1px solid #bbbbbb;
+  border: 1px solid #aaaaaa;
   border-radius: 4px;
   box-sizing: border-box;
 }
@@ -134,14 +86,14 @@
 
 #post-button:hover {
   background-color: #004d40;
-  color: #ffffff;
+  color: white;
 }
 
 #post-button:disabled,
 #post-button:disabled:hover {
   background-color: #5e7b8b;
   cursor: not-allowed;
-  border: solid 1px #bbbbbb;
+  border: solid 1px #aaaaaa;
   color: #b0bec5;
 }
 
