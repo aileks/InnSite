@@ -84,7 +84,7 @@ export default function Reviews({ userId, inn }) {
             <p className='review-body'>{review.review}</p>
 
             {review.userId === userId && (
-              <div className='delete-container'>
+              <div className='modal-container'>
                 <OpenDeleteModal
                   itemText='Delete'
                   modalComponent={<DeleteModal review={review} />}
