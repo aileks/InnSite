@@ -46,6 +46,7 @@
   border: solid 1px #00796b;
   border-radius: 6px;
   cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   margin-top: 8px;
   transition:
     background-color 0.3s ease-in-out,
@@ -71,7 +72,8 @@
 
 #reserve-button:hover {
   background-color: #00796b;
-  color: #ffffff;
+  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transform: translateY(-1px);
 }
 

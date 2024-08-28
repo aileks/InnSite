@@ -53,7 +53,7 @@ export default function Reviews({ userId, inn }) {
 
       {reviews.length ? (
         reviews?.map(review => (
-          <div key={review.id}>
+          <div className='review-card' key={review.id}>
             <h3 className='review-title'>
               {review.User.firstName}
               {' • '}{' '}

@@ -3,7 +3,7 @@
   padding: 20px;
   margin: 16px auto;
   background: #f7f7f7;
-  border: solid 1px #bbbbbb;
+  border: solid 1px #aaaaaa;
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -45,7 +45,7 @@
 .form-textarea {
   width: 100%;
   padding: 10px;
-  border: 1px solid #bbbbbb;
+  border: 1px solid #aaaaaa;
   border-radius: 4px;
   box-sizing: border-box;
   background: #f9f9f9;
