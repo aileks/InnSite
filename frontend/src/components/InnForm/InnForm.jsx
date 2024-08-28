@@ -99,8 +99,10 @@ export default function InnForm() {
     <div id='form-container'>
       <div id='form-header'>
         <h1 id='form-title'>Create a new Inn</h1>
+
         <p>(We also accept Taverns...)</p>
       </div>
+
       <form
         className='inn-form'
         onSubmit={handleSubmit}
@@ -109,12 +111,13 @@ export default function InnForm() {
           <label className='form-label'>
             <h2>Where is your spot located?</h2>
           </label>
+
           <p className='label-subheading'>
             Because, well, how else would adventurer&apos;s know there&apos;s a sweet Inn nearby!
           </p>
 
-          {errors.country && <p className='error'>{errors.country}</p>}
           <label className='form-label'>Country</label>
+
           <input
             type='text'
             className='form-input'
@@ -122,14 +125,15 @@ export default function InnForm() {
             placeholder='Country'
             onChange={e => setCountry(e.target.value)}
           />
+          {errors.country && <p className='error'>{errors.country}</p>}
 
-          {errors.address && <p className='error'>{errors.address}</p>}
           <label
             id='street-address'
             className='form-label'
           >
             Street Address:
           </label>
+
           <input
             type='text'
             className='form-input'
@@ -138,10 +142,10 @@ export default function InnForm() {
             onChange={e => setAddress(e.target.value)}
           />
 
+          {errors.address && <p className='error'>{errors.address}</p>}
+
           <div className='stacked-inputs'>
             <div className='inner-container'>
-              {errors.city && <p className='error'>{errors.city}</p>}
-
               <label className='form-label'>City:</label>
 
               <input
@@ -152,11 +156,11 @@ export default function InnForm() {
                 placeholder='City'
                 onChange={e => setCity(e.target.value)}
               />
+
+              {errors.city && <p className='error'>{errors.city}</p>}
             </div>
 
             <div className='label-container'>
-              {errors.state && <p className='error'>{errors.state}</p>}
-
               <label className='form-label'>State:</label>
 
               <input
@@ -166,13 +170,13 @@ export default function InnForm() {
                 placeholder='STATE'
                 onChange={e => setState(e.target.value)}
               />
+
+              {errors.state && <p className='error'>{errors.state}</p>}
             </div>
           </div>
 
           <div className='stacked-inputs'>
             <div className='label-container'>
-              {errors.lat && <p className='error'>{errors.lat}</p>}
-
               <label className='form-label'>Latitude:</label>
 
               <input
@@ -183,11 +187,11 @@ export default function InnForm() {
                 placeholder='Latitude'
                 onChange={e => setLat(e.target.value)}
               />
+
+              {errors.lat && <p className='error'>{errors.lat}</p>}
             </div>
 
             <div className='label-container'>
-              {errors.lng && <p className='error'>{errors.lng}</p>}
-
               <label className='form-label'>Longitude:</label>
 
               <input
@@ -198,6 +202,8 @@ export default function InnForm() {
                 placeholder='Longitude'
                 onChange={e => setLng(e.target.value)}
               />
+
+              {errors.lng && <p className='error'>{errors.lng}</p>}
             </div>
           </div>
         </div>
