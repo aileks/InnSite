@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createInn, addNewImage } from '../../store/inns';
+import { useToast } from '../../context/Toast';
 
 export default function InnForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { showToast } = useToast();
   const user = useSelector(state => state.session.user);
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
@@ -92,6 +94,8 @@ export default function InnForm() {
       }
 
       navigate(`/inns/${createdInn.id}`);
+
+      showToast('Inn successfully created');
     } catch (err) {
       console.error('Error creating new inn:', err);
     }
