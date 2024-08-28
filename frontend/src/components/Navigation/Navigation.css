@@ -118,6 +118,6 @@ a:hover {
 
 .create-inn-button:hover {
   background-color: #00796b;
-  color: #ffffff;
+  color: white;
   transform: translateY(-1px);
 }
