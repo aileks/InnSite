@@ -17,7 +17,7 @@ export default function Reviews({ userId, inn }) {
   );
   const { ownerId } = inn || null;
 
-  const hasReview = reviews.some(review => review.userId === userId);
+  const userHasReview = reviews.some(review => review.userId === userId);
 
   const months = [
     'Jan',
@@ -45,7 +45,7 @@ export default function Reviews({ userId, inn }) {
         <SlMagicWand style={{ color: '#6a0dad' }} />
       </h2>
 
-      {userId && !hasReview && (
+      {userId && !userHasReview && (
         <OpenReviewModal
           modalComponent={<ReviewFormModal id={id} />}
           itemText='Post Your Review!'
