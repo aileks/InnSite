@@ -7,7 +7,7 @@ export default function AvgRating({ inn }) {
     <div id="avg-rating">
       {avgStarRating && <>Rating: {avgStarRating.toFixed(2)}</>}
 
-      <SlMagicWand style={{ color: "#6a0dad", fontSize: "0.9em" }} />
+      <SlMagicWand style={{ color: "#6a0dad" }} />
 
       {numReviews ? (
         <>

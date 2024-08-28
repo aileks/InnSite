@@ -41,8 +41,18 @@ export default function Reviews({ userId, inn }) {
   return (
     <div id='reviews-container'>
       <h2 id='reviews-header'>
-        Reviews {' • '} {inn?.avgStarRating?.toFixed(2)}{' '}
-        <SlMagicWand style={{ color: '#6a0dad' }} />
+        {reviews?.length ? (
+          <>
+            {inn?.avgStarRating?.toFixed(2)}{' '}
+            <SlMagicWand style={{ color: '#6a0dad' }} />
+            {' • '}
+            Reviews
+          </>
+        ) : (
+          <>
+            <SlMagicWand style={{ color: '#6a0dad' }} /> *New*
+          </>
+        )}
       </h2>
 
       {userId && !hasReview && (
@@ -52,7 +62,7 @@ export default function Reviews({ userId, inn }) {
         />
       )}
 
-      {reviews.length ? (
+      {reviews?.length ? (
         reviews?.map(review => (
           <div
             className='review-card'
