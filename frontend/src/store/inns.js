@@ -144,10 +144,6 @@ export default function innsReducer(state = {}, action) {
     case ADD_IMAGE:
       return {
         ...state,
-        [action.image.spotId]: {
-          ...action.image.spotId,
-          previewImage: action.image.url,
-        },
       };
     default:
       return state;
