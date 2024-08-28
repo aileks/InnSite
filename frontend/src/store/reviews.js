@@ -2,11 +2,19 @@ import { csrfFetch } from './csrf';
 import { createSelector } from 'reselect';
 
 const LOAD_ALL = 'reviews/loadAll';
+const ADD_REVEIW = 'reviews/add';
 
 export const loadAll = reviews => {
   return {
     type: LOAD_ALL,
     reviews,
+  };
+};
+
+export const add = review => {
+  return {
+    type: ADD_REVEIW,
+    review,
   };
 };
 
@@ -16,6 +24,25 @@ export const getAllReviews = id => async dispatch => {
   if (res.ok) {
     const data = await res.json();
     dispatch(loadAll(data.Reviews));
+
+    return data;
+  }
+
+  return res;
+};
+
+export const addReview = review => async dispatch => {
+  const res = await csrfFetch('api/reviews', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: review,
+  });
+
+  if (res.ok) {
+    const data = await res.json();
+    dispatch(add(data));
 
     return data;
   }
@@ -41,6 +68,11 @@ export default function reviewsReducer(state = {}, action) {
         ...newState,
       };
     }
+    case ADD_REVEIW:
+      return {
+        ...state,
+        [action.review.id]: action.review,
+      };
     default:
       return state;
   }
