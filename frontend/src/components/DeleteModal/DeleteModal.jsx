@@ -3,28 +3,28 @@ import { useDispatch } from 'react-redux';
 import { useModal } from '../../context/Modal';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { deleteInn } from '../../store/inns';
-import { useState } from 'react';
+// import { useState } from 'react';
 import { deleteReview } from '../../store/reviews';
 
 export default function DeleteModal({ inn, review }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const [message, setMessage] = useState('');
+  // const [message, setMessage] = useState('');
 
   const destroy = async e => {
     e.preventDefault();
 
-    let res = '';
+    // let res = '';
 
     if (inn?.id) {
-      res = await dispatch(deleteInn(inn.id));
+      await dispatch(deleteInn(inn.id));
     } else if (review?.id) {
-      res = await dispatch(deleteReview(review.id));
+      await dispatch(deleteReview(review.id));
     }
 
-    if (res.message) {
-      setMessage(res.message);
-    }
+    // if (res.message) {
+    //   setMessage(res.message);
+    // }
 
     closeModal();
   };
