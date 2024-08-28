@@ -117,10 +117,6 @@ export const addNewImage = (id, image) => async dispatch => {
   return res;
 };
 
-export const getInnToUpdate = id => async dispatch => {
-
-}
-
 export const updateInn = (id, inn) => async dispatch => {
   const res = await csrfFetch(`/api/spots/${id}`, {
     method: 'PUT',

@@ -98,7 +98,7 @@ export default function EditInn() {
     };
 
     try {
-      const inn = await dispatch(updateInn(id, updatedInn));
+      await dispatch(updateInn(id, updatedInn));
 
       // await dispatch(updateImage(inn.id, previewImage));
 
@@ -134,7 +134,7 @@ export default function EditInn() {
           </label>
 
           <p className='label-subheading'>
-            I didn't know you could move a whole building like that...
+            I didn&apos;t know you could move a whole building like that...
           </p>
 
           <label className='form-label'>Country</label>

@@ -1,5 +1,5 @@
 import './InnForm.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { createInn, addNewImage } from '../../store/inns';
