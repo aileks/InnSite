@@ -8,6 +8,8 @@ import StarRating from './StarRating';
 import ReviewFormModal from '../ReviewFormModal';
 import { SlMagicWand } from 'react-icons/sl';
 import OpenReviewModal from '../ReviewFormModal/OpenReviewModal';
+import OpenDeleteModal from '../DeleteModal/OpenDeleteModal';
+import DeleteModal from '../DeleteModal';
 
 export default function Reviews({ userId, inn }) {
   const dispatch = useDispatch();
@@ -43,8 +45,7 @@ export default function Reviews({ userId, inn }) {
       <h2 id='reviews-header'>
         {reviews?.length ? (
           <>
-            {inn?.avgStarRating?.toFixed(2)}{' '}
-            <SlMagicWand style={{ color: '#6a0dad' }} />
+            {inn?.avgStarRating?.toFixed(2)} <SlMagicWand style={{ color: '#6a0dad' }} />
             {' • '}
             Reviews
           </>
@@ -81,6 +82,15 @@ export default function Reviews({ userId, inn }) {
             <StarRating rating={review.stars} />
 
             <p className='review-body'>{review.review}</p>
+
+            {review.userId === userId && (
+              <div className='delete-container'>
+                <OpenDeleteModal
+                  itemText='Delete'
+                  modalComponent={<DeleteModal review={review} />}
+                />
+              </div>
+            )}
           </div>
         ))
       ) : userId !== ownerId ? (

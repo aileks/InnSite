@@ -50,7 +50,7 @@ export default function InnCard({ inn }) {
                 <OpenDeleteModal
                   id={inn.id}
                   itemText={'Delete'}
-                  modalComponent={<DeleteModal id={inn.id} />}
+                  modalComponent={<DeleteModal inn={inn} />}
                 />
               </div>
             )}

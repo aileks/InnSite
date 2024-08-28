@@ -4,8 +4,9 @@ import { useModal } from '../../context/Modal';
 import { IoIosCloseCircle } from 'react-icons/io';
 import { deleteInn } from '../../store/inns';
 import { useState } from 'react';
+import { deleteReview } from '../../store/reviews';
 
-export default function DeleteModal({ id }) {
+export default function DeleteModal({ inn, review }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [message, setMessage] = useState('');
@@ -13,7 +14,13 @@ export default function DeleteModal({ id }) {
   const destroy = async e => {
     e.preventDefault();
 
-    const res = await dispatch(deleteInn(id));
+    let res = '';
+
+    if (inn?.id) {
+      res = await dispatch(deleteInn(inn.id));
+    } else if (review?.id) {
+      res = await dispatch(deleteReview(review.id));
+    }
 
     if (res.message) {
       setMessage(res.message);
@@ -21,8 +28,6 @@ export default function DeleteModal({ id }) {
 
     closeModal();
   };
-
-  console.log(message);
 
   return (
     <>
@@ -37,7 +42,7 @@ export default function DeleteModal({ id }) {
         <div id='confirm-header'>
           <h1>Are you sure?</h1>
 
-          <h3>Think of all the gold!</h3>
+          <h3>{inn?.id ? 'Think of all the gold!' : 'The people need your thoughts!'}</h3>
         </div>
 
         <div id='button-container'>
@@ -46,7 +51,7 @@ export default function DeleteModal({ id }) {
             className='confirm-button'
             onClick={destroy}
           >
-            Yes (Into the nether realm...)
+            Into the nether realm... (Delete)
           </button>
 
           <button
@@ -54,7 +59,7 @@ export default function DeleteModal({ id }) {
             className='confirm-button'
             onClick={closeModal}
           >
-            No (How merciful you are!)
+            Not today! (Keep)
           </button>
         </div>
       </div>

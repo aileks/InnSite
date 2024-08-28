@@ -8,42 +8,42 @@ const ADD_IMAGE = 'images/addImage';
 const UPDATE = 'inns/update';
 const DELETE = 'inns/destroy';
 
-export const loadAll = inns => {
+const loadAll = inns => {
   return {
     type: LOAD_ALL,
     inns,
   };
 };
 
-export const loadOne = inn => {
+const loadOne = inn => {
   return {
     type: LOAD_ONE,
     inn,
   };
 };
 
-export const create = newInn => {
+const create = newInn => {
   return {
     type: CREATE,
     newInn,
   };
 };
 
-export const addImage = image => {
+const addImage = image => {
   return {
     type: ADD_IMAGE,
     image,
   };
 };
 
-export const update = inn => {
+const update = inn => {
   return {
     type: UPDATE,
     inn,
   };
 };
 
-export const destroy = id => {
+const destroy = id => {
   return {
     type: DELETE,
     id,
@@ -207,9 +207,7 @@ export default function innsReducer(state = {}, action) {
       };
     case DELETE: {
       const newState = { ...state }
-
       delete newState[action.id];
-
       return newState;
     }
     default:
