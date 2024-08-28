@@ -5,7 +5,9 @@ import { useEffect } from 'react';
 import { getAllReviews, selectReviewsArray } from '../../store/reviews';
 import { useParams } from 'react-router-dom';
 import StarRating from './StarRating';
+import ReviewFormModal from '../ReviewFormModal';
 import { SlMagicWand } from 'react-icons/sl';
+import OpenReviewModal from '../ReviewFormModal/OpenReviewModal';
 
 export default function Reviews({ userId, inn }) {
   const dispatch = useDispatch();
@@ -14,6 +16,7 @@ export default function Reviews({ userId, inn }) {
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
   );
   const { ownerId } = inn || null;
+
 
   const months = [
     'Jan',
@@ -37,8 +40,17 @@ export default function Reviews({ userId, inn }) {
   return (
     <div id='reviews-container'>
       <h2 id='reviews-header'>
-        Reviews {' • '} {inn?.avgStarRating?.toFixed(2)} <SlMagicWand style={{ color: '#6a0dad' }} />
+        Reviews {' • '} {inn?.avgStarRating?.toFixed(2)}{' '}
+        <SlMagicWand style={{ color: '#6a0dad' }} />
       </h2>
+
+      {userId && (
+        <OpenReviewModal
+          modalComponent={<ReviewFormModal id={id} />}
+          itemText='Post Your Review!'
+        />
+      )}
+
       {reviews.length ? (
         reviews?.map(review => (
           <div key={review.id}>
@@ -58,7 +70,14 @@ export default function Reviews({ userId, inn }) {
           </div>
         ))
       ) : userId !== ownerId ? (
-        <p>Be the first to post review!</p>
+        <div className='add-review'>
+          <p>Be the first to post review!</p>
+
+          <OpenReviewModal
+            modalComponent={<ReviewFormModal />}
+            itemText='Post Your Review!'
+          />
+        </div>
       ) : (
         ''
       )}

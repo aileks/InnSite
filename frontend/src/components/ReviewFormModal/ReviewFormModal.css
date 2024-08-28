@@ -1,0 +1,149 @@
+#review-button {
+  list-style: none;
+  background-color: #004d40;
+  color: #f0e68c;
+  font-size: 0.8rem;
+  padding: 6px 8px;
+  border: solid 1px #00796b;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 4px;
+  position: relative;
+  transition:
+    background-color 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}
+
+#review-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0) 60%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s ease-in-out;
+  z-index: 0;
+}
+
+#review-button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#review-button:hover {
+  background-color: #00796b;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+#review-container {
+  height: 400px;
+  width: 600px;
+}
+
+#review-input,
+#review-textarea {
+  padding: 10px;
+  border: 1px solid #bbbbbb;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#review-textarea {
+  height: 200px;
+  width: 100%;
+  resize: none;
+}
+
+#review-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 460px;
+  height: 480px;
+}
+
+#review-header {
+  margin-bottom: 2rem;
+}
+
+#review-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  gap: 10px;
+}
+
+.review-label {
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.review-input {
+  margin-top: 4px;
+  padding: 8px;
+  border: 1px solid #aaaaaa;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 1rem;
+}
+
+#post-button {
+  background-color: #003366;
+  color: #e0f7fa;
+  font-size: 0.8rem;
+  padding: 6px 16px;
+  border: solid 1px #004d40;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 16px;
+  position: relative;
+  transition:
+    background-color 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
+}
+
+#post-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s ease-in-out;
+  z-index: 0;
+}
+
+#post-button:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+}
+
+#post-button:hover {
+  background-color: #004d40;
+  color: #ffffff;
+}
+
+#post-button:disabled,
+#post-button:disabled:hover {
+  background-color: #5e7b8b;
+  cursor: not-allowed;
+  border: solid 1px #bbbbbb;
+  color: #b0bec5;
+}
+
+#post-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+#wand-input {
+  display: inline-flex;
+  align-self: center;
+  justify-self: center;
+}

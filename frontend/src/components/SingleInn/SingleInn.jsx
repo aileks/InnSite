@@ -17,6 +17,7 @@ export default function SingleInn() {
 
   // Get user ID for comparison in Reviews component
   const user = useSelector(state => state.session.user) || null;
+  // Have to null check because of how state is
   const userId = user ? user.id : null;
 
   const handleClick = e => {

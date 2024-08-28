@@ -64,6 +64,8 @@ export default function InnForm() {
 
     if (!validateForm()) return;
 
+    setErrors({});
+
     const newInn = {
       address,
       city,

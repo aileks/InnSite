@@ -15,7 +15,7 @@ module.exports = {
         {
           email: 'admin@innsite.com',
           username: 'admin',
-          firstName: 'Elara',
+          firstName: 'Lucia',
           lastName: 'Moonshadow',
           hashedPassword: bcrypt.hashSync('420SecretP@ssw0rd69'),
         },

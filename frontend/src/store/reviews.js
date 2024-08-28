@@ -31,13 +31,13 @@ export const getAllReviews = id => async dispatch => {
   return res;
 };
 
-export const addReview = review => async dispatch => {
-  const res = await csrfFetch('api/reviews', {
+export const addReview = (id, review) => async dispatch => {
+  const res = await csrfFetch(`/api/spots/${id}/reviews`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
-    body: review,
+    body: JSON.stringify(review),
   });
 
   if (res.ok) {
@@ -71,7 +71,12 @@ export default function reviewsReducer(state = {}, action) {
     case ADD_REVEIW:
       return {
         ...state,
-        [action.review.id]: action.review,
+        [action.review.id]: {
+          ...action.review,
+          User: {
+            ...state.user,
+          },
+        },
       };
     default:
       return state;
