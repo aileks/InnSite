@@ -1,0 +1,53 @@
+#confirm-container {
+  width: 400px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+#confirm-header {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 20px;
+}
+
+#button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.confirm-button {
+  padding: 10px 20px;
+}
+
+#yes,
+#no {
+  border-radius: 6px;
+  transition:
+    color 0.2s ease-in-out,
+    background-color 0.2s ease-in-out;
+}
+
+#yes {
+  color: #c0392b;
+  border: solid 2px #c0392b;
+}
+
+#yes:hover {
+  color: white;
+  background-color: #c0392b;
+}
+
+#no {
+  color: #4a7f4f;
+  border: solid 2px #4a7f4f;
+}
+
+#no:hover {
+  color: white;
+  background-color: #4a7f4f;
+}

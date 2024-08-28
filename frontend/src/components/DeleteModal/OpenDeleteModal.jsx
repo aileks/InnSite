@@ -1,6 +1,6 @@
 import { useModal } from "../../context/Modal";
 
-export default function OpenReviewModal({
+export default function OpenDeleteModal({
   modalComponent,
   itemText,
   onModalClose,
@@ -13,7 +13,7 @@ export default function OpenReviewModal({
   };
 
   return (
-    <button id="review-button" onClick={onClick}>
+    <button className='delete' onClick={onClick}>
       {itemText}
     </button>
   );

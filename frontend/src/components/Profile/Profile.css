@@ -30,20 +30,20 @@
   gap: 6px;
 }
 
-.modify-buttons button {
+.edit, .delete {
   background-color: transparent;
   border: none;
-  font-weight: bold;
+  font-weight: 500;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease-in-out;
 }
 
 .edit {
-  color: #6c7a89;
+  color: #3c6e8f;
 }
 
 .edit:hover {
-  color: #5a6b73;
+  color: #2a4a6d;
 }
 
 .delete {
@@ -51,5 +51,5 @@
 }
 
 .delete:hover {
-  color: #a83226;
+  color: #a32c1f ;
 }

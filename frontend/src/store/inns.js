@@ -6,39 +6,47 @@ const LOAD_ONE = 'inns/loadOne';
 const CREATE = 'inns/create';
 const ADD_IMAGE = 'images/addImage';
 const UPDATE = 'inns/update';
+const DELETE = 'inns/destroy';
 
-export const loadAll = inns => {
+const loadAll = inns => {
   return {
     type: LOAD_ALL,
     inns,
   };
 };
 
-export const loadOne = inn => {
+const loadOne = inn => {
   return {
     type: LOAD_ONE,
     inn,
   };
 };
 
-export const create = newInn => {
+const create = newInn => {
   return {
     type: CREATE,
     newInn,
   };
 };
 
-export const addImage = image => {
+const addImage = image => {
   return {
     type: ADD_IMAGE,
     image,
   };
 };
 
-export const update = inn => {
+const update = inn => {
   return {
     type: UPDATE,
     inn,
+  };
+};
+
+const destroy = id => {
+  return {
+    type: DELETE,
+    id,
   };
 };
 
@@ -137,6 +145,24 @@ export const updateInn = (id, inn) => async dispatch => {
   return res;
 };
 
+export const deleteInn = id => async dispatch => {
+  const res = await csrfFetch(`/api/spots/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (res.ok) {
+    const message = await res.json();
+    dispatch(destroy(id));
+
+    return message;
+  }
+
+  return res;
+};
+
 export const selectInns = state => state.inns;
 export const selectInnById = innId => state => state.inns[innId];
 export const selectInnsArray = createSelector(selectInns, inns => {
@@ -179,6 +205,11 @@ export default function innsReducer(state = {}, action) {
         ...state,
         [action.inn.id]: action.inn,
       };
+    case DELETE: {
+      const newState = { ...state }
+      delete newState[action.id];
+      return newState;
+    }
     default:
       return state;
   }

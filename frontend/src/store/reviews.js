@@ -1,24 +1,32 @@
-import { csrfFetch } from "./csrf";
-import { createSelector } from "reselect";
+import { csrfFetch } from './csrf';
+import { createSelector } from 'reselect';
 
-const LOAD_ALL = "reviews/loadAll";
-const ADD_REVIEW = "reviews/add";
+const LOAD_ALL = 'reviews/loadAll';
+const ADD_REVIEW = 'reviews/add';
+const DELETE = 'reviews/destroy';
 
-export const loadAll = (reviews) => {
+const loadAll = reviews => {
   return {
     type: LOAD_ALL,
     reviews,
   };
 };
 
-export const add = (review) => {
+const add = review => {
   return {
     type: ADD_REVIEW,
     review,
   };
 };
 
-export const getAllReviews = (id) => async (dispatch) => {
+const destroy = id => {
+  return {
+    type: DELETE,
+    id,
+  };
+};
+
+export const getAllReviews = id => async dispatch => {
   const res = await csrfFetch(`/api/spots/${id}/reviews`);
 
   if (res.ok) {
@@ -31,11 +39,11 @@ export const getAllReviews = (id) => async (dispatch) => {
   return res;
 };
 
-export const addReview = (id, review) => async (dispatch) => {
+export const addReview = (id, review) => async dispatch => {
   const res = await csrfFetch(`/api/spots/${id}/reviews`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify(review),
   });
@@ -58,8 +66,26 @@ export const addReview = (id, review) => async (dispatch) => {
   return res;
 };
 
-export const selectReviews = (state) => state.reviews;
-export const selectReviewsArray = createSelector(selectReviews, (reviews) => {
+export const deleteReview = id => async dispatch => {
+  const res = await csrfFetch(`/api/reviews/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+
+  if (res.ok) {
+    const message = await res.json();
+    dispatch(destroy(id));
+
+    return message;
+  }
+
+  return res;
+};
+
+export const selectReviews = state => state.reviews;
+export const selectReviewsArray = createSelector(selectReviews, reviews => {
   return Object.values(reviews);
 });
 
@@ -68,7 +94,7 @@ export default function reviewsReducer(state = {}, action) {
     case LOAD_ALL: {
       const newState = {};
 
-      action.reviews.forEach((review) => {
+      action.reviews.forEach(review => {
         newState[review.id] = review;
       });
 
@@ -83,6 +109,11 @@ export default function reviewsReducer(state = {}, action) {
           ...action.review,
         },
       };
+    case DELETE: {
+      const newState = { ...state };
+      delete newState[action.id];
+      return newState;
+    }
     default:
       return state;
   }
