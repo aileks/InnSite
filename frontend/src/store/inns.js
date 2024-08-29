@@ -7,43 +7,52 @@ const CREATE = 'inns/create';
 const ADD_IMAGE = 'images/addImage';
 const UPDATE = 'inns/update';
 const DELETE = 'inns/destroy';
+const UPDATE_AVG_RATING = 'inns/updateAvgRating';
 
-const loadAll = inns => {
+export const updateAvgRating = (innId, avgRating) => {
+  return {
+    type: UPDATE_AVG_RATING,
+    innId,
+    avgRating,
+  };
+};
+
+export const loadAll = inns => {
   return {
     type: LOAD_ALL,
     inns,
   };
 };
 
-const loadOne = inn => {
+export const loadOne = inn => {
   return {
     type: LOAD_ONE,
     inn,
   };
 };
 
-const create = newInn => {
+export const create = newInn => {
   return {
     type: CREATE,
     newInn,
   };
 };
 
-const addImage = image => {
+export const addImage = image => {
   return {
     type: ADD_IMAGE,
     image,
   };
 };
 
-const update = inn => {
+export const update = inn => {
   return {
     type: UPDATE,
     inn,
   };
 };
 
-const destroy = id => {
+export const destroy = id => {
   return {
     type: DELETE,
     id,
@@ -208,6 +217,17 @@ export default function innsReducer(state = {}, action) {
     case DELETE: {
       const newState = { ...state };
       delete newState[action.id];
+      return newState;
+    }
+    case UPDATE_AVG_RATING: {
+      const newState = { ...state };
+
+      if (newState[action.innId]) {
+        newState[action.innId] = {
+          ...newState[action.innId],
+          avgStarRating: action.avgRating,
+        };
+      }
       return newState;
     }
     default:

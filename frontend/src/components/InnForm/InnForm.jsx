@@ -36,7 +36,7 @@ export default function InnForm() {
     } else if (lng < -180) {
       setLng(-180);
     }
-  }, [lat, lng])
+  }, [lat, lng]);
 
   useEffect(() => {
     if (!user) {
@@ -62,6 +62,8 @@ export default function InnForm() {
     if (!name) newErrors.name = 'Name is required';
     if (!description || description.length < 30)
       newErrors.description = 'Description needs a minimum of 30 characters';
+    if (description.length > 250)
+      newErrors.description = 'Description cannot exceed 250 characters';
     if (!price || price <= 0) newErrors.price = 'Price is required';
     if (!previewImage.url) newErrors.previewImage = 'Preview image is required';
 

@@ -87,7 +87,7 @@ export default function Reviews({ userId, inn }) {
                 <div className='modal-container'>
                   <OpenDeleteModal
                     itemText='Delete'
-                    modalComponent={<DeleteModal review={review} />}
+                    modalComponent={<DeleteModal inn={inn} review={review} />}
                   />
                 </div>
               )}

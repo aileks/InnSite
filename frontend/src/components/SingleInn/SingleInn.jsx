@@ -76,7 +76,7 @@ export default function SingleInn() {
                   Hosted by {inn?.Owner?.firstName} {inn?.Owner?.lastName}
                 </h3>
 
-                <p id='inn-description'>{inn.description}.</p>
+                <div id='inn-description'>{inn.description}.</div>
               </div>
 
               <div id='callout-container'>

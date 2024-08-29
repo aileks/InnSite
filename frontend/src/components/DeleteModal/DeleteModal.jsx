@@ -17,10 +17,13 @@ export default function DeleteModal({ inn, review }) {
     let res = '';
 
     if (inn?.id) {
-      res = await dispatch(deleteInn(inn.id));
-    } else if (review?.id) {
-      res = await dispatch(deleteReview(review.id));
+      if (review?.id) {
+        res = await dispatch(deleteReview(review.id, inn.id))
+      } else {
+        res = await dispatch(deleteInn(inn.id));
+      }
     }
+    
 
     if (res.message) {
       showToast(res.message);
