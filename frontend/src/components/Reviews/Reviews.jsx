@@ -63,35 +63,35 @@ export default function Reviews({ userId, inn }) {
               itemText='Post Your Review!'
             />
           )}
-          reviews?.map(review => (
-          <div
-            className='review-card'
-            key={review.id}
-          >
-            <h3 className='review-title'>
-              {review.User.firstName}
-              {' • '}{' '}
-              <span className='date'>
-                {months[new Date(review.createdAt).getMonth()]}{' '}
-                {new Date(review.createdAt).getFullYear()}
-              </span>
-              <span className='time-ago'> ({timestamp(review.createdAt)})</span>
-            </h3>
+          {reviews?.map(review => (
+            <div
+              className='review-card'
+              key={review.id}
+            >
+              <h3 className='review-title'>
+                {review.User.firstName}
+                {' • '}{' '}
+                <span className='date'>
+                  {months[new Date(review.createdAt).getMonth()]}{' '}
+                  {new Date(review.createdAt).getFullYear()}
+                </span>
+                <span className='time-ago'> ({timestamp(review.createdAt)})</span>
+              </h3>
 
-            <StarRating rating={review.stars} />
+              <StarRating rating={review.stars} />
 
-            <p className='review-body'>{review.review}</p>
+              <p className='review-body'>{review.review}</p>
 
-            {review.userId === userId && (
-              <div className='modal-container'>
-                <OpenDeleteModal
-                  itemText='Delete'
-                  modalComponent={<DeleteModal review={review} />}
-                />
-              </div>
-            )}
-          </div>
-          ))
+              {review.userId === userId && (
+                <div className='modal-container'>
+                  <OpenDeleteModal
+                    itemText='Delete'
+                    modalComponent={<DeleteModal review={review} />}
+                  />
+                </div>
+              )}
+            </div>
+          ))}
         </>
       ) : userId !== ownerId ? (
         <div className='add-review'>
