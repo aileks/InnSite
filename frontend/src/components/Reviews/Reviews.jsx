@@ -20,8 +20,6 @@ export default function Reviews({ userId, inn }) {
   const ownerId = inn?.ownerId;
   const userHasReview = reviews.some(review => review.userId === userId);
 
-  console.log('\n\n --- logging inn id from reviews --- \n\n', id);
-
   const months = [
     'Jan',
     'Feb',
