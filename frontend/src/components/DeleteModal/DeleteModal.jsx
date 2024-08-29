@@ -16,9 +16,9 @@ export default function DeleteModal({ inn, review }) {
 
     let res = '';
 
-    if (inn.id) {
+    if (inn?.id) {
       res = await dispatch(deleteInn(inn.id));
-    } else if (review.id) {
+    } else if (review?.id) {
       res = await dispatch(deleteReview(review.id));
     }
 
