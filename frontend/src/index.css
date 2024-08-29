@@ -147,3 +147,32 @@ hr {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transform: translateY(-1px);
 }
+
+.edit, .delete {
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.edit {
+  color: #3c6e8f;
+  border: solid 2px #3c6e8f;
+}
+
+.edit:hover {
+  color: white;
+  background-color: #3c6e8f;
+}
+
+.delete {
+  color: #c0392b;
+  border: solid 2px #c0392b;
+}
+
+.delete:hover {
+  color: white;
+  background-color: #c0392b;
+}
+

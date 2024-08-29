@@ -13,7 +13,7 @@ export default function OpenDeleteModal({
   };
 
   return (
-    <button className='delete delete-container' onClick={onClick}>
+    <button className='delete' onClick={onClick}>
       {itemText}
     </button>
   );
