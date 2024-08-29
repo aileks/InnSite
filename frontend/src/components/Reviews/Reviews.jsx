@@ -55,16 +55,15 @@ export default function Reviews({ userId, inn }) {
           </>
         )}
       </h2>
-
-      {userId && !userHasReview && ownerId !== userId && (
-        <OpenReviewModal
-          modalComponent={<ReviewFormModal id={id} />}
-          itemText='Post Your Review!'
-        />
-      )}
-
       {reviews?.length ? (
-        reviews?.map(review => (
+        <>
+          {userId && !userHasReview && ownerId !== userId && (
+            <OpenReviewModal
+              modalComponent={<ReviewFormModal id={id} />}
+              itemText='Post Your Review!'
+            />
+          )}
+          reviews?.map(review => (
           <div
             className='review-card'
             key={review.id}
@@ -92,10 +91,11 @@ export default function Reviews({ userId, inn }) {
               </div>
             )}
           </div>
-        ))
+          ))
+        </>
       ) : userId !== ownerId ? (
         <div className='add-review'>
-          <p>Be the first to post review!</p>
+          <p>Be the first to post a review!</p>
 
           <OpenReviewModal
             modalComponent={<ReviewFormModal />}
