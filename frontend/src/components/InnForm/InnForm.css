@@ -2,7 +2,7 @@
   max-width: 800px;
   padding: 14px 20px;
   margin: 8px auto;
-  background: #f7f7f7;
+  background-color: #f7f7f7;
   border: solid 1px #aaaaaa;
   border-radius: 6px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -121,4 +121,17 @@
 
 .image-input {
   margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+  #form-container {
+    border: none;
+    border-radius: 0;
+    background-color: inherit;
+    box-shadow: unset;
+  }
+
+  #city {
+    width: 400px;
+  }
 }
