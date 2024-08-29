@@ -55,34 +55,36 @@ export default function Reviews({ userId, inn }) {
           </>
         )}
       </h2>
+
       {reviews?.length ? (
         <>
           {userId && !userHasReview && ownerId !== userId && (
             <OpenReviewModal
-              modalComponent={<ReviewFormModal id={id} />}
+              modalComponent={<ReviewFormModal id={inn?.id} />}
               itemText='Post Your Review!'
             />
           )}
+
           {reviews?.map(review => (
             <div
               className='review-card'
-              key={review.id}
+              key={review?.id}
             >
               <h3 className='review-title'>
-                {review.User.firstName}
+                {review?.User?.firstName}
                 {' • '}{' '}
                 <span className='date'>
-                  {months[new Date(review.createdAt).getMonth()]}{' '}
-                  {new Date(review.createdAt).getFullYear()}
+                  {months[new Date(review?.createdAt).getMonth()]}{' '}
+                  {new Date(review?.createdAt).getFullYear()}
                 </span>
-                <span className='time-ago'> ({timestamp(review.createdAt)})</span>
+                <span className='time-ago'> ({timestamp(review?.createdAt)})</span>
               </h3>
 
-              <StarRating rating={review.stars} />
+              <StarRating rating={review?.stars} />
 
-              <p className='review-body'>{review.review}</p>
+              <p className='review-body'>{review?.review}</p>
 
-              {review.userId === userId && (
+              {review?.userId === userId && (
                 <div className='modal-container'>
                   <OpenDeleteModal
                     itemText='Delete'

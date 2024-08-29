@@ -84,6 +84,8 @@ export const deleteReview = id => async dispatch => {
   return res;
 };
 
+export const getAvgReview = state => state.inns.avgRating
+
 export const selectReviews = state => state.reviews;
 export const selectReviewsArray = createSelector(selectReviews, reviews => {
   return Object.values(reviews);

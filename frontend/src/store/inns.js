@@ -206,7 +206,7 @@ export default function innsReducer(state = {}, action) {
         [action.inn.id]: action.inn,
       };
     case DELETE: {
-      const newState = { ...state }
+      const newState = { ...state };
       delete newState[action.id];
       return newState;
     }

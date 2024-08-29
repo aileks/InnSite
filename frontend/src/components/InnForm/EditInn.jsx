@@ -27,6 +27,20 @@ export default function EditInn() {
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
+    if (lat > 90) {
+      setLat(90);
+    } else if (lat < -90) {
+      setLat(-90);
+    }
+
+    if (lng > 180) {
+      setLng(180);
+    } else if (lng < -180) {
+      setLng(-180);
+    }
+  }, [lat, lng]);
+
+  useEffect(() => {
     dispatch(getInnById(id)).then(data => {
       setAddress(data.address);
       setCity(data.city);
@@ -207,6 +221,8 @@ export default function EditInn() {
 
               <input
                 type='number'
+                max={90}
+                min={-90}
                 step='any'
                 className='form-input'
                 value={lat || ''}
@@ -222,6 +238,8 @@ export default function EditInn() {
 
               <input
                 type='number'
+                max={180}
+                min={-180}
                 step='any'
                 className='form-input'
                 value={lng || ''}

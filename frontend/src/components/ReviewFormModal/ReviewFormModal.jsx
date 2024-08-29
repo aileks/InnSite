@@ -33,8 +33,7 @@ export default function ReviewFormModal({ id }) {
     };
 
     try {
-      await dispatch(addReview(id, newReview));
-      closeModal();
+      return dispatch(addReview(id, newReview)).then(closeModal);
     } catch (res) {
       if (res.json) {
         const data = await res.json();
@@ -65,6 +64,10 @@ export default function ReviewFormModal({ id }) {
       <div id='review-container'>
         <h1 id='review-header'>How was your stay?</h1>
 
+
+        {errors.message && <p className='error'>{errors.message}</p>}
+        <br />
+
         <form
           id='review-form'
           onSubmit={handleSubmit}
@@ -83,8 +86,6 @@ export default function ReviewFormModal({ id }) {
             rating={rating}
             onChange={onChange}
           />
-
-          {errors.message && <p className='error'>{errors.message}</p>}
 
           <div className='button-container'>
             <button
