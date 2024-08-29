@@ -17,9 +17,9 @@ export default function Reviews({ userId, inn }) {
   const reviews = useSelector(selectReviewsArray).sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
   );
-  const { ownerId } = inn || null;
-
+  const ownerId = inn?.ownerId;
   const userHasReview = reviews.some(review => review.userId === userId);
+
 
   const months = [
     'Jan',
@@ -58,12 +58,12 @@ export default function Reviews({ userId, inn }) {
 
       {reviews?.length ? (
         <>
-          {userId && !userHasReview && ownerId !== userId && (
+          {userId && !userHasReview && ownerId !== userId ? (
             <OpenReviewModal
               modalComponent={<ReviewFormModal id={inn?.id} />}
               itemText='Post Your Review!'
             />
-          )}
+          ) : ''}
 
           {reviews?.map(review => (
             <div
@@ -95,7 +95,7 @@ export default function Reviews({ userId, inn }) {
             </div>
           ))}
         </>
-      ) : userId !== ownerId ? (
+      ) : userId && userId !== ownerId ? (
         <div className='add-review'>
           <p>Be the first to post a review!</p>
 
