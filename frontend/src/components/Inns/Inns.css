@@ -99,7 +99,7 @@ a:hover {
   opacity: 1;
 }
 
-/* Response views */
+/* Responsive views */
 @media (max-width: 600px) {
   .inns-grid {
     grid-template-columns: 1fr;
