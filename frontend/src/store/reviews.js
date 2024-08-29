@@ -65,7 +65,7 @@ export const addReview = (innId, review) => async dispatch => {
     const innRes = await csrfFetch(`/api/spots/${innId}`);
     if (innRes.ok) {
       const updatedInn = await innRes.json();
-      dispatch(updateAvgRating(innId, updatedInn.avgStarRating));
+      dispatch(updateAvgRating(innId, updatedInn.avgStarRating, updatedInn.numReviews));
     }
 
     return data;
@@ -89,7 +89,7 @@ export const deleteReview = (reviewId, innId) => async dispatch => {
     const innRes = await csrfFetch(`/api/spots/${innId}`);
     if (innRes.ok) {
       const updatedInn = await innRes.json();
-      dispatch(updateAvgRating(innId, updatedInn.avgStarRating));
+      dispatch(updateAvgRating(innId, updatedInn.avgStarRating, updatedInn.numReviews));
     }
 
     return message;

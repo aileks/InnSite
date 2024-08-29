@@ -9,14 +9,6 @@ const UPDATE = 'inns/update';
 const DELETE = 'inns/destroy';
 const UPDATE_AVG_RATING = 'inns/updateAvgRating';
 
-export const updateAvgRating = (innId, avgRating) => {
-  return {
-    type: UPDATE_AVG_RATING,
-    innId,
-    avgRating,
-  };
-};
-
 export const loadAll = inns => {
   return {
     type: LOAD_ALL,
@@ -56,6 +48,15 @@ export const destroy = id => {
   return {
     type: DELETE,
     id,
+  };
+};
+
+export const updateAvgRating = (innId, avgRating, numReviews) => {
+  return {
+    type: UPDATE_AVG_RATING,
+    innId,
+    avgRating,
+    numReviews
   };
 };
 
@@ -226,6 +227,7 @@ export default function innsReducer(state = {}, action) {
         newState[action.innId] = {
           ...newState[action.innId],
           avgStarRating: action.avgRating,
+          numReviews: action.numReviews
         };
       }
       return newState;

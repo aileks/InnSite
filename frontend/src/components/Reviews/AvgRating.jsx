@@ -1,22 +1,20 @@
-import { SlMagicWand } from "react-icons/sl";
+import { SlMagicWand } from 'react-icons/sl';
 
 export default function AvgRating({ inn }) {
-  const { avgStarRating, numReviews } = inn || null;
+  const inn = useSelector(state => selectInnById(state, inn.id));
+
+  const { avgStarRating, numReviews } = inn;
 
   return (
-    <div id="avg-rating">
+    <div id='avg-rating'>
       {avgStarRating && <>Rating: {avgStarRating.toFixed(2)}</>}
 
-      <SlMagicWand style={{ color: "#6a0dad" }} />
+      <SlMagicWand style={{ color: '#6a0dad' }} />
 
       {numReviews ? (
-        <>
-          {numReviews === 1
-            ? `• ${numReviews} Review`
-            : `• ${numReviews} Reviews`}{" "}
-        </>
+        <>{numReviews === 1 ? `• ${numReviews} Review` : `• ${numReviews} Reviews`} </>
       ) : (
-        "*New*"
+        '*New*'
       )}
     </div>
   );
