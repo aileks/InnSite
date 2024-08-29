@@ -296,9 +296,8 @@ export default function InnForm() {
           {errors.previewImage && <p className='error'>{errors.previewImage}</p>}
 
           {Array.from({ length: 4 }, (_, idx) => (
-            <>
+            <div key={idx}>
               <input
-                key={idx}
                 type='text'
                 className='form-input image-input'
                 value={images[idx] || ''}
@@ -306,7 +305,7 @@ export default function InnForm() {
                 onChange={e => handleImageChange(idx, e.target.value)}
               />
               {errors[`image${idx}`] && <p className='error'>{errors[`image${idx}`]}</p>}
-            </>
+            </div>
           ))}
         </div>
 
