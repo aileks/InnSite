@@ -4,7 +4,7 @@ a:hover {
 
 #landing-header {
   margin: 16px 0 0 24px;
-  font-family: "Macondo", cursive;
+  font-family: 'Macondo', cursive;
   font-size: 2rem;
   font-weight: 400;
   font-style: normal;
@@ -26,6 +26,12 @@ a:hover {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+#card-link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .inn-image-container {
   aspect-ratio: 1 / 1;
   overflow: clip;
@@ -38,7 +44,7 @@ a:hover {
 }
 
 .inn-card-info {
-  padding: 16px;
+  padding: 4px 16px 16px;
 }
 
 .inn-card-location {
@@ -47,10 +53,12 @@ a:hover {
 }
 
 .inn-card-rating {
+  padding: 10px 12px;
   display: flex;
-  align-items: center;
-  margin-bottom: 4px;
   gap: 4px;
+  max-width: fit-content;
+  align-self: end;
+  justify-self: end;
 }
 
 .inn-card-price {
@@ -84,7 +92,7 @@ a:hover {
 
 /* Adds a little arrow at the bottom */
 #tooltip-text::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;
