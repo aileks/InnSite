@@ -352,7 +352,7 @@ export default function EditInn() {
           type='submit'
           className='form-button'
         >
-          Create Inn
+          Update Inn
         </button>
       </form>
     </div>
