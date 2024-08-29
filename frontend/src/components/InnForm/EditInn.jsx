@@ -3,12 +3,14 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectInnById, getInnById, updateInn } from '../../store/inns';
+import { useToast } from '../../context/Toast';
 
 export default function EditInn() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const inn = useSelector(selectInnById(id));
+  const { showToast } = useToast();
   const user = useSelector(state => state.session.user);
 
   const [address, setAddress] = useState(inn?.address);
@@ -109,6 +111,8 @@ export default function EditInn() {
       // }
 
       navigate(`/inns/${id}`);
+
+      showToast('Inn successfully updated');
     } catch (err) {
       console.error('Error creating new inn:', err);
     }

@@ -10,6 +10,7 @@ export default function InnForm() {
   const navigate = useNavigate();
   const { showToast } = useToast();
   const user = useSelector(state => state.session.user);
+
   const [address, setAddress] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
