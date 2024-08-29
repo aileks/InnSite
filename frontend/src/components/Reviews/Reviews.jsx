@@ -20,6 +20,7 @@ export default function Reviews({ userId, inn }) {
   const ownerId = inn?.ownerId;
   const userHasReview = reviews.some(review => review.userId === userId);
 
+  console.log('\n\n --- logging inn id from reviews --- \n\n', id);
 
   const months = [
     'Jan',
@@ -60,7 +61,7 @@ export default function Reviews({ userId, inn }) {
         <>
           {userId && !userHasReview && ownerId !== userId ? (
             <OpenReviewModal
-              modalComponent={<ReviewFormModal id={inn?.id} />}
+              modalComponent={<ReviewFormModal innId={id} />}
               itemText='Post Your Review!'
             />
           ) : ''}
@@ -100,7 +101,7 @@ export default function Reviews({ userId, inn }) {
           <p>Be the first to post a review!</p>
 
           <OpenReviewModal
-            modalComponent={<ReviewFormModal />}
+            modalComponent={<ReviewFormModal innId={id} />}
             itemText='Post Your Review!'
           />
         </div>

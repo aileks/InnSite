@@ -6,13 +6,14 @@ import { IoIosCloseCircle } from 'react-icons/io';
 import { addReview } from '../../store/reviews';
 import RatingInput from './RatingInput';
 
-export default function ReviewFormModal({ id }) {
+export default function ReviewFormModal({ innId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const [review, setReview] = useState('');
   const [rating, setRating] = useState(0);
   const [disabled, setDisabled] = useState(true);
   const [errors, setErrors] = useState({});
+
 
   useEffect(() => {
     if (review.length >= 10 && rating >= 1) {
@@ -33,7 +34,7 @@ export default function ReviewFormModal({ id }) {
     };
 
     try {
-      return dispatch(addReview(id, newReview)).then(closeModal);
+      return dispatch(addReview(innId, newReview)).then(closeModal);
     } catch (res) {
       if (res.json) {
         const data = await res.json();
