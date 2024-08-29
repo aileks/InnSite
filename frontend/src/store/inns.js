@@ -56,7 +56,7 @@ export const updateAvgRating = (innId, avgRating, numReviews) => {
     type: UPDATE_AVG_RATING,
     innId,
     avgRating,
-    numReviews
+    numReviews,
   };
 };
 
@@ -227,7 +227,7 @@ export default function innsReducer(state = {}, action) {
         newState[action.innId] = {
           ...newState[action.innId],
           avgStarRating: action.avgRating,
-          numReviews: action.numReviews
+          numReviews: action.numReviews,
         };
       }
       return newState;
