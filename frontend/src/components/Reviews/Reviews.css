@@ -1,4 +1,13 @@
-.add-review p {
+#reviews-container {
+  justify-self: flex-start;
+  align-self: flex-start;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.add-review {
   margin-top: 4px;
   font-size: 1.1rem;
 }

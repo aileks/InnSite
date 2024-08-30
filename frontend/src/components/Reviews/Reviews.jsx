@@ -72,10 +72,12 @@ export default function Reviews({ userId, inn }) {
               <h3 className="review-title">
                 {review?.User?.firstName}
                 {" • "}{" "}
+
                 <span className="date">
                   {months[new Date(review?.createdAt).getMonth()]}{" "}
                   {new Date(review?.createdAt).getFullYear()}
                 </span>
+
                 <span className="time-ago">
                   {" "}
                   ({timestamp(review?.createdAt)})
