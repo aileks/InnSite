@@ -62,10 +62,10 @@ export default function ProfileButton({ user }) {
       >
         {user ? (
           <>
-            <li>Hello, {user.username}!</li>
+            <li>Hello, {user.firstName}</li>
 
             <li>
-              {user.firstName} {user.lastName}
+              {user.username}
             </li>
 
             <li>{user.email}</li>
