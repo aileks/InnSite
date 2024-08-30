@@ -6,10 +6,6 @@ import OpenDeleteModal from '../DeleteModal/OpenDeleteModal';
 export default function InnCard({ inn }) {
   const isInProfile = window.location.href.includes('/profile');
 
-  const handleClick = e => {
-    e.stopPropagation();
-  };
-
   return (
     <>
       {inn && (
