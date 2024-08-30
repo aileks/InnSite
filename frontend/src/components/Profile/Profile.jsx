@@ -23,7 +23,7 @@ export default function Profile() {
   }, [user, navigate]);
 
   return (
-    <>
+    <div className='content-container'>
       {userInns.length ? (
         <>
           <h1 id='profile-header'>Manage Inns</h1>
@@ -54,6 +54,6 @@ export default function Profile() {
           </Link>
         </div>
       )}
-    </>
+    </div>
   );
 }
