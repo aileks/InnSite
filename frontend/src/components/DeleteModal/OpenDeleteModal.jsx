@@ -7,13 +7,14 @@ export default function OpenDeleteModal({
 }) {
   const { setModalContent, setOnModalClose } = useModal();
 
-  const onClick = () => {
+  const onClick = (e) => {
+    e.preventDefault();
     if (onModalClose) setOnModalClose(onModalClose);
     setModalContent(modalComponent);
   };
 
   return (
-    <button className='delete' onClick={onClick}>
+    <button className="delete" onClick={onClick}>
       {itemText}
     </button>
   );

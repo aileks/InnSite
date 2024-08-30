@@ -1,57 +1,67 @@
-import { csrfFetch } from './csrf';
-import { createSelector } from 'reselect';
+import { csrfFetch } from "./csrf";
+import { createSelector } from "reselect";
 
-const LOAD_ALL = 'inns/loadAll';
-const LOAD_ONE = 'inns/loadOne';
-const CREATE = 'inns/create';
-const ADD_IMAGE = 'images/addImage';
-const UPDATE = 'inns/update';
-const DELETE = 'inns/destroy';
+const LOAD_ALL = "inns/loadAll";
+const LOAD_ONE = "inns/loadOne";
+const CREATE = "inns/create";
+const ADD_IMAGE = "images/addImage";
+const UPDATE = "inns/update";
+const DELETE = "inns/destroy";
+const UPDATE_AVG_RATING = "inns/updateAvgRating";
 
-const loadAll = inns => {
+export const loadAll = (inns) => {
   return {
     type: LOAD_ALL,
     inns,
   };
 };
 
-const loadOne = inn => {
+export const loadOne = (inn) => {
   return {
     type: LOAD_ONE,
     inn,
   };
 };
 
-const create = newInn => {
+export const create = (newInn) => {
   return {
     type: CREATE,
     newInn,
   };
 };
 
-const addImage = image => {
+export const addImage = (image) => {
   return {
     type: ADD_IMAGE,
     image,
   };
 };
 
-const update = inn => {
+export const update = (inn) => {
   return {
     type: UPDATE,
     inn,
   };
 };
 
-const destroy = id => {
+export const destroy = (id) => {
   return {
     type: DELETE,
     id,
   };
 };
 
-export const getAllInns = () => async dispatch => {
-  const res = await csrfFetch('/api/spots');
+export const updateAvgRating = (innId, avgRating, numReviews) => {
+  return {
+    type: UPDATE_AVG_RATING,
+    innId,
+    avgRating,
+    numReviews,
+  };
+};
+
+export const getAllInns = () => async (dispatch) => {
+  const res = await csrfFetch("/api/spots");
   if (res.ok) {
     const data = await res.json();
     dispatch(loadAll(data.Spots));
@@ -62,8 +72,8 @@ export const getAllInns = () => async dispatch => {
   return res;
 };
 
-export const getUserInns = () => async dispatch => {
-  const res = await csrfFetch('/api/spots/current');
+export const getUserInns = () => async (dispatch) => {
+  const res = await csrfFetch("/api/spots/current");
 
   if (res.ok) {
     const data = await res.json();
@@ -75,7 +85,7 @@ export const getUserInns = () => async dispatch => {
   return res;
 };
 
-export const getInnById = id => async dispatch => {
+export const getInnById = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${id}`);
 
   if (res.ok) {
@@ -87,11 +97,11 @@ export const getInnById = id => async dispatch => {
   return res;
 };
 
-export const createInn = newInn => async dispatch => {
-  const res = await csrfFetch('/api/spots', {
-    method: 'POST',
+export const createInn = (newInn) => async (dispatch) => {
+  const res = await csrfFetch("/api/spots", {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(newInn),
   });
@@ -105,11 +115,11 @@ export const createInn = newInn => async dispatch => {
   return res;
 };
 
-export const addNewImage = (id, image) => async dispatch => {
+export const addNewImage = (id, image) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${id}/images`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify({
       url: image.url ? image.url : image,
@@ -125,11 +135,11 @@ export const addNewImage = (id, image) => async dispatch => {
   return res;
 };
 
-export const updateInn = (id, inn) => async dispatch => {
+export const updateInn = (id, inn) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${id}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(inn),
   });
@@ -145,11 +155,11 @@ export const updateInn = (id, inn) => async dispatch => {
   return res;
 };
 
-export const deleteInn = id => async dispatch => {
+export const deleteInn = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
@@ -163,9 +173,9 @@ export const deleteInn = id => async dispatch => {
   return res;
 };
 
-export const selectInns = state => state.inns;
-export const selectInnById = innId => state => state.inns[innId];
-export const selectInnsArray = createSelector(selectInns, inns => {
+export const selectInns = (state) => state.inns;
+export const selectInnById = (innId) => (state) => state.inns[innId];
+export const selectInnsArray = createSelector(selectInns, (inns) => {
   return Object.values(inns);
 });
 
@@ -174,7 +184,7 @@ export default function innsReducer(state = {}, action) {
     case LOAD_ALL: {
       const newState = {};
 
-      action.inns.forEach(inn => {
+      action.inns.forEach((inn) => {
         newState[inn.id] = inn;
       });
 
@@ -188,7 +198,8 @@ export default function innsReducer(state = {}, action) {
         ...state,
         [action.inn.id]: {
           ...action.inn,
-          previewImage: action.inn.SpotImages.find(image => image.preview).url,
+          previewImage: action.inn.SpotImages.find((image) => image.preview)
+            .url,
         },
       };
     case CREATE:
@@ -206,8 +217,20 @@ export default function innsReducer(state = {}, action) {
         [action.inn.id]: action.inn,
       };
     case DELETE: {
-      const newState = { ...state }
+      const newState = { ...state };
       delete newState[action.id];
+      return newState;
+    }
+    case UPDATE_AVG_RATING: {
+      const newState = { ...state };
+
+      if (newState[action.innId]) {
+        newState[action.innId] = {
+          ...newState[action.innId],
+          avgStarRating: action.avgRating,
+          numReviews: action.numReviews,
+        };
+      }
       return newState;
     }
     default:

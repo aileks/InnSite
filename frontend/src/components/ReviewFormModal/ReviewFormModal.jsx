@@ -1,15 +1,15 @@
-import './ReviewFormModal.css';
-import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { useModal } from '../../context/Modal';
-import { IoIosCloseCircle } from 'react-icons/io';
-import { addReview } from '../../store/reviews';
-import RatingInput from './RatingInput';
+import "./ReviewFormModal.css";
+import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useModal } from "../../context/Modal";
+import { IoIosCloseCircle } from "react-icons/io";
+import { addReview } from "../../store/reviews";
+import RatingInput from "./RatingInput";
 
-export default function ReviewFormModal({ id }) {
+export default function ReviewFormModal({ innId }) {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const [review, setReview] = useState('');
+  const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
   const [disabled, setDisabled] = useState(true);
   const [errors, setErrors] = useState({});
@@ -22,7 +22,7 @@ export default function ReviewFormModal({ id }) {
     }
   }, [review, rating]);
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     setErrors({});
@@ -33,8 +33,7 @@ export default function ReviewFormModal({ id }) {
     };
 
     try {
-      await dispatch(addReview(id, newReview));
-      closeModal();
+      return dispatch(addReview(innId, newReview)).then(closeModal);
     } catch (res) {
       if (res.json) {
         const data = await res.json();
@@ -44,55 +43,43 @@ export default function ReviewFormModal({ id }) {
         }
       } else {
         console.error(res);
-        setErrors({ message: 'An unexpected error occurred.' });
+        setErrors({ message: "An unexpected error occurred." });
       }
     }
   };
 
-  const onChange = newRating => {
+  const onChange = (newRating) => {
     setRating(newRating);
   };
 
   return (
     <>
-      <span
-        onClick={closeModal}
-        id='close-button'
-      >
+      <span onClick={closeModal} id="close-button">
         <IoIosCloseCircle />
       </span>
 
-      <div id='review-container'>
-        <h1 id='review-header'>How was your stay?</h1>
+      <div id="review-container">
+        <h1 id="review-header">How was your stay?</h1>
 
-        <form
-          id='review-form'
-          onSubmit={handleSubmit}
-        >
-          <label id='review-label'>
+        {errors.message && <p className="error">{errors.message}</p>}
+        <br />
+
+        <form id="review-form" onSubmit={handleSubmit}>
+          <label id="review-label">
             <textarea
-              id='review-textarea'
-              type='text'
+              id="review-textarea"
+              type="text"
               value={review}
-              placeholder='Leave your review here...'
-              onChange={e => setReview(e.target.value)}
+              placeholder="Leave your review here..."
+              onChange={(e) => setReview(e.target.value)}
             />
           </label>
 
-          <RatingInput
-            rating={rating}
-            onChange={onChange}
-          />
+          <RatingInput rating={rating} onChange={onChange} />
 
-          {errors.message && <p className='error'>{errors.message}</p>}
-
-          <div className='button-container'>
-            <button
-              id='post-button'
-              type='submit'
-              disabled={disabled}
-            >
-              <span id='post-text'>Submit Your Review</span>
+          <div className="button-container">
+            <button id="post-button" type="submit" disabled={disabled}>
+              <span id="post-text">Submit Your Review</span>
             </button>
           </div>
         </form>

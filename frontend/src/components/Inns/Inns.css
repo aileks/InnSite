@@ -1,13 +1,10 @@
-a:hover {
-  text-decoration: none;
-}
-
 #landing-header {
   margin: 16px 0 0 24px;
-  font-family: "Macondo", cursive;
+  font-family: 'Macondo', cursive;
   font-size: 2rem;
   font-weight: 400;
   font-style: normal;
+  align-self: flex-start;
 }
 
 .inns-grid {
@@ -26,6 +23,12 @@ a:hover {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
+#card-link {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .inn-image-container {
   aspect-ratio: 1 / 1;
   overflow: clip;
@@ -38,23 +41,31 @@ a:hover {
 }
 
 .inn-card-info {
-  padding: 16px;
+  padding: 4px 8px 8px;
 }
 
 .inn-card-location {
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-right: 4px;
+}
+
+.inn-card-bottom-header {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .inn-card-rating {
   display: flex;
   align-items: center;
-  margin-bottom: 4px;
-  gap: 4px;
+  gap: 2px;
 }
 
 .inn-card-price {
   font-weight: 600;
+  margin-top: 6px;
 }
 
 #tooltip-container {
@@ -65,8 +76,8 @@ a:hover {
 /* Places tooltip above each inn card */
 #tooltip-text {
   visibility: hidden;
-  width: 200px;
-  background-color: #7f7a7a;
+  width: 80%;
+  background-color: #8a8a8a;
   color: white;
   text-align: center;
   border-radius: 6px;
@@ -79,19 +90,21 @@ a:hover {
   margin-bottom: 6px;
   opacity: 0;
   transition: opacity 0.4s;
-  font-size: 0.9em;
+  font-size: 0.95em;
+  align-self: center;
+  justify-self: center;
 }
 
 /* Adds a little arrow at the bottom */
 #tooltip-text::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
   border-width: 5px;
   border-style: solid;
-  border-color: #7f7a7a transparent transparent transparent;
+  border-color: #8a8a8a transparent transparent transparent;
 }
 
 #tooltip-container:hover #tooltip-text {
@@ -99,21 +112,52 @@ a:hover {
   opacity: 1;
 }
 
-/* Response views */
-@media (max-width: 600px) {
+/* Responsive views */
+@media (max-width: 768px) {
   .inns-grid {
     grid-template-columns: 1fr;
   }
+
+  #landing-header {
+    font-size: 1.6rem;
+  }
+
+  .inn-card-info {
+    font-size: 0.9rem;
+  }
 }
 
-@media (min-width: 601px) and (max-width: 900px) {
+@media (min-width: 769px) and (max-width: 900px) {
   .inns-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .inn-card-info {
+    font-size: 0.9rem;
   }
 }
 
 @media (min-width: 901px) and (max-width: 1200px) {
   .inns-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .inn-card-info {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  .inn-card {
+    width: 80%;
+  }
+
+  .inn-card-info {
+    font-size: 1rem;
+  }
+
+  #tooltip-text {
+    width: 40%;
+    left: 40%;
   }
 }

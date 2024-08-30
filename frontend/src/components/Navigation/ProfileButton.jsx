@@ -6,9 +6,11 @@ import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignUpFormModal from "../SignUpFormModal";
 import { NavLink } from "react-router-dom";
+import { useToast } from "../../context/Toast";
 
 export default function ProfileButton({ user }) {
   const dispatch = useDispatch();
+  const { showToast } = useToast();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
@@ -35,8 +37,12 @@ export default function ProfileButton({ user }) {
 
   const destroy = (e) => {
     e.preventDefault();
+
     dispatch(logout());
+
     closeMenu();
+
+    showToast("See you next time!");
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
@@ -53,11 +59,9 @@ export default function ProfileButton({ user }) {
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>{user.username}</li>
+            <li>Hello, {user.firstName}</li>
 
-            <li>
-              {user.firstName} {user.lastName}
-            </li>
+            <li>{user.username}</li>
 
             <li>{user.email}</li>
 
@@ -65,9 +69,7 @@ export default function ProfileButton({ user }) {
               <li>Manage Inns</li>
             </NavLink>
 
-            <li>
-              <button onClick={destroy}>Log Out</button>
-            </li>
+            <li onClick={destroy}>Log Out</li>
           </>
         ) : (
           <>

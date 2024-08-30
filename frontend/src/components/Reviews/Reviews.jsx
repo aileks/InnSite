@@ -17,8 +17,7 @@ export default function Reviews({ userId, inn }) {
   const reviews = useSelector(selectReviewsArray).sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt),
   );
-  const { ownerId } = inn || null;
-
+  const ownerId = inn?.ownerId;
   const userHasReview = reviews.some(review => review.userId === userId);
 
   const months = [
@@ -46,8 +45,9 @@ export default function Reviews({ userId, inn }) {
         {reviews?.length ? (
           <>
             {inn?.avgStarRating?.toFixed(2)} <SlMagicWand style={{ color: '#6a0dad' }} />
-            {' • '}
-            Reviews
+            {inn?.numReviews === 1
+              ? `• ${inn?.numReviews} Review`
+              : `• ${inn?.numReviews} Reviews`}{' '}
           </>
         ) : (
           <>
@@ -56,49 +56,58 @@ export default function Reviews({ userId, inn }) {
         )}
       </h2>
 
-      {userId && !userHasReview && (
-        <OpenReviewModal
-          modalComponent={<ReviewFormModal id={id} />}
-          itemText='Post Your Review!'
-        />
-      )}
-
       {reviews?.length ? (
-        reviews?.map(review => (
-          <div
-            className='review-card'
-            key={review.id}
-          >
-            <h3 className='review-title'>
-              {review.User.firstName}
-              {' • '}{' '}
-              <span className='date'>
-                posted {months[new Date(review.createdAt).getMonth()]}{' '}
-                {new Date(review.createdAt).getFullYear()}
-              </span>
-              <span className='time-ago'> ({timestamp(review.createdAt)})</span>
-            </h3>
+        <>
+          {userId && !userHasReview && ownerId !== userId ? (
+            <OpenReviewModal
+              modalComponent={<ReviewFormModal innId={id} />}
+              itemText='Post Your Review!'
+            />
+          ) : (
+            ''
+          )}
 
-            <StarRating rating={review.stars} />
+          {reviews?.map(review => (
+            <div
+              className='review-card'
+              key={review?.id}
+            >
+              <h3 className='review-title'>
+                {review?.User?.firstName}
+                {' • '}{' '}
+                <span className='date'>
+                  {months[new Date(review?.createdAt).getMonth()]}{' '}
+                  {new Date(review?.createdAt).getFullYear()}
+                </span>
+                <span className='time-ago'> ({timestamp(review?.createdAt)})</span>
+              </h3>
 
-            <p className='review-body'>{review.review}</p>
+              <StarRating rating={review?.stars} />
 
-            {review.userId === userId && (
-              <div className='delete-container'>
-                <OpenDeleteModal
-                  itemText='Delete'
-                  modalComponent={<DeleteModal review={review} />}
-                />
-              </div>
-            )}
-          </div>
-        ))
-      ) : userId !== ownerId ? (
+              <p className='review-body'>{review?.review}</p>
+
+              {review?.userId === userId && (
+                <div className='modal-container'>
+                  <OpenDeleteModal
+                    itemText='Delete'
+                    modalComponent={
+                      <DeleteModal
+                        inn={inn}
+                        review={review}
+                      />
+                    }
+                  />
+                </div>
+              )}
+            </div>
+          ))}
+        </>
+      ) : userId && userId !== ownerId ? (
         <div className='add-review'>
-          <p>Be the first to post review!</p>
+          <p>Be the first to post a review!</p>
 
           <OpenReviewModal
-            modalComponent={<ReviewFormModal />}
+            modalComponent={<ReviewFormModal innId={id} />}
             itemText='Post Your Review!'
           />
         </div>

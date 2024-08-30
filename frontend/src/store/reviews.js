@@ -1,32 +1,33 @@
-import { csrfFetch } from './csrf';
-import { createSelector } from 'reselect';
+import { csrfFetch } from "./csrf";
+import { createSelector } from "reselect";
+import { updateAvgRating } from "./inns";
 
-const LOAD_ALL = 'reviews/loadAll';
-const ADD_REVIEW = 'reviews/add';
-const DELETE = 'reviews/destroy';
+const LOAD_ALL = "reviews/loadAll";
+const ADD_REVIEW = "reviews/add";
+const DELETE = "reviews/destroy";
 
-const loadAll = reviews => {
+export const loadAll = (reviews) => {
   return {
     type: LOAD_ALL,
     reviews,
   };
 };
 
-const add = review => {
+export const add = (review) => {
   return {
     type: ADD_REVIEW,
     review,
   };
 };
 
-const destroy = id => {
+export const destroy = (id) => {
   return {
     type: DELETE,
     id,
   };
 };
 
-export const getAllReviews = id => async dispatch => {
+export const getAllReviews = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${id}/reviews`);
 
   if (res.ok) {
@@ -39,11 +40,11 @@ export const getAllReviews = id => async dispatch => {
   return res;
 };
 
-export const addReview = (id, review) => async dispatch => {
-  const res = await csrfFetch(`/api/spots/${id}/reviews`, {
-    method: 'POST',
+export const addReview = (innId, review) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${innId}/reviews`, {
+    method: "POST",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
     body: JSON.stringify(review),
   });
@@ -52,7 +53,6 @@ export const addReview = (id, review) => async dispatch => {
     const data = await res.json();
 
     const sessionRes = await csrfFetch(`/api/session`);
-
     if (sessionRes.ok) {
       const userData = await sessionRes.json();
       const user = userData.user;
@@ -60,23 +60,41 @@ export const addReview = (id, review) => async dispatch => {
     }
 
     dispatch(add(data));
+
+    // Fetch the updated inn data to get the new average rating
+    const innRes = await csrfFetch(`/api/spots/${innId}`);
+    if (innRes.ok) {
+      const updatedInn = await innRes.json();
+      dispatch(
+        updateAvgRating(innId, updatedInn.avgStarRating, updatedInn.numReviews),
+      );
+    }
+
     return data;
   }
 
   return res;
 };
 
-export const deleteReview = id => async dispatch => {
-  const res = await csrfFetch(`/api/reviews/${id}`, {
-    method: 'DELETE',
+export const deleteReview = (reviewId, innId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/reviews/${reviewId}`, {
+    method: "DELETE",
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
   if (res.ok) {
     const message = await res.json();
-    dispatch(destroy(id));
+    dispatch(destroy(reviewId));
+
+    const innRes = await csrfFetch(`/api/spots/${innId}`);
+    if (innRes.ok) {
+      const updatedInn = await innRes.json();
+      dispatch(
+        updateAvgRating(innId, updatedInn.avgStarRating, updatedInn.numReviews),
+      );
+    }
 
     return message;
   }
@@ -84,8 +102,10 @@ export const deleteReview = id => async dispatch => {
   return res;
 };
 
-export const selectReviews = state => state.reviews;
-export const selectReviewsArray = createSelector(selectReviews, reviews => {
+export const getAvgReview = (state) => state.inns.avgRating;
+
+export const selectReviews = (state) => state.reviews;
+export const selectReviewsArray = createSelector(selectReviews, (reviews) => {
   return Object.values(reviews);
 });
 
@@ -94,7 +114,7 @@ export default function reviewsReducer(state = {}, action) {
     case LOAD_ALL: {
       const newState = {};
 
-      action.reviews.forEach(review => {
+      action.reviews.forEach((review) => {
         newState[review.id] = review;
       });
 

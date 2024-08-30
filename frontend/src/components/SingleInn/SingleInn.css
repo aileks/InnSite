@@ -1,3 +1,8 @@
+#view-container {
+  display: flex;
+  flex-direction: column;
+}
+
 #info-container {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -125,4 +130,50 @@
   width: 100%;
   object-fit: cover;
   object-position: center;
+}
+
+@media (max-width: 768px) {
+  #info-container {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  #callout-container {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 1rem;
+    justify-self: center;
+    margin-top: 10px;
+  }
+
+  #reserve-button {
+    width: 100%;
+    padding: 8px 0;
+    font-size: 0.8rem;
+  }
+
+  #price,
+  #rating {
+    font-size: 1rem;
+  }
+
+  #avg-rating {
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+  }
+
+  #images {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  #image-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .review-title {
+    font-size: 0.9rem;
+  }
 }

@@ -7,6 +7,7 @@ import configureStore from "./store";
 import { restoreCSRF, csrfFetch } from "./store/csrf";
 import * as sessionActions from "./store/session";
 import ModalProvider, { Modal } from "./context/Modal";
+import { ToastProvider } from "./context/Toast";
 
 const store = configureStore();
 
@@ -20,11 +21,13 @@ if (import.meta.env.MODE !== "production") {
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ModalProvider>
-      <Provider store={store}>
-        <App />
-        <Modal />
-      </Provider>
-    </ModalProvider>
+    <Provider store={store}>
+      <ModalProvider>
+        <ToastProvider>
+          <App />
+          <Modal />
+        </ToastProvider>
+      </ModalProvider>
+    </Provider>
   </React.StrictMode>,
 );

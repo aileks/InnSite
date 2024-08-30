@@ -18,18 +18,20 @@ export default function Profile() {
 
   useEffect(() => {
     if (!user) {
-      navigate('/');
+      navigate("/");
     }
   }, [user, navigate]);
 
   return (
-    <>
+    <div className="content-container">
       {userInns.length ? (
         <>
           <h1 id="profile-header">Manage Inns</h1>
           <div className="inns-grid">
             {userInns.map((inn) => (
-              <InnCard key={inn.id} inn={inn} />
+              <Link to={`/inns/${inn.id}`} key={inn.id}>
+                <InnCard key={inn.id} inn={inn} />
+              </Link>
             ))}
           </div>
         </>
@@ -37,11 +39,15 @@ export default function Profile() {
         <div id="profile-container">
           <h2>You don&apos;t have any inns yet!</h2>
 
-          <button className="create-inn-button" id="profile-create-inn">
-            <Link to="/inns/new">Create a New Inn</Link>
-          </button>
+          <Link
+            className="create-inn-button"
+            id="profile-create-inn"
+            to="/inns/new"
+          >
+            Create a New Inn
+          </Link>
         </div>
       )}
-    </>
+    </div>
   );
 }

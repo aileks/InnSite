@@ -30,6 +30,13 @@
   cursor: pointer;
 }
 
+#signup-button:disabled,
+#signup-button:disabled:hover {
+  background-color: #a1b8c8;
+  cursor: not-allowed;
+  border: solid #7f98a6 2px;
+}
+
 #signup-form {
   display: grid;
   grid-template-columns: 1fr 1fr;

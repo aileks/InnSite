@@ -84,10 +84,15 @@ body {
   background-color: #f0f0f0;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 hr {
   border-top: solid 2px black;
   border-radius: 6px;
   margin: 20px 0;
+  width: 100%;
 }
 
 .error {
@@ -98,7 +103,12 @@ hr {
 
 .content-container {
   padding: 1.25rem;
-  margin: 8px;
+  margin: 8px auto;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .create-inn-button {
@@ -146,4 +156,35 @@ hr {
   color: white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
   transform: translateY(-1px);
+}
+
+.edit,
+.delete {
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    color 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+}
+
+.edit {
+  color: #3c6e8f;
+  border: solid 2px #3c6e8f;
+}
+
+.edit:hover {
+  color: white;
+  background-color: #3c6e8f;
+}
+
+.delete {
+  color: #c0392b;
+  border: solid 2px #c0392b;
+}
+
+.delete:hover {
+  color: white;
+  background-color: #c0392b;
 }

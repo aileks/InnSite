@@ -46,22 +46,6 @@ module.exports = {
       {
         spotId: (
           await Spot.findOne({
-            where: { name: "The Dragon's Breath Inn" },
-          })
-        ).id,
-        userId: (
-          await User.findOne({
-            where: { username: 'ElaraStarwind' },
-          })
-        ).id,
-        review:
-          'The best inn in Eldoria! The dragon-fire cuisine was spectacular and the ambiance was enchanting. Perfect for a magical getaway.',
-        stars: 5,
-        createdAt: new Date('2024-08-05'),
-      },
-      {
-        spotId: (
-          await Spot.findOne({
             where: { name: 'The White City Tavern' },
           })
         ).id,
@@ -170,22 +154,6 @@ module.exports = {
           'The Silver Chair Inn did not meet my expectations. The silver chair seemed more like a gimmick than a true piece of magic, and the rooms lacked the comfort and quality I anticipated. The experience felt rather ordinary for a place with such a name.',
         stars: 2,
         createdAt: new Date('2024-08-06'),
-      },
-      {
-        spotId: (
-          await Spot.findOne({
-            where: { name: "The Dragon's Breath Inn" },
-          })
-        ).id,
-        userId: (
-          await User.findOne({
-            where: { username: 'SusanPevensie' },
-          })
-        ).id,
-        review:
-          'The Dragon’s Breath Inn was disappointing. The dragon-fire cuisine was too intense and the overall ambiance was more chaotic than magical. I was expecting a more refined and charming experience, but it fell short of that ideal.',
-        stars: 1,
-        createdAt: new Date('2024-08-08'),
       },
       {
         spotId: (

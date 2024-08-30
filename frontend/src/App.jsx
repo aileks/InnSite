@@ -31,7 +31,7 @@ const router = createBrowserRouter([
           },
           {
             path: ":id/edit",
-            element: <EditInn/>,
+            element: <EditInn />,
           },
           {
             path: ":id/delete",

@@ -28,6 +28,23 @@ export default function LoginFormModal() {
       });
   };
 
+  const demoLogin = () => {
+    const demoCredential = "demo@innsite.com";
+    const demoPassword = "password123asdf";
+
+    return dispatch(
+      login({ credential: demoCredential, password: demoPassword }),
+    )
+      .then(closeModal)
+      .catch(async (res) => {
+        const data = await res.json();
+
+        if (data && data.message) {
+          setErrors(data);
+        }
+      });
+  };
+
   return (
     <>
       <span onClick={closeModal} id="close-button">
@@ -45,7 +62,6 @@ export default function LoginFormModal() {
               type="text"
               value={credential}
               onChange={(e) => setCredential(e.target.value)}
-              required
             />
           </label>
 
@@ -56,11 +72,14 @@ export default function LoginFormModal() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
             />
           </label>
 
-          <div className="error">{errors && <p>{errors.message}</p>}</div>
+          <div className="error">
+            {errors.message && errors.message === "Invalid credentials" && (
+              <p>{errors.message}</p>
+            )}
+          </div>
 
           <div className="button-container">
             <button
@@ -69,6 +88,10 @@ export default function LoginFormModal() {
               disabled={credential.length < 4 || password.length < 6}
             >
               Log In
+            </button>
+
+            <button onClick={demoLogin} id="demo-login">
+              Log in as Demo User
             </button>
           </div>
         </form>

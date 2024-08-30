@@ -5,7 +5,8 @@ import { selectInnById, getInnById } from '../../store/inns';
 import { useEffect } from 'react';
 import NotFound from '../404';
 import Reviews from '../Reviews';
-import AvgRating from '../Reviews/AvgRating';
+import { SlMagicWand } from 'react-icons/sl';
+// import AvgRating from '../Reviews/AvgRating';
 
 export default function SingleInn() {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ export default function SingleInn() {
   }, [id, dispatch]);
 
   return (
-    <>
+    <div id='view-container'>
       {inn ? (
         <div className='content-container'>
           <div id='inn-container'>
@@ -44,7 +45,7 @@ export default function SingleInn() {
               </div>
             </div>
 
-            <span id='images'>
+            <div id='images'>
               <div
                 className='preview'
                 id='preview-container'
@@ -68,7 +69,7 @@ export default function SingleInn() {
                   />
                 ))}
               </div>
-            </span>
+            </div>
 
             <div id='info-container'>
               <div id='text-container'>
@@ -76,14 +77,28 @@ export default function SingleInn() {
                   Hosted by {inn?.Owner?.firstName} {inn?.Owner?.lastName}
                 </h3>
 
-                <p id='inn-description'>{inn.description}.</p>
+                <div id='inn-description'>{inn.description}.</div>
               </div>
 
               <div id='callout-container'>
                 <div id='price'>{inn.price} Gold / Night</div>
 
                 <div id='rating'>
-                  <AvgRating inn={inn} />
+                  <div id='avg-rating'>
+                    {inn?.avgStarRating && <>Rating: {inn?.avgStarRating.toFixed(2)}</>}
+
+                    <SlMagicWand style={{ color: '#6a0dad' }} />
+
+                    {inn?.numReviews ? (
+                      <>
+                        {inn?.numReviews === 1
+                          ? `• ${inn?.numReviews} Review`
+                          : `• ${inn?.numReviews} Reviews`}{' '}
+                      </>
+                    ) : (
+                      '*New*'
+                    )}
+                  </div>
                 </div>
 
                 <button
@@ -106,6 +121,6 @@ export default function SingleInn() {
       ) : (
         <NotFound />
       )}
-    </>
+    </div>
   );
 }
