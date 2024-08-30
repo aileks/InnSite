@@ -1,6 +1,6 @@
 #landing-header {
   margin: 16px 0 0 24px;
-  font-family: 'Macondo', cursive;
+  font-family: "Macondo", cursive;
   font-size: 2rem;
   font-weight: 400;
   font-style: normal;
@@ -92,7 +92,7 @@
 
 /* Adds a little arrow at the bottom */
 #tooltip-text::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 100%;
   left: 50%;

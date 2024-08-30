@@ -1,12 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
-import { useDispatch } from 'react-redux';
-import { LuUserCircle } from 'react-icons/lu';
-import { logout } from '../../store/session';
-import OpenModalMenuItem from './OpenModalMenuItem';
-import LoginFormModal from '../LoginFormModal';
-import SignUpFormModal from '../SignUpFormModal';
-import { NavLink } from 'react-router-dom';
-import { useToast } from '../../context/Toast';
+import { useState, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { LuUserCircle } from "react-icons/lu";
+import { logout } from "../../store/session";
+import OpenModalMenuItem from "./OpenModalMenuItem";
+import LoginFormModal from "../LoginFormModal";
+import SignUpFormModal from "../SignUpFormModal";
+import { NavLink } from "react-router-dom";
+import { useToast } from "../../context/Toast";
 
 export default function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -14,7 +14,7 @@ export default function ProfileButton({ user }) {
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
 
-  const toggleMenu = e => {
+  const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
     setShowMenu(!showMenu);
   };
@@ -22,44 +22,41 @@ export default function ProfileButton({ user }) {
   useEffect(() => {
     if (!showMenu) return;
 
-    const closeMenu = e => {
+    const closeMenu = (e) => {
       if (!ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
 
-    document.addEventListener('click', closeMenu);
+    document.addEventListener("click", closeMenu);
 
-    return () => document.removeEventListener('click', closeMenu);
+    return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
   const closeMenu = () => setShowMenu(false);
 
-  const destroy = e => {
+  const destroy = (e) => {
     e.preventDefault();
 
     dispatch(logout());
 
     closeMenu();
 
-    showToast('See you next time!');
+    showToast("See you next time!");
   };
 
-  const ulClassName = 'profile-dropdown' + (showMenu ? '' : ' hidden');
+  const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
 
   return (
-    <div id='profile-button'>
+    <div id="profile-button">
       <button
-        style={{ color: 'black', fontSize: '2.2rem' }}
+        style={{ color: "black", fontSize: "2.2rem" }}
         onClick={toggleMenu}
       >
         <LuUserCircle />
       </button>
 
-      <ul
-        className={ulClassName}
-        ref={ulRef}
-      >
+      <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
             <li>Hello, {user.firstName}</li>
@@ -68,10 +65,7 @@ export default function ProfileButton({ user }) {
 
             <li>{user.email}</li>
 
-            <NavLink
-              onClick={closeMenu}
-              to='/profile'
-            >
+            <NavLink onClick={closeMenu} to="/profile">
               <li>Manage Inns</li>
             </NavLink>
 
@@ -80,13 +74,13 @@ export default function ProfileButton({ user }) {
         ) : (
           <>
             <OpenModalMenuItem
-              itemText='Log In'
+              itemText="Log In"
               onItemClick={closeMenu}
               modalComponent={<LoginFormModal />}
             />
 
             <OpenModalMenuItem
-              itemText='Sign Up'
+              itemText="Sign Up"
               onItemClick={closeMenu}
               modalComponent={<SignUpFormModal />}
             />
