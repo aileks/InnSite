@@ -71,7 +71,7 @@
 /* Places tooltip above each inn card */
 #tooltip-text {
   visibility: hidden;
-  width: 200px;
+  width: 80%;
   background-color: #8a8a8a;
   color: white;
   text-align: center;
@@ -152,8 +152,7 @@
   }
 
   #tooltip-text {
-    left: 0;
-    right: 0;
-    transform: translateX(-25%);
+    width: 40%;
+    left: 40%;
   }
 }
