@@ -92,6 +92,7 @@ hr {
   border-top: solid 2px black;
   border-radius: 6px;
   margin: 20px 0;
+  width: 100%;
 }
 
 .error {
