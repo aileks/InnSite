@@ -28,11 +28,13 @@ export default function LoginFormModal() {
       });
   };
 
-  const demoLogin = () => {
-    const demoCredential = 'demo@innsite.com';
+  const demoLogin = e => {
+    e.stopPropagation();
+
+    const demoCredential = 'DemoUser';
     const demoPassword = 'password123asdf';
 
-    return dispatch(login({ credential: demoCredential, password: demoPassword }))
+    return dispatch(login({ credential: demoCredential, password: demoPassword}))
       .then(closeModal)
       .catch(async res => {
         const data = await res.json();
