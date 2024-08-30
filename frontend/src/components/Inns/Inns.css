@@ -1,6 +1,6 @@
 #landing-header {
   margin: 16px 0 0 24px;
-  font-family: "Macondo", cursive;
+  font-family: 'Macondo', cursive;
   font-size: 2rem;
   font-weight: 400;
   font-style: normal;
@@ -41,21 +41,26 @@
 }
 
 .inn-card-info {
-  padding: 4px 16px 16px;
-  font-size: 0.9em;
+  padding: 4px 8px 8px;
 }
 
 .inn-card-location {
   font-weight: 600;
-  margin-bottom: 4px;
+  margin-right: 4px;
+}
+
+.inn-card-bottom-header {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .inn-card-rating {
-  padding: 10px 12px;
   display: flex;
-  gap: 4px;
-  align-self: end;
-  justify-self: end;
+  align-items: center;
+  gap: 2px;
 }
 
 .inn-card-price {
@@ -92,7 +97,7 @@
 
 /* Adds a little arrow at the bottom */
 #tooltip-text::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;
