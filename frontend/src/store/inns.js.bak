@@ -130,6 +130,7 @@ export const addNewImage = (id, image) => async (dispatch) => {
   if (res.ok) {
     const data = await res.json();
     dispatch(addImage(data));
+    return data;
   }
 
   return res;

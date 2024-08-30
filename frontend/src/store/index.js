@@ -1,3 +1,7 @@
-import configureStore from "./store";
+// import configureStore from "./store";
 
-export default configureStore;
+// export default configureStore;
+
+import store from "./store";
+
+export default store;
