@@ -1,13 +1,10 @@
-a:hover {
-  text-decoration: none;
-}
-
 #landing-header {
   margin: 16px 0 0 24px;
   font-family: 'Macondo', cursive;
   font-size: 2rem;
   font-weight: 400;
   font-style: normal;
+  align-self: flex-start;
 }
 
 .inns-grid {
@@ -45,6 +42,7 @@ a:hover {
 
 .inn-card-info {
   padding: 4px 16px 16px;
+  font-size: 0.9em;
 }
 
 .inn-card-location {
@@ -56,13 +54,13 @@ a:hover {
   padding: 10px 12px;
   display: flex;
   gap: 4px;
-  max-width: fit-content;
   align-self: end;
   justify-self: end;
 }
 
 .inn-card-price {
   font-weight: 600;
+  margin-top: 6px;
 }
 
 #tooltip-container {
@@ -74,7 +72,7 @@ a:hover {
 #tooltip-text {
   visibility: hidden;
   width: 200px;
-  background-color: #7f7a7a;
+  background-color: #8a8a8a;
   color: white;
   text-align: center;
   border-radius: 6px;
@@ -87,7 +85,9 @@ a:hover {
   margin-bottom: 6px;
   opacity: 0;
   transition: opacity 0.4s;
-  font-size: 0.9em;
+  font-size: 0.95em;
+  align-self: center;
+  justify-self: center;
 }
 
 /* Adds a little arrow at the bottom */
@@ -99,7 +99,7 @@ a:hover {
   transform: translateX(-50%);
   border-width: 5px;
   border-style: solid;
-  border-color: #7f7a7a transparent transparent transparent;
+  border-color: #8a8a8a transparent transparent transparent;
 }
 
 #tooltip-container:hover #tooltip-text {
@@ -108,7 +108,7 @@ a:hover {
 }
 
 /* Responsive views */
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .inns-grid {
     grid-template-columns: 1fr;
   }
@@ -116,16 +116,44 @@ a:hover {
   #landing-header {
     font-size: 1.6rem;
   }
+
+  .inn-card-info {
+    font-size: 0.9rem;
+  }
 }
 
-@media (min-width: 601px) and (max-width: 900px) {
+@media (min-width: 769px) and (max-width: 900px) {
   .inns-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .inn-card-info {
+    font-size: 0.9rem;
   }
 }
 
 @media (min-width: 901px) and (max-width: 1200px) {
   .inns-grid {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .inn-card-info {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 1300px) {
+  .inn-card {
+    width: 80%;
+  }
+
+  .inn-card-info {
+    font-size: 1rem;
+  }
+
+  #tooltip-text {
+    left: 0;
+    right: 0;
+    transform: translateX(-25%);
   }
 }

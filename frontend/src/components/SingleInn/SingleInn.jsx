@@ -32,9 +32,9 @@ export default function SingleInn() {
   }, [id, dispatch]);
 
   return (
-    <>
+    <div id='view-container'>
       {inn ? (
-        <div className='content-container'>
+        <div  className='content-container'>
           <div id='inn-container'>
             <div id='inn-header'>
               <h1 id='inn-title'>{inn.name}</h1>
@@ -45,7 +45,7 @@ export default function SingleInn() {
               </div>
             </div>
 
-            <span id='images'>
+            <div id='images'>
               <div
                 className='preview'
                 id='preview-container'
@@ -69,7 +69,7 @@ export default function SingleInn() {
                   />
                 ))}
               </div>
-            </span>
+            </div>
 
             <div id='info-container'>
               <div id='text-container'>
@@ -121,6 +121,6 @@ export default function SingleInn() {
       ) : (
         <NotFound />
       )}
-    </>
+    </div>
   );
 }

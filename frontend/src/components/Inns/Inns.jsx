@@ -14,16 +14,19 @@ export default function Inns() {
   }, [dispatch]);
 
   return (
-    <>
-      <h3 id='landing-header'>Every adventurer needs their rest.</h3>
+    <div className='content-container'>
+        <h3 id='landing-header'>Every adventurer needs their rest.</h3>
 
-      <div className='inns-grid'>
-        {inns?.map(inn => (
-          <Link to={`/inns/${inn.id}`} key={inn.id}>
-            <InnCard inn={inn} />
-          </Link>
-        ))}
-      </div>
-    </>
+        <div className='inns-grid'>
+          {inns?.map(inn => (
+            <Link
+              to={`/inns/${inn.id}`}
+              key={inn.id}
+            >
+              <InnCard inn={inn} />
+            </Link>
+          ))}
+        </div>
+    </div>
   );
 }

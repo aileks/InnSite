@@ -1,3 +1,10 @@
+#view-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #info-container {
   display: grid;
   grid-template-columns: 2fr 1fr;

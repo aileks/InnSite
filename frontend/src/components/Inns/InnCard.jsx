@@ -23,6 +23,7 @@ export default function InnCard({ inn }) {
 
             <div className='inn-card-rating'>
               {inn.avgRating ? inn.avgRating.toFixed(2) : ' *New* '}
+
               <SlMagicWand style={{ color: '#6a0dad', fontSize: '0.9em' }} />
             </div>
 
