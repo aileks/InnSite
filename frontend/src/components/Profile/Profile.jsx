@@ -29,10 +29,15 @@ export default function Profile() {
           <h1 id='profile-header'>Manage Inns</h1>
           <div className='inns-grid'>
             {userInns.map(inn => (
-              <InnCard
+              <Link
+                to={`/inns/${inn.id}`}
                 key={inn.id}
-                inn={inn}
-              />
+              >
+                <InnCard
+                  key={inn.id}
+                  inn={inn}
+                />
+              </Link>
             ))}
           </div>
         </>
