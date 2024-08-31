@@ -74,7 +74,7 @@ export default function SingleInn() {
             <div id='info-container'>
               <div id='text-container'>
                 <h3 id='hosted'>
-                  Hosted by {inn?.Owner?.firstName} {inn?.Owner?.lastName}
+                  Hosted by {inn?.Owner?.firstName}
                 </h3>
 
                 <p id='inn-description'>{inn.description}.</p>
