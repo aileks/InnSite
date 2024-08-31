@@ -114,9 +114,13 @@
 #text-container {
   grid-column: 1 / 2;
   display: block;
-  max-width: 100%;
-  overflow: hidden;
-  padding-right: 12px;
+  max-width: 560px;
+}
+
+#inn-description {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 
 #preview-image,
