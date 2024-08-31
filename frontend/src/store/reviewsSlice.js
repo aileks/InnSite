@@ -41,8 +41,8 @@ export const getAllReviews = id => async dispatch => {
 
   if (res.ok) {
     const data = await res.json();
-    console.log(data);
     dispatch(loadAll(data.Reviews));
+    return data.Reviews;
   }
 
   return res;
@@ -79,6 +79,8 @@ export const addReview = (innId, review) => async dispatch => {
         }),
       );
     }
+
+    return data;
   }
 
   return res;
@@ -88,9 +90,10 @@ export const deleteReview = (reviewId, innId) => async dispatch => {
   const res = await csrfFetch(`/api/reviews/${reviewId}`, { method: 'DELETE' });
 
   if (res.ok) {
+    const message = await res.json();
     dispatch(destroy(reviewId));
-    const innRes = await csrfFetch(`/api/spots/${innId}`);
 
+    const innRes = await csrfFetch(`/api/spots/${innId}`);
     if (innRes.ok) {
       const updatedInn = await innRes.json();
 
@@ -102,6 +105,8 @@ export const deleteReview = (reviewId, innId) => async dispatch => {
         }),
       );
     }
+
+    return message;
   }
 
   return res;
