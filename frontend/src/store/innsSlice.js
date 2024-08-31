@@ -29,6 +29,7 @@ const innsSlice = createSlice({
 
     addImage: (state, action) => {
       const { innId, image } = action.payload;
+
       if (state[innId]) {
         state[innId] = {
           ...state[innId],
@@ -157,7 +158,9 @@ export const deleteInn = id => async dispatch => {
   const res = await csrfFetch(`/api/spots/${id}`, { method: 'DELETE' });
 
   if (res.ok) {
+    const message = res.json();
     dispatch(destroy(id));
+    return message;
   }
 
   return res;
