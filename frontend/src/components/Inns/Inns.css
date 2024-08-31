@@ -1,10 +1,9 @@
 #landing-header {
-  margin: 16px 0 0 24px;
+  margin: 8px 0;
   font-family: 'Macondo', cursive;
   font-size: 2rem;
   font-weight: 400;
   font-style: normal;
-  align-self: flex-start;
 }
 
 .inns-grid {
