@@ -16,7 +16,7 @@ export const ToastProvider = ({ children }) => {
 
   const showToast = (message) => {
     setToast({ message, visible: true });
-    setTimeout(() => setToast({ message: "", visible: false }), 1500);
+    setTimeout(() => setToast({ message: "", visible: false }), 2000);
   };
 
   const handleClose = () => {
