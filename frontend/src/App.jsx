@@ -1,78 +1,72 @@
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useState, useEffect } from "react";
-import { restoreUser } from "./store/session";
-import Navigation from "./components/Navigation";
-import Index from "./components/Index";
-import NotFound from "./components/404";
-import Profile from "./components/Profile";
-import SingleInn from "./components/SingleInn";
-import InnForm from "./components/InnForm";
-import EditInn from "./components/InnForm/EditInn";
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { restoreUser } from './store/sessionSlice';
+import Navigation from './components/Navigation';
+import Index from './components/Index';
+import NotFound from './components/404';
+import Profile from './components/Profile';
+import SingleInn from './components/SingleInn';
+import InnForm from './components/InnForm';
+import EditInn from './components/InnForm/EditInn';
 
 const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       {
-        path: "/",
+        path: '/',
         element: <Index />,
       },
       {
-        path: "inns",
+        path: 'inns',
         children: [
           {
-            path: ":id",
+            path: ':id',
             element: <SingleInn />,
           },
           {
-            path: "new",
+            path: 'new',
             element: <InnForm />,
           },
           {
-            path: ":id/edit",
+            path: ':id/edit',
             element: <EditInn />,
           },
           {
-            path: ":id/delete",
-            element: (
-              <h1 style={{ textAlign: "center", marginTop: "40px" }}>
-                Coming soon...
-              </h1>
-            ),
+            path: ':id/delete',
+            element: <h1 style={{ textAlign: 'center', marginTop: '40px' }}>Coming soon...</h1>,
           },
         ],
       },
       {
-        path: "profile",
+        path: 'profile',
         element: <Profile />,
       },
       {
-        path: "*",
+        path: '*',
         element: <NotFound />,
       },
     ],
   },
   {
-    path: "*",
+    path: '*',
     element: (
       <div
         style={{
-          marginTop: "20vh",
-          width: "100vw",
+          marginTop: '20vh',
+          width: '100vw',
         }}
       >
-        <h1 style={{ textAlign: "center", margin: "10px 0" }}>
-          Something went wrong...
-        </h1>
+        <h1 style={{ textAlign: 'center', margin: '10px 0' }}>Something went wrong...</h1>
 
-        <h2 style={{ textAlign: "center" }}>
+        <h2 style={{ textAlign: 'center' }}>
           Page not found
           <br />
           <img
-            style={{ marginTop: "10px" }}
-            src="https://media1.tenor.com/m/KfTzPr3nyowAAAAd/what-que.gif"
-            alt=""
+            style={{ marginTop: '10px' }}
+            src='https://media1.tenor.com/m/KfTzPr3nyowAAAAd/what-que.gif'
+            alt=''
           />
         </h2>
       </div>

@@ -2,7 +2,7 @@ import './Reviews.css';
 import timestamp from '../../utils/timestamp';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { getAllReviews, selectReviewsArray } from '../../store/reviews';
+import { getAllReviews, selectReviewsArray } from '../../store/reviewsSlice';
 import { useParams } from 'react-router-dom';
 import StarRating from './StarRating';
 import ReviewFormModal from '../ReviewFormModal';

@@ -1,7 +1,7 @@
 import './SingleInn.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { selectInnById, getInnById } from '../../store/inns';
+import { selectInnById, getInnById } from '../../store/innsSlice';
 import { useEffect } from 'react';
 import NotFound from '../404';
 import Reviews from '../Reviews';
@@ -77,7 +77,7 @@ export default function SingleInn() {
                   Hosted by {inn?.Owner?.firstName} {inn?.Owner?.lastName}
                 </h3>
 
-                <div id='inn-description'>{inn.description}.</div>
+                <p id='inn-description'>{inn.description}.</p>
               </div>
 
               <div id='callout-container'>

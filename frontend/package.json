@@ -1,6 +1,8 @@
 {
-  "name": "aa-react18-redux-vite-template",
+  "name": "frontend",
   "private": true,
+  "author": "Aaliyah Harper",
+  "license": "ISC",
   "version": "0.1.0",
   "type": "module",
   "scripts": {
