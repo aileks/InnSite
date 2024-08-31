@@ -23,9 +23,9 @@ export default function InnCard({ inn }) {
 
             <div className='inn-card-info'>
               <div className='inn-card-bottom-header'>
-                <span className='inn-card-location'>
-                  {inn.city}, {inn.state}
-                </span>
+                <div className='inn-card-location'>
+                  <p>{inn.city},</p> <p>{inn.state}</p>
+                </div>
 
                 <span className='inn-card-rating'>
                   {inn.avgRating ? inn.avgRating.toFixed(2) : ' *New* '}

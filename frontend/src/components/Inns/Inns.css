@@ -10,7 +10,8 @@
 .inns-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
+  grid-column-gap: 10px;
+  grid-row-gap: 40px;
   padding: 24px;
 }
 
@@ -41,16 +42,19 @@
 }
 
 .inn-card-info {
-  padding: 4px 8px 8px;
+  font-size: 0.9em;
+  padding: 4px 8px 6px;
 }
 
 .inn-card-location {
+  display: flex;
+  flex-direction: column;
   font-weight: 600;
   margin-right: 4px;
 }
 
 .inn-card-bottom-header {
-  margin-top: 14px;
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -59,8 +63,11 @@
 
 .inn-card-rating {
   display: flex;
+  align-self: flex-start;
+  justify-self: flex-start;
+  justify-content: center;
   align-items: center;
-  gap: 2px;
+  gap: 4px;
 }
 
 .inn-card-price {
@@ -141,23 +148,17 @@
   .inns-grid {
     grid-template-columns: repeat(3, 1fr);
   }
-
-  .inn-card-info {
-    font-size: 0.9rem;
-  }
 }
 
-@media (min-width: 1300px) {
+@media (min-width: 1081px) {
+  .inns-grid {
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 10px;
+  }
+
   .inn-card {
-    width: 80%;
-  }
-
-  .inn-card-info {
-    font-size: 1rem;
-  }
-
-  #tooltip-text {
-    width: 40%;
-    left: 40%;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
   }
 }
