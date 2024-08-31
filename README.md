@@ -1,4 +1,7 @@
-# AirBnB Clone
+# InnSite
+
+## Table of Contents
+- [Redux Store](#redux-store)
 
 ## Database Schema Design
 
@@ -8,6 +11,13 @@
 [airbnb-db-diagram-info]: https://appacademy-open-assets.s3.us-west-1.amazonaws.com/Modular-Curriculum/content/week-12/airbnb-db-diagram-info.txt
 
 ## API Documentation
+
+- [Authentication & Authorization](user-authentication%2Fauthorization)
+- [Spots](#spots)
+- [Reviews](#reviews)
+- [Bookings](#bookings)
+- [Images](#images)
+- [Query Filters](#add-query-filters-to-get-all-spots)
 
 ## USER AUTHENTICATION/AUTHORIZATION
 
