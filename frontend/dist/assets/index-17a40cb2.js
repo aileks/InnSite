@@ -120,4 +120,4 @@ const store = createStore(
 [redux-logger v3] import createLogger from 'redux-logger'
 [redux-logger v3] to
 [redux-logger v3] import { createLogger } from 'redux-logger'
-`)};n.defaults=W,n.createLogger=y,n.logger=Z,n.default=Z,Object.defineProperty(n,"__esModule",{value:!0})})})(Od,Od.exports);const eS=Uw({reducer:{session:ox,inns:Dx,reviews:Ux},middleware:e=>e()});fs.createRoot(document.getElementById("root")).render(c.jsx(un.StrictMode,{children:c.jsx(nw,{store:eS,children:c.jsx(px,{children:c.jsxs(gx,{children:[c.jsx(qx,{}),c.jsx(hx,{})]})})})}));
+`)};n.defaults=W,n.createLogger=y,n.logger=Z,n.default=Z,Object.defineProperty(n,"__esModule",{value:!0})})})(Od,Od.exports);const eS=Uw({reducer:{session:ox,inns:Dx,reviews:Ux},middleware:e=>e(),devTools:!1});fs.createRoot(document.getElementById("root")).render(c.jsx(un.StrictMode,{children:c.jsx(nw,{store:eS,children:c.jsx(px,{children:c.jsxs(gx,{children:[c.jsx(qx,{}),c.jsx(hx,{})]})})})}));
