@@ -1,0 +1,19 @@
+inns: [
+  "1": {
+    id: 1,
+    address: "",
+    avgRating: 0.0,
+    country: "",
+    state: "",
+    city: "",
+    description: "",
+    lat: 0.00,
+    lng: 0.00,
+    name: "",
+    ownerId: 2,
+    previewImage: "url",
+    price: 3.50,
+    createdAt: "timestamp",
+    updatedAt: "timestamp"
+  }
+]
